@@ -16,7 +16,7 @@ import { MatModule } from './appModules/mat.module';
 import { ContentLayoutComponent } from './layouts/content/content-layout.component';
 import { FullLayoutComponent } from './layouts/full/full-layout.component';
 import { AuthService } from './services/auth.service';
-import { RecipeService } from './services/recipe.service';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
@@ -33,7 +33,7 @@ import { RecipeService } from './services/recipe.service';
 
   providers: [
     AuthService,
-    RecipeService,
+    ProductService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RestApiUrlInterceptor,

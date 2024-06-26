@@ -1,16 +1,52 @@
+<h5>Products</h5>
+<hr />
+
+<mat-card>
+  <mat-card-content>
+    <table>
+      <tr>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+      </tr>
+
+      <tr>
+        <td>ssss</td>
+
+        <td>ffff</td>
+
+        <td>hhhh</td>
+
+        <td>aaaa</td>
+      </tr>
 
 
-<div class="row">
-  <div class="col-12 col-lg-12 col-xxl-4 d-flex">
-    <mat-card class="rounded-4 w-100">
-      <mat-card-content>
-        <div class="">
-          products
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
 
-</div><!--end row-->
 
+
+
+      <div *ngIf="loadedProducts.length > 0; else noProducts">
+          <tr
+            class="col-12 col-md-4 mb-3"
+            *ngFor="let productItem of loadedProducts"
+          >
+            <app-card [product]="productItem"></app-card>
+            </tr>
+      </div>
+
+
+
+      
+
+
+
+
+    </table>
+    <ng-template #noProducts>
+      <div>No products found.</div>
+    </ng-template>
+    <div *ngIf="isLoading">loading...</div>
+
+  </mat-card-content>
+</mat-card>

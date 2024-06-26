@@ -7,25 +7,19 @@ import {
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, catchError, map, tap, throwError } from 'rxjs';
-import { Ingredient } from '../model/ingredient.model';
-import { Recipe } from '../model/recipe.model';
-import { ShoppingListService } from './shopping-list.service';
+import { Product } from '../model/product.model';
 
 @Injectable()
-export class RecipeService implements OnInit, OnDestroy {
-  recipesList = new Subject<Recipe[]>();
-  recipeSelected = new Subject<Recipe>();
+export class ProductService implements OnInit, OnDestroy {
+  productsList = new Subject<Product[]>();
+  productSelected = new Subject<Product>();
   error = new Subject<string>();
   csrfToken: Subject<string> = new Subject<string>();
   csrfValue: string;
-  private recipes: Recipe[];
+  private products: Product[];
   tokenValue: string;
 
-  constructor(
-    private shoppingListService: ShoppingListService,
-    private http: HttpClient,
-    private router: Router
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
@@ -66,63 +60,67 @@ export class RecipeService implements OnInit, OnDestroy {
     );
   }
 
-  fetchRecipes(keyword?: string, category?: number, limit?: number): Observable<Recipe[]> {
+  fetchProducts(
+    keyword?: string,
+    category?: number,
+    limit?: number
+  ): Observable<Product[]> {
     const headers = this.getHeaders();
-    let apiUrl = '/recipes/';
+    let apiUrl = '/products/';
     let params = new HttpParams();
 
     if (keyword) {
-      apiUrl = '/recipes/search';
+      apiUrl = '/products/search';
       params = params.append('keyword', keyword);
     } else {
       if (category > 0) {
-        apiUrl = '/recipes/searchByCategoryId';
+        apiUrl = '/products/searchByCategoryId';
         console.log('param category');
         console.log(category);
         params = params.append('categoryId', category);
       }
     }
 
-    if(limit){
+    if (limit) {
       params = params.append('size', limit);
     }
 
     return this.http
-      .get<{ Recipe }>(apiUrl, {
+      .get<{ Product }>(apiUrl, {
         headers,
         params,
       })
       .pipe(
         map((responseData) => {
           console.log(responseData);
-          const recipeArray: Recipe[] = [];
+          const productArray: Product[] = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
-              recipeArray.push({ ...responseData[key] });
+              productArray.push({ ...responseData[key] });
             }
           }
-          this.recipes = recipeArray;
-          this.recipesList.next(this.recipes.slice());
-          return recipeArray;
+          this.products = productArray;
+          this.productsList.next(this.products.slice());
+          return productArray;
         }),
         catchError((error) => {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error loading recipes.'));
+          return throwError(() => new Error('Error loading products.'));
         })
       );
   }
 
-  getRecipes() {
-    return this.recipes.slice();
+  getProducts() {
+    return this.products.slice();
   }
 
-  getRecipe(index: number) {
-    return this.recipes[index];
+  getProduct(index: number) {
+    return this.products[index];
   }
 
-  getById(id: number): Observable<Recipe> {
+  getById(id: number): Observable<Product> {
     const headers = this.getHeaders();
 
     let params = new HttpParams();
@@ -130,7 +128,7 @@ export class RecipeService implements OnInit, OnDestroy {
     params = params.append('test2', '1');
 
     return this.http
-      .get<Recipe>(`/recipes/${id}`, {
+      .get<Product>(`/products/${id}`, {
         headers,
         params,
       })
@@ -145,15 +143,11 @@ export class RecipeService implements OnInit, OnDestroy {
       );
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-  }
-
-  addRecipe(recipe: Recipe) {
+  addProduct(product: Product) {
     const headers = this.getHeaders();
 
     return this.http
-      .post(`/recipes/add`, recipe, {
+      .post(`/products/add`, product, {
         withCredentials: true,
         headers,
       })
@@ -170,10 +164,10 @@ export class RecipeService implements OnInit, OnDestroy {
       );
   }
 
-  addRecipeWithPhoto(recipe: FormData) {
+  addProductWithPhoto(product: FormData) {
     const headers = this.getHeadersForm();
 
-    return this.http.post(`/recipes/add-with-photo`, recipe, { headers }).pipe(
+    return this.http.post(`/products/add-with-photo`, product, { headers }).pipe(
       tap((response) => {
         console.log('Response from backend:', response);
       }),
@@ -186,11 +180,11 @@ export class RecipeService implements OnInit, OnDestroy {
     );
   }
 
-  updateRecipe(id: number, dataRecipe: Recipe) {
+  updateProduct(id: number, dataProduct: Product) {
     const headers = this.getHeaders();
-    console.log(dataRecipe);
+    console.log(dataProduct);
     return this.http
-      .patch(`/recipes/${id}`, dataRecipe, {
+      .patch(`/products/${id}`, dataProduct, {
         withCredentials: true,
         responseType: 'text',
         headers,
@@ -208,18 +202,18 @@ export class RecipeService implements OnInit, OnDestroy {
       );
   }
 
-  deleteRecipe(recipeId: number) {
+  deleteProduct(productId: number) {
     const headers = this.getHeaders();
-    return this.http.delete(`/recipes/${recipeId}`, { headers });
+    return this.http.delete(`/products/${productId}`, { headers });
   }
 
   /*
-  uploadRecipe(id: number, imageFile: File) {
+  uploadProduct(id: number, imageFile: File) {
     const formData = new FormData();
     if (imageFile instanceof File) {
       formData.append('image', imageFile, imageFile.name);
 
-      const url = `/recipes/${id}/uploadImage`;
+      const url = `/products/${id}/uploadImage`;
 
       const headers = new HttpHeaders();
       headers.set('Cache-Control', 'no-cache');
@@ -237,5 +231,4 @@ export class RecipeService implements OnInit, OnDestroy {
       );
     }
   }*/
-
 }

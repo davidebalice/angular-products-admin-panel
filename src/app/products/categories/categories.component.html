@@ -1,1 +1,19 @@
-<p>categories works!</p>
+<div class="row categoryContainer">
+  <div
+    class="categoryItem"
+    *ngFor="let category of categories"
+    (click)="onSelectCategory(category)"
+    [ngStyle]="{
+      'background-color': '#' + category.bg,
+      color: '#' + category.color
+    }"
+  >
+    <img
+      [src]="'../../../assets/images/' + category.name.trim() + '.png'"
+      style="width: 50px"
+    />
+    <span [ngClass]="{ active: selectedCategory === category }">
+      {{ category.name }}
+    </span>
+  </div>
+</div>
