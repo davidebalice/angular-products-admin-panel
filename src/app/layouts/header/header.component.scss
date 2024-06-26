@@ -1,0 +1,103 @@
+
+.top-header {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 65px;
+    padding: 0 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    background-color: #ffffff;
+    z-index: 7;
+    &.hidden{
+        opacity: 0;
+      }
+    
+
+    button {
+        color:#202020;
+    }
+   
+    .top-right-menu {
+        margin-left: auto;
+        .user-avtar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            padding: 2px;
+        }
+    }
+}
+
+
+.app-name {
+    color: #212529;
+    font-size: .8rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.searchbar {
+    position: fixed;
+    z-index: 8;
+    top: 0;
+    left: 260px;
+    right: 0;
+    height: 65px;
+    background-color: #ffffff;
+    width: 0;
+    display: flex;
+    visibility: hidden;
+    transition: width 250ms ease-in-out;
+    .search-control {
+        font-size: 16px;
+        color: #212529;
+        height: 45px;
+        padding: 0 1rem;
+        outline: none;
+        border: 0;
+        border-bottom: 2px solid #ffffff;
+        background-color: #ffffff;
+        transition: border-color 250ms ease-in-out;
+
+        &:focus{
+            border-bottom: 2px solid #3f51b5;
+            transition: border-color 250ms ease-in-out;
+            backface-visibility: hidden;
+        }
+    }
+
+    ::placeholder {
+        font-size: 16px !important;
+        opacity: 0.5 !important;
+        color: #212529;
+    }
+
+}
+
+.full-search {
+    left: 0 !important;
+}
+
+.full-search.searchVisible {
+    width: calc(100% - 0px);
+}
+
+.searchVisible {
+    width: calc(100% - 260px);
+    visibility: visible;
+    transition: width 250ms ease-in-out;
+}
+
+
+::ng-deep.mat-menu-panel {
+    max-width:fit-content !important;
+  }
+
+.test {
+
+    left: 0px !important;
+}

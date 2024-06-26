@@ -1,0 +1,128 @@
+.sidebar-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 260px;
+  height: 100%;
+  background-color: #ffffff;
+  overflow-y: auto;
+  z-index: 10;
+
+  .sidebar-header {
+    width: 260px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: fixed;
+    z-index: 1;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+    top: 0;
+    bottom: 0;
+    padding: 0 15px;
+    background: #f1f1f1;
+    background-clip: padding-box;
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #202020;
+    }
+  }
+
+  .sidebar-menu {
+    margin-top: 65px;
+
+  }
+
+  mat-icon {
+    font-size: 24px;
+    line-height: normal;
+    height: auto;
+    width: auto
+  }
+
+  .sidebar-lable {
+    font-size: 12px;
+    color: #d5d5d5;
+  }
+
+
+
+
+  ::ng-deep .mat-content {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    overflow: hidden;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  ::ng-deep .mdc-list-item__primary-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  ::ng-deep .mat-expansion-panel-header {
+    padding: 0 16px !important;
+  }
+
+  ::ng-deep .mat-nav-list .mat-icon {
+    margin-right: 10px;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important
+  }
+
+  ::ng-deep .mat-expansion-panel-header {
+    height: 48px !important;
+  }
+
+  ::ng-deep .mat-expansion-panel .mat-list-item {
+    padding-left: 15px !important;
+  }
+
+  ::ng-deep .mat-nav-list .is-active {
+    background-color: rgb(204, 204, 204) !important;
+    border-left: 8px solid rgb(139, 137, 133);
+    width: calc(100% - 8px) !important;
+  }
+
+  ::ng-deep .mat-list-base {
+    padding-top: 0 !important;
+  }
+
+  ::ng-deep .mat-nav-list .mat-list-item.is-active .mat-list-item-content {
+    padding: 0 8px;
+  }
+
+  ::ng-deep .mdc-list {
+    padding: 3px 0 !important;
+  }
+
+}
+
+.sidebar-wrapper.mini-sidebar {
+  left: -300px !important;
+}
+
+
+@media screen and (max-width: 1024px) {
+
+  .sidebar-wrapper.mini-sidebar {
+
+      left: 0px !important;
+
+     
+  }
+
+
+}

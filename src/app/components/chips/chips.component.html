@@ -1,0 +1,52 @@
+<p class="mb-0 text-uppercase">Chips</p>
+<hr>
+
+<mat-card>
+    <mat-card-content>
+        <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option>One fish</mat-chip-option>
+            <mat-chip-option>Two fish</mat-chip-option>
+            <mat-chip-option color="accent" selected>Accent fish</mat-chip-option>
+            <mat-chip-option color="warn">Warn fish</mat-chip-option>
+        </mat-chip-listbox>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-content>
+        <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+            @for (chip of availableColors; track chip) {
+              <mat-chip-option selected [color]="chip.color">{{chip.name}}</mat-chip-option>
+            }
+          </mat-chip-listbox>
+          
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-content>
+        <mat-form-field class="example-chip-list">
+            <mat-label>Favorite Fruits</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Enter fruits">
+              @for (fruit of fruits; track fruit) {
+                <mat-chip-row
+                  (removed)="remove(fruit)"
+                  [editable]="true"
+                  (edited)="edit(fruit, $event)"
+                  [aria-description]="'press enter to edit ' + fruit.name">
+                  {{fruit.name}}
+                  <button matChipRemove [attr.aria-label]="'remove ' + fruit.name">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              }
+              <input placeholder="New fruit..."
+                     [matChipInputFor]="chipGrid"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)"/>
+            </mat-chip-grid>
+          </mat-form-field>
+          
+    </mat-card-content>
+</mat-card>

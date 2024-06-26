@@ -1,0 +1,98 @@
+.dark_mode {
+
+    --bs-border-color: #495057;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+
+    body {
+        color: #eee7e7;
+        background: #292727;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #fff !important;
+    }
+
+    p {
+        color: #eee7e7;
+    }
+
+
+    .top-header {
+        background-color: #424242 !important;
+
+        button {
+            color: #eee7e7 !important;
+        }
+
+
+        .app-name {
+            color: #eee7e7 !important;
+        }
+
+    }
+
+
+
+    .dropdown-apps {
+
+        mat-grid-tile:hover {
+            background-color: #575656;
+        }
+    }
+
+
+    .searchbar {
+        background-color: #424242 !important;
+
+        .search-control {
+            color: #fff !important;
+            background-color: #424242 !important;
+            border-bottom: 2px solid #424242 !important;
+
+            &:focus {
+                border-bottom: 2px solid #3f51b5 !important;
+            }
+        }
+
+        ::placeholder {
+            color: #fff !important;
+            opacity: 0.5 !important;
+        }
+    }
+
+
+    .sidebar-wrapper {
+        background-color: #424242 !important;
+
+        .sidebar-header {
+            background-color: #424242 !important;
+
+            .logo-name {
+                color: #fff !important;
+            }
+        }
+    }
+
+    .apexcharts-datalabel,
+    .apexcharts-datalabel-label,
+    .apexcharts-datalabel-value,
+    .apexcharts-datalabels,
+    .apexcharts-pie-label {
+        fill: #fff
+    }
+
+
+    .apexcharts-datalabel-value {
+        fill: #fff !important;
+    }
+
+    .price {
+        color: #fff !important;
+    }
+
+}

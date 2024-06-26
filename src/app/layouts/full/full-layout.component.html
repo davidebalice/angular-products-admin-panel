@@ -1,0 +1,7 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<main class="main-content" [ngClass]="{'test-2' : getSideBarState()}">
+	<router-outlet></router-outlet>
+	<div class="overlay" (click)="toggleSidebar()" [ngClass]="{'show' : getSideBarState()}"></div>
+</main>
+

@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css");
+@import './grid-and-utilities/grid.scss';
+@import './grid-and-utilities//utilities.scss';
+@import './grid-and-utilities/color.scss';
+@import './dark.scss';
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    color: #636363;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: #efefef;
+
+}
+
+button {
+    font-weight: 500;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.dropdown-apps {
+    padding: 1rem;
+    width: 300px !important;
+    height: 450px !important;
+    max-width: unset !important;
+
+    mat-grid-tile:hover {
+        background-color: #e0f0ff;
+        cursor: pointer;
+        border-radius: 16px;
+    }
+
+    .mat-menu-content {
+        padding: 0 !important;
+    }
+
+}
+
+.dropdown-userprofile {
+    width: 260px !important;
+    max-width: unset !important;
+}
+
+
+.dropdown-notification {
+    width: 300px !important;
+    max-width: unset !important;
+}
+
+
+.mat-icon {
+    width: auto !important;
+    height: auto !important;
+}
+
+.mat-mdc-card {
+    margin-bottom: 1.5rem;
+}
+
+.card-lable {
+    font-size: 13px;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+
+/* utilities */
+
+.font-13 {
+    font-size: 13px;
+}
+
+.chartjs-container {
+    position: relative;
+    height: 350px;
+}
+
+.sidebar-lable {
+    font-size: 14px !important;
+}
+
+
+/* responsive */
+
+@media only screen and (max-width: 1024px) {
+
+    .searchbar,
+    .top-header {
+        left: 0px !important;
+    }
+
+    .searchVisible {
+        width: calc(100% - 0px) !important;
+    }
+
+    .sidebar-wrapper {
+        left: -300px !important;
+    }
+
+    .main-content {
+        margin-left: 0px !important;
+    }
+
+    
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    opacity: .6;
+    z-index: 10;
+    display: none;
+    cursor: move;
+    transition: all 0.2s ease-out;
+    z-index: 9;
+}
+
+.overlay.show {
+    display: block !important;
+}
+
+}
+
+
+
+
+
+
+// .sidebar-wrapper::-webkit-scrollbar {
+//     width: 10px;
+// }
+
+// .sidebar-wrapper::-webkit-scrollbar-track {
+//     background-color: #dadada;
+// }
+
+// .sidebar-wrapper::-webkit-scrollbar-thumb {
+//     background-color: #c1c1c1;
+// }
+

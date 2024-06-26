@@ -1,0 +1,191 @@
+<p>Basic Form Elements</p>
+<hr>
+
+<mat-card>
+    <mat-card-content>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Favorite food</mat-label>
+              <input matInput placeholder="Ex. Pizza" value="Sushi">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Leave a comment</mat-label>
+              <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            </mat-form-field>
+          </form>
+    </mat-card-content>
+</mat-card>
+
+<br>
+<p>With Icons</p>
+<hr>
+
+<mat-card>
+    <mat-card-content>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Fill form field</mat-label>
+          <input matInput placeholder="Placeholder">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Fill form field</mat-label>
+          <input matInput placeholder="Placeholder">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+          <mat-icon matSuffix>search</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+</mat-card>
+
+<br>
+<p>Form Select</p>
+<hr>
+
+<mat-card>
+    <mat-card-content>
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label>State</mat-label>
+        <mat-select>
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>State</mat-label>
+        <mat-select>
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+</mat-card>
+
+<br>
+<p>Date Picker</p>
+<hr>
+
+<mat-card>
+    <mat-card-content>
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <br>
+
+  <br>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+
+  <br>
+
+  <br>
+
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <br>
+
+  <br>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</mat-card-content>
+</mat-card>
+
+
+
+<br>
+<p>Checkboxes & Radios</p>
+<hr>
+
+<mat-card>
+    <mat-card-content>
+    <div class="d-flex align-items-center gap-5 flex-wrap">
+        <div>
+            <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox class="example-margin" color="primary">Primary</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox class="example-margin" color="warn">Warn</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+        </div>
+    </div>
+</mat-card-content>
+</mat-card>
+
+<br>
+
+<mat-card>
+    <mat-card-content>
+     <mat-radio-group aria-label="Select an option" class="gap-4 d-flex">
+        <mat-radio-button value="1">Option 1</mat-radio-button>
+        <mat-radio-button value="2">Option 2</mat-radio-button>
+      </mat-radio-group>
+    </mat-card-content>
+</mat-card>
+
+<br>
+
+<mat-card>
+    <mat-card-content>
+    <div class="d-flex align-items-center gap-4 flex-wrap">
+        <mat-slide-toggle>Slide me!</mat-slide-toggle>
+        <mat-slide-toggle color="primary">Primary</mat-slide-toggle>
+        <mat-slide-toggle color="warn">Warn</mat-slide-toggle>
+    </div>
+</mat-card-content>
+</mat-card>

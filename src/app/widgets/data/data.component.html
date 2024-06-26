@@ -1,0 +1,668 @@
+<h6 class="mb-0 text-uppercase">Data Widgets</h6>
+<hr>
+
+<div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-4">
+  <div class="col">
+    <mat-card class="rounded-4">
+        <mat-card-content>
+          <div class="d-flex align-items-center gap-3">
+            <div class="">
+              <h4 class="mb-0">9856</h4>
+            </div>
+            <div class="me-auto">
+              <p class="dash-lable d-flex align-items-center gap-1 rounded mb-0 mat-light-bg-green text-green bg-opacity-10"><span class="material-icons-outlined fs-6">arrow_upward</span>8.6%</p>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="rounded-4">
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                  <span>Refresh</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                  <span>Download</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <p class="mb-1">Total Orders</p>
+            <apx-chart
+              [series]="WidgetChart1.series" 
+              [colors]="WidgetChart1.colors"
+              [fill]="WidgetChart1.fill"
+              [chart]="WidgetChart1.chart"
+              [stroke]="WidgetChart1.stroke"
+              [tooltip]="WidgetChart1.tooltip">
+            </apx-chart>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+        <mat-card-content>
+          <div class="d-flex align-items-center gap-3">
+            <div class="">
+              <h4 class="mb-0">$85.6K</h4>
+            </div>
+            <div class="me-auto">
+              <p class="dash-lable d-flex align-items-center gap-1 rounded mb-0 mat-light-bg-red text-red bg-opacity-10"><span class="material-icons-outlined fs-6">arrow_downward</span>2.9%</p>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="rounded-4">
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                  <span>Refresh</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                  <span>Download</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <p class="mb-1">Total Income</p>
+            <apx-chart
+              [series]="WidgetChart2.series" 
+              [colors]="WidgetChart2.colors"
+              [fill]="WidgetChart2.fill"
+              [chart]="WidgetChart2.chart"
+              [stroke]="WidgetChart2.stroke"
+              [tooltip]="WidgetChart2.tooltip">
+            </apx-chart>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+        <mat-card-content>
+          <div class="d-flex align-items-center gap-3">
+            <div class="">
+              <h4 class="mb-0">37.4K</h4>
+            </div>
+            <div class="me-auto">
+              <p class="dash-lable d-flex align-items-center gap-1 rounded mb-0 mat-light-bg-green text-green bg-opacity-10"><span class="material-icons-outlined fs-6">arrow_upward</span>4.7%</p>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="rounded-4">
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                  <span>Refresh</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                  <span>Download</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <p class="mb-1">Total Users</p>
+            <apx-chart
+              [series]="WidgetChart3.series" 
+              [colors]="WidgetChart3.colors"
+              [fill]="WidgetChart3.fill"
+              [chart]="WidgetChart3.chart"
+              [stroke]="WidgetChart3.stroke"
+              [tooltip]="WidgetChart3.tooltip">
+            </apx-chart>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+        <mat-card-content>
+          <div class="d-flex align-items-center gap-3">
+            <div class="">
+              <h4 class="mb-0">14.26%</h4>
+            </div>
+            <div class="me-auto">
+              <p class="dash-lable d-flex align-items-center gap-1 rounded mb-0 mat-light-bg-red text-red bg-opacity-10"><span class="material-icons-outlined fs-6">arrow_downward</span>3.6%</p>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="rounded-4">
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                  <span>Refresh</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                  <span>Download</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <p class="mb-1">Bounce Rate</p>
+            <apx-chart
+              [series]="WidgetChart4.series" 
+              [colors]="WidgetChart4.colors"
+              [fill]="WidgetChart4.fill"
+              [chart]="WidgetChart4.chart"
+              [stroke]="WidgetChart4.stroke"
+              [tooltip]="WidgetChart4.tooltip"
+              [plotOptions]="WidgetChart4.plotOptions">
+            </apx-chart>
+        </mat-card-content>
+    </mat-card>
+  </div>
+</div><!--end row-->
+
+
+<div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-4">
+  <div class="col">
+    <mat-card class="rounded-4">
+       <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <p class="mb-1">Total Orders</p>
+            <h3 class="mb-0">867</h3>
+          </div>
+          <div class="">
+            <span class="material-icons-outlined text-indigo fs-3">local_mall</span>
+          </div>
+        </div>
+        <mat-progress-bar mode="determinate" value="60"></mat-progress-bar>
+       </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+       <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <p class="mb-1">Notifications</p>
+            <h3 class="mb-0">672</h3>
+          </div>
+          <div class="">
+            <span class="material-icons-outlined text-indigo fs-3">notifications</span>
+          </div>
+        </div>
+        <mat-progress-bar mode="determinate" value="60"></mat-progress-bar>
+       </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+       <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <p class="mb-1">Total Event</p>
+            <h3 class="mb-0">279</h3>
+          </div>
+          <div class="">
+            <span class="material-icons-outlined text-indigo fs-3">event</span>
+          </div>
+        </div>
+        <mat-progress-bar mode="determinate" value="60"></mat-progress-bar>
+       </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+       <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <p class="mb-1">Messages</p>
+            <h3 class="mb-0">986</h3>
+          </div>
+          <div class="">
+            <span class="material-icons-outlined text-indigo fs-3">forum</span>
+          </div>
+        </div>
+        <mat-progress-bar mode="determinate" value="60"></mat-progress-bar>
+       </mat-card-content>
+    </mat-card>
+  </div>
+</div><!--end row-->
+
+
+<div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-4">
+  <div class="col">
+    <mat-card class="rounded-4">
+        <mat-card-content>
+          <div class="d-flex align-items-center justify-content-between gap-3">
+            <div class="">
+              <h6 class="mb-0">Monthly Views</h6>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="rounded-4">
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                  <span>Refresh</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                  <span>Download</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="chart-container mb-2">
+            <apx-chart
+              [series]="WidgetChart5.series" 
+              [colors]="WidgetChart5.colors"
+              [fill]="WidgetChart5.fill"
+              [chart]="WidgetChart5.chart"
+              [plotOptions]="WidgetChart5.plotOptions"
+              [dataLabels]="WidgetChart5.dataLabels"
+              [labels]="WidgetChart5.labels"
+              [stroke]="WidgetChart5.stroke">
+            </apx-chart>
+            </div>
+            <div class="text-center">
+              <h4>Your Ratio</h4>
+              <p class="mb-3">Vestibulum fermentum nisl id nulla ultricies convallis.</p>
+              <button mat-stroked-button color="primary" class="rounded-5 px-4">Run Speed Test</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+        <mat-card-content>
+          <div class="d-flex align-items-center justify-content-between gap-3">
+            <div class="">
+              <h6 class="mb-0">Monthly Views</h6>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="rounded-4">
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                  <span>Refresh</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                  <span>Download</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="chart-container mb-2">
+            <apx-chart
+              [series]="WidgetChart6.series" 
+              [colors]="WidgetChart6.colors"
+              [fill]="WidgetChart6.fill"
+              [chart]="WidgetChart6.chart"
+              [plotOptions]="WidgetChart6.plotOptions"
+              [dataLabels]="WidgetChart6.dataLabels"
+              [labels]="WidgetChart6.labels"
+              [stroke]="WidgetChart6.stroke">
+            </apx-chart>
+            </div>
+            <div class="text-center">
+              <h4>Your Ratio</h4>
+              <p class="mb-3">Vestibulum fermentum nisl id nulla ultricies convallis.</p>
+              <button mat-stroked-button color="accent" class="rounded-5 px-4">Run Speed Test</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4 mat-bg-indigo">
+        <mat-card-content>
+          <div class="d-flex align-items-center justify-content-between gap-3">
+            <div class="">
+              <h6 class="mb-0 text-white">Monthly Views</h6>
+            </div>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon class="text-white">more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="rounded-4">
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                  <span>Refresh</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                  <span>Download</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="chart-container mb-2">
+            <apx-chart
+              [series]="WidgetChart7.series" 
+              [colors]="WidgetChart7.colors"
+              [fill]="WidgetChart7.fill"
+              [chart]="WidgetChart7.chart"
+              [plotOptions]="WidgetChart7.plotOptions"
+              [dataLabels]="WidgetChart7.dataLabels"
+              [labels]="WidgetChart7.labels"
+              [stroke]="WidgetChart7.stroke">
+            </apx-chart>
+            </div>
+            <div class="text-center">
+              <h4 class="text-white">Your Ratio</h4>
+              <p class="mb-3 text-white">Vestibulum fermentum nisl id nulla ultricies convallis.</p>
+              <button mat-button class="rounded-5 px-4 mat-bg-white">Run Speed Test</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+      <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between gap-3">
+          <div class="">
+            <h6 class="mb-0">Monthly Views</h6>
+          </div>
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="rounded-4">
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                <span>Download</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+        <div class="chart-container mb-2">
+          <apx-chart
+            [series]="WidgetChart8.series" 
+            [colors]="WidgetChart8.colors"
+            [fill]="WidgetChart8.fill"
+            [chart]="WidgetChart8.chart"
+            [plotOptions]="WidgetChart8.plotOptions"
+            [dataLabels]="WidgetChart8.dataLabels"
+            [labels]="WidgetChart8.labels"
+            [stroke]="WidgetChart8.stroke">
+          </apx-chart>
+          </div>
+          <div class="text-center">
+            <h4>Your Ratio</h4>
+            <p class="mb-3">Vestibulum fermentum nisl id nulla ultricies convallis.</p>
+            <button mat-stroked-button class="rounded-5 px-4">Run Speed Test</button>
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div><!--end row-->
+
+
+<div class="row row-cols-1 row-cols-xl-12 row-cols-xxl-3">
+  <div class="col">
+    <mat-card class="rounded-4">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 px-3 border-bottom mb-3">
+          <div class="">
+            <h5 class="mb-0">Statistics</h5>
+          </div>
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="rounded-4">
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                <span>Download</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+      </div>
+      <mat-card-content>
+        <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center justify-content-between">
+               <div class="">
+                  <p class="mb-1">Balance</p>
+                  <h3 class="mb-0">$20.27</h3>
+               </div>
+               <div>
+                <apx-chart
+                  [series]="WidgetChart9.series" 
+                  [colors]="WidgetChart9.colors"
+                  [fill]="WidgetChart9.fill"
+                  [chart]="WidgetChart9.chart"
+                  [tooltip]="WidgetChart9.tooltip"
+                  [stroke]="WidgetChart9.stroke">
+                </apx-chart>
+               </div>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="">
+                 <p class="mb-1">Past 7 days</p>
+                 <h3 class="mb-0">$18.56</h3>
+              </div>
+              <div>
+               <apx-chart
+                 [series]="WidgetChart10.series" 
+                 [colors]="WidgetChart10.colors"
+                 [fill]="WidgetChart10.fill"
+                 [chart]="WidgetChart10.chart"
+                 [tooltip]="WidgetChart10.tooltip"
+                 [stroke]="WidgetChart10.stroke">
+               </apx-chart>
+              </div>
+           </div>
+           <hr>
+           <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+              <p class="mb-1">Past 30 days</p>
+              <h3 class="mb-0">$19.70</h3>
+            </div>
+            <div>
+             <apx-chart
+               [series]="WidgetChart11.series" 
+               [colors]="WidgetChart11.colors"
+               [fill]="WidgetChart11.fill"
+               [chart]="WidgetChart11.chart"
+               [tooltip]="WidgetChart11.tooltip"
+               [stroke]="WidgetChart11.stroke">
+             </apx-chart>
+            </div>
+         </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 px-3 border-bottom mb-3">
+          <div class="">
+            <h5 class="mb-0">Impression</h5>
+          </div>
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="rounded-4">
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                <span>Download</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+      </div>
+      <mat-card-content>
+        <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center justify-content-between">
+               <div class="">
+                  <p class="mb-1">Total Views</p>
+                  <h3 class="mb-0">55.6K</h3>
+               </div>
+               <div>
+                <apx-chart
+                  [series]="WidgetChart12.series" 
+                  [colors]="WidgetChart12.colors"
+                  [fill]="WidgetChart12.fill"
+                  [chart]="WidgetChart12.chart"
+                  [tooltip]="WidgetChart12.tooltip"
+                  [stroke]="WidgetChart12.stroke">
+                </apx-chart>
+               </div>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="">
+                 <p class="mb-1">New Customers</p>
+                 <h3 class="mb-0">256K</h3>
+              </div>
+              <div>
+               <apx-chart
+                 [series]="WidgetChart13.series" 
+                 [colors]="WidgetChart13.colors"
+                 [fill]="WidgetChart13.fill"
+                 [chart]="WidgetChart13.chart"
+                 [tooltip]="WidgetChart13.tooltip"
+                 [stroke]="WidgetChart13.stroke">
+               </apx-chart>
+              </div>
+           </div>
+           <hr>
+           <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+              <p class="mb-1">Total Clicks</p>
+              <h3 class="mb-0">67.2K</h3>
+            </div>
+            <div>
+             <apx-chart
+               [series]="WidgetChart14.series" 
+               [colors]="WidgetChart14.colors"
+               [fill]="WidgetChart14.fill"
+               [chart]="WidgetChart14.chart"
+               [tooltip]="WidgetChart14.tooltip"
+               [stroke]="WidgetChart14.stroke">
+             </apx-chart>
+            </div>
+         </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card class="rounded-4">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 px-3">
+        <div class="">
+          <h5 class="mb-0">Investment</h5>
+        </div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="rounded-4">
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">refresh</mat-icon>
+              <span>Refresh</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+              <span>Download</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+    </div>
+    <mat-card-content>
+      <div class="chart-container">
+        <apx-chart
+          [series]="WidgetChart15.series" 
+          [colors]="WidgetChart15.colors"
+          [fill]="WidgetChart15.fill"
+          [chart]="WidgetChart15.chart"
+          [plotOptions]="WidgetChart15.plotOptions"
+          [dataLabels]="WidgetChart15.dataLabels"
+          [labels]="WidgetChart15.labels"
+          [stroke]="WidgetChart15.stroke">
+        </apx-chart>
+        </div>
+        <div class="legends d-flex align-items-center justify-content-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <span class="material-icons fs-5 text-blue">
+              fiber_manual_record
+            </span>
+            <p>Stocks</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="material-icons fs-5 text-purple">
+              fiber_manual_record
+            </span>
+            <p>Mutual Fund</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="material-icons fs-5 text-orange">
+              fiber_manual_record
+            </span>
+            <p>Bonds</p>
+          </div>
+        </div>
+    </mat-card-content>
+    </mat-card>
+  </div>
+</div><!--end row-->
+
+
+
+

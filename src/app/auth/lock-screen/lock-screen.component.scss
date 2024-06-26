@@ -1,0 +1,19 @@
+.auth-box {
+    height: 100vh;
+}
+
+.login-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/* responsive */
+
+@media only screen and (max-width: 991px) {
+    .auth-box {
+        height: 100%;
+  }
+
+}

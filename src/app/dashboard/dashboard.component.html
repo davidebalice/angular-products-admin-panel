@@ -1,0 +1,588 @@
+
+
+<div class="row">
+  <div class="col-12 col-lg-12 col-xxl-4 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <h5 class="mb-0">Congratulations <span class="fw-600">Jhon</span></h5>
+            <img src="assets/images/app/party-popper.png" width="24" height="24" alt="">
+          </div>
+          <p class="mb-4">You are the best seller of this monnth</p>
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="">
+              <h3 class="mb-0 text-indigo">$68.5K</h3>
+              <p class="mb-3">58% of sales target</p>
+              <button mat-raised-button color="primary" class="rounded-4 px-4">View Details</button>
+            </div>
+            <img src="assets/images/app/gift-box.png" width="100" alt="">
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-lg-6 col-xxl-2 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+          <mat-icon class="widget-icon mat-light-bg-indigo text-indigo material-icons-outlined">local_mall</mat-icon>
+          <span class="text-green d-flex align-items-center">+24%<i
+              class="material-icons-outlined">expand_less</i></span>
+        </div>
+        <div>
+          <h4 class="mb-0">248k</h4>
+          <p class="mb-3">Total Orders</p>
+          <apx-chart [series]="WidgetChart1.series" [colors]="WidgetChart1.colors" [fill]="WidgetChart1.fill"
+            [chart]="WidgetChart1.chart" [stroke]="WidgetChart1.stroke" [tooltip]="WidgetChart1.tooltip">
+          </apx-chart>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-lg-6 col-xxl-2 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+          <mat-icon class="widget-icon mat-light-bg-green text-green material-icons-outlined">attach_money</mat-icon>
+          <span class="text-green d-flex align-items-center">+14%<i
+              class="material-icons-outlined">expand_less</i></span>
+        </div>
+        <div>
+          <h4 class="mb-0">$47.6k</h4>
+          <p class="mb-3">Total Sales</p>
+          <apx-chart [series]="WidgetChart2.series" [colors]="WidgetChart2.colors" [fill]="WidgetChart2.fill"
+            [chart]="WidgetChart2.chart" [stroke]="WidgetChart2.stroke" [tooltip]="WidgetChart2.tooltip">
+          </apx-chart>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-lg-6 col-xxl-2 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+          <mat-icon class="widget-icon mat-light-bg-blue text-blue material-icons-outlined">visibility</mat-icon>
+          <span class="text-red d-flex align-items-center">-35%<i class="material-icons-outlined">expand_more</i></span>
+        </div>
+        <div>
+          <h4 class="mb-0">189K</h4>
+          <p class="mb-3">Total Visits</p>
+          <apx-chart [series]="WidgetChart3.series" [colors]="WidgetChart3.colors" [fill]="WidgetChart3.fill"
+            [chart]="WidgetChart3.chart" [stroke]="WidgetChart3.stroke" [tooltip]="WidgetChart3.tooltip">
+          </apx-chart>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-lg-6 col-xxl-2 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+          <mat-icon class="widget-icon mat-light-bg-orange text-orange material-icons-outlined">leaderboard</mat-icon>
+          <span class="text-green d-flex align-items-center">+18%<i
+              class="material-icons-outlined">expand_less</i></span>
+        </div>
+        <div>
+          <h4 class="mb-0">24.6%</h4>
+          <p class="mb-3">Bounce Rate</p>
+          <apx-chart [series]="WidgetChart4.series" [colors]="WidgetChart4.colors" [fill]="WidgetChart4.fill"
+            [chart]="WidgetChart4.chart" [plotOptions]="WidgetChart4.plotOptions" [stroke]="WidgetChart4.stroke" 
+            [tooltip]="WidgetChart1.tooltip">
+          </apx-chart>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div><!--end row-->
+
+
+
+
+<div class="row">
+  <div class="col-12 col-xxl-4 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 px-3">
+        <div class="">
+          <h5 class="mb-0">Social Revenue</h5>
+        </div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="rounded-4">
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">refresh</mat-icon>
+              <span>Refresh</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+              <span>Download</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <mat-card-content>
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-3">
+            <h3 class="mb-0">48,569</h3>
+            <p class="mb-0 text-green gap-3">27%<span class="material-icons-outlined fs-6">arrow_upward</span></p>
+          </div>
+          <p class="mb-0 font-13">Last 1 Year Income</p>
+        </div>
+        <div class="table-responsive">
+        <div class="d-flex flex-column gap-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="social-icon d-flex align-items-center gap-3 flex-grow-1">
+              <img src="assets/images/app/facebook-circle.png" width="40" alt="">
+              <div>
+                <h6 class="mb-0">Facebook</h6>
+                <p class="mb-0">Social Media</p>
+              </div>
+            </div>
+            <h5 class="mb-0">45,689</h5>
+            <div class="card-lable mat-light-bg-green">
+              <p class="text-green">+28.5%</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="social-icon d-flex align-items-center gap-3 flex-grow-1">
+              <img src="assets/images/app/twitter-circle.png" width="40" alt="">
+              <div>
+                <h6 class="mb-0">Twitter</h6>
+                <p class="mb-0">Social Media</p>
+              </div>
+            </div>
+            <h5 class="mb-0">34,248</h5>
+            <div class="card-lable mat-light-bg-red">
+              <p class="text-red">-14.5%</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="social-icon d-flex align-items-center gap-3 flex-grow-1">
+              <img src="assets/images/app/tik-tok.png" width="40" alt="">
+              <div>
+                <h6 class="mb-0">Tik Tok</h6>
+                <p class="mb-0">Entertainment</p>
+              </div>
+            </div>
+            <h5 class="mb-0">45,689</h5>
+            <div class="card-lable mat-light-bg-green">
+              <p class="text-green">+28.5%</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="social-icon d-flex align-items-center gap-3 flex-grow-1">
+              <img src="assets/images/app/pinterest.png" width="40" alt="">
+              <div>
+                <h6 class="mb-0">Instagram</h6>
+                <p class="mb-0">Social Media</p>
+              </div>
+            </div>
+            <h5 class="mb-0">67,249</h5>
+            <div class="card-lable mat-light-bg-red">
+              <p class="text-red">-43.5%</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="social-icon d-flex align-items-center gap-3 flex-grow-1">
+              <img src="assets/images/app/social.png" width="40" alt="">
+              <div>
+                <h6 class="mb-0">Amazon</h6>
+                <p class="mb-0">eCommerce</p>
+              </div>
+            </div>
+            <h5 class="mb-0">89,178</h5>
+            <div class="card-lable mat-light-bg-green">
+              <p class="text-green">+24.7%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-xxl-4 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 px-3">
+        <div class="">
+          <h5 class="mb-0">Popular Products</h5>
+        </div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="rounded-4">
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">refresh</mat-icon>
+              <span>Refresh</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+              <span>Download</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <mat-card-content>
+        <div class="d-flex flex-column gap-4">
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Apple Hand Watch</h6>
+              <p class="mb-0">Sale: 258</p>
+            </div>
+            <div class="text-center">
+              <h6 class="mb-1">$199</h6>
+              <p class="mb-0 text-green font-13">+12%</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Mobile Phone Set</h6>
+              <p class="mb-0">Sale: 169</p>
+            </div>
+            <div class="text-center">
+              <h6 class="mb-1">$159</h6>
+              <p class="mb-0 text-green font-13">+14%</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Grey Shoes Pair</h6>
+              <p class="mb-0">Sale: 859</p>
+            </div>
+            <div class="">
+              <div class="text-center">
+                <h6 class="mb-1">$279</h6>
+                <p class="mb-0 text-red font-13">-12%</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Blue Yoga Mat</h6>
+              <p class="mb-0">Sale: 328</p>
+            </div>
+            <div class="text-center">
+              <h6 class="mb-1">$389</h6>
+              <p class="mb-0 text-green font-13">+25%</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">White water Bottle</h6>
+              <p class="mb-0">Sale: 992</p>
+            </div>
+            <div class="text-center">
+              <h6 class="mb-1">$584</h6>
+              <p class="mb-0 text-green font-13">+25%</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-xxl-4 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 px-3">
+        <div class="">
+          <h5 class="mb-0">Top Vendors</h5>
+        </div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="rounded-4">
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">refresh</mat-icon>
+              <span>Refresh</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+              <span>Download</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon class="material-icons-outlined">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <mat-card-content>
+        <div class="d-flex flex-column gap-4">
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Ajay Sidhu</h6>
+              <p class="mb-0">Sale: 879</p>
+            </div>
+            <div class="ratings">
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Ajay Sidhu</h6>
+              <p class="mb-0">Sale: 879</p>
+            </div>
+            <div class="ratings">
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Ajay Sidhu</h6>
+              <p class="mb-0">Sale: 879</p>
+            </div>
+            <div class="ratings">
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Ajay Sidhu</h6>
+              <p class="mb-0">Sale: 879</p>
+            </div>
+            <div class="ratings">
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://placehold.co/100x100" width="55" class="rounded-circle" alt="">
+            <div class="flex-grow-1">
+              <h6 class="mb-0">Ajay Sidhu</h6>
+              <p class="mb-0">Sale: 879</p>
+            </div>
+            <div class="ratings">
+              <span class="material-icons-outlined text-amber">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+              <span class="material-icons-outlined text-grey">star</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div><!--end row-->
+
+
+<div class="row">
+  <div class="col-12 col-xxl-6 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="d-flex flex-row gap-3 align-items-center justify-content-between">
+          <div class="">
+            <h5 class="">Transactions</h5>
+          </div>
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">visibility</mat-icon>
+                <span>View</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table mat-table [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="">
+                  <h6 class="date mb-0">{{element.date}}</h6>
+                  <p class="time mb-0">{{element.time}}</p>
+                </div>
+              </td>
+            </ng-container>
+  
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Source Name </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="d-flex align-items-center flex-row gap-3">
+                  <div class="">
+                    <img src="{{element.src}}" width="35" alt="">
+                  </div>
+                  <div class="">
+                    <h6 class="date mb-0">{{element.source}}</h6>
+                    <p class="time mb-0">{{element.desc}}</p>
+                  </div>
+  
+                </div>
+              </td>
+            </ng-container>
+  
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let element"><span
+                  class="card-lable mat-light-bg-green text-green fw-500">{{element.status}}</span></td>
+            </ng-container>
+  
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> Amount </th>
+              <td mat-cell *matCellDef="let element">
+                <h5 class="mb-0">${{element.amount}}</h5>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-xxl-3 d-flex flex-column">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <p class="mb-1">Messages</p>
+            <h3 class="mb-0">986</h3>
+          </div>
+          <div class="">
+            <span class="material-icons-outlined text-indigo fs-3">forum</span>
+          </div>
+        </div>
+        <mat-progress-bar mode="determinate" value="60"></mat-progress-bar>
+        <div class="d-flex align-items-center mt-3 gap-2">
+          <div class="card-lable mat-light-bg-green">
+            <p class="text-green">+34.7%</p>
+          </div>
+          <p class="mb-0">from last month</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div class="">
+            <div class="">
+              <p class="mb-2">Total Profit</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <h4 class="mb-0">$75,365</h4>
+              <div class="card-lable mat-light-bg-green">
+                <p class="text-green">+26.9%</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="rounded-4">
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                <span>Download</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+        <apx-chart [series]="WidgetChart8.series" [colors]="WidgetChart8.colors" [fill]="WidgetChart8.fill"
+          [chart]="WidgetChart8.chart" [plotOptions]="WidgetChart8.plotOptions" [stroke]="WidgetChart8.stroke" [tooltip]="WidgetChart8.tooltip">
+        </apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-12 col-xxl-3 d-flex">
+    <mat-card class="rounded-4 w-100">
+      <mat-card-content>
+        <div class="d-flex align-items-center justify-content-between gap-3">
+          <div class="">
+            <h6 class="mb-0">Monthly Budget</h6>
+          </div>
+          <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="rounded-4">
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">cloud_download</mat-icon>
+                <span>Download</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="material-icons-outlined">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+        <div class="chart-container mb-2">
+          <apx-chart [series]="WidgetChart7.series" [colors]="WidgetChart7.colors" [fill]="WidgetChart7.fill"
+            [chart]="WidgetChart7.chart" [plotOptions]="WidgetChart7.plotOptions" [dataLabels]="WidgetChart7.dataLabels"
+            [labels]="WidgetChart7.labels" [stroke]="WidgetChart7.stroke">
+          </apx-chart>
+        </div>
+        <div class="text-center">
+          <h3>$84,256</h3>
+          <p class="mb-3">Vestibulum fermentum nisl id nulla ultricies convallis.</p>
+          <button mat-raised-button color="primary" class="rounded-5 px-4">Increase Budget</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div><!--end row-->
+

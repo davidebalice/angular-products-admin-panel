@@ -1,0 +1,400 @@
+<mat-card class="rounded-4">
+    <mat-card-content class="p-4">
+        <div class="position-relative mb-5">
+            <img src="assets/images/gallery/profile-cover.png" class="img-fluid rounded-4" alt="">
+            <div class="position-absolute top-100 start-50 translate-middle">
+              <img src="https://placehold.co/110x110" width="170" height="170" class="rounded-circle raised p-1 mat-bg-white mat-elevation-z8" alt="">
+            </div>
+          </div>
+          <div class="pt-5 d-flex flex-column flex-lg-row align-items-start justify-content-between gap-4">
+            <div class="">
+              <h3 class="mb-2">Jhon  Deo</h3>
+              <p class="mb-1">Engineer at BB Agency Industry</p>
+              <p>New York, United States</p>
+              <div class="d-flex align-items-center flex-column flex-lg-row gap-3 mt-3">
+                <button mat-stroked-button class="rounded-pill px-3">UX Research</button>
+                <button mat-stroked-button class="rounded-pill px-3">CX Strategy</button>
+                <button mat-stroked-button class="rounded-pill px-3">Project Management</button>
+              </div>
+            </div>
+            <div class="">
+                <button mat-flat-button color="primary" class="rounded-pill px-3">Send Message</button>
+            </div>
+          </div>
+
+    </mat-card-content>
+</mat-card>
+
+
+<div class="row">
+    <div class="col-12 col-xl-8">
+        <mat-card class="rounded-4">
+            <mat-card-content class="p-4">
+                <div class="d-flex flex-row gap-3 align-items-center justify-content-between mb-3">
+                    <div class="">
+                        <h5 class="">Edit Profile</h5>
+                    </div>
+                    <div>
+                      <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu" class="rounded-4">
+                        <button mat-menu-item>
+                          <mat-icon class="material-icons-outlined">visibility</mat-icon>
+                          <span>View</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon class="material-icons-outlined">edit</mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon class="material-icons-outlined">delete</mat-icon>
+                          <span>Delete</span>
+                        </button>
+                      </mat-menu>
+                    </div>
+                  </div>  
+
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <mat-form-field class="w-100" appearance="outline">
+                          <mat-label>Username</mat-label>
+                          <input matInput placeholder="Ex. Jhon" value="deo.jhon">
+                        </mat-form-field>
+                    </div>  
+                    <div class="col-12 col-md-6">
+                      <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Ex. xyz@.com" value="jhon@xyz.com">
+                      </mat-form-field>
+                    </div>  
+                    <div class="col-12 col-md-6">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="Ex. Jhon" value="Jhon">
+                          </mat-form-field>
+                    </div>  
+                    <div class="col-12 col-md-6">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Ex. Deo" value="Deo">
+                          </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Phone</mat-label>
+                            <input matInput placeholder="Ex. 88XX25X65" value="+91-9945XX26XX">
+                          </mat-form-field>
+                    </div>  
+                    <div class="col-12 col-md-12">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Ex. @#45gh" value="Password">
+                          </mat-form-field>
+                    </div>  
+                    <div class="col-12 col-md-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>DOB</mat-label>
+                            <input matInput [matDatepicker]="picker3">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                            <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+                    </div> 
+                    <div class="col-12 col-md-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Country</mat-label>
+                            <mat-select>
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <mat-form-field class="w-100" appearance="outline">
+                          <mat-label>City</mat-label>
+                          <input matInput placeholder="Enter City Name" value="New York">
+                         </mat-form-field>
+                    </div>  
+                    <div class="col-12 col-md-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>State</mat-label>
+                            <mat-select>
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                            </mat-select>
+                         </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <mat-form-field class="w-100" appearance="outline">
+                          <mat-label>Zip</mat-label>
+                          <input matInput placeholder="Zip Code" value="200100">
+                        </mat-form-field>
+                    </div>  
+                    <div class="col-12 col-md-12">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>About Me</mat-label>
+                            <textarea matInput placeholder="Ex. It makes me feel..." value="A beautiful premium dashboard for Angular Material."></textarea>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="d-flex gap-3">
+                            <button mat-flat-button color="primary" class="px-4">Update Profile</button>
+                            <button mat-stroked-button class="px-4">Reset</button>
+                        </div>
+                    </div>
+                </div><!--end row-->
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-12 col-xl-4">
+        <mat-card class="rounded-4">
+           <mat-card-content class="p-4">
+                <div class="d-flex flex-row gap-3 align-items-center justify-content-between mb-3">
+                    <div class="">
+                      <h5 class="">About</h5>
+                    </div>
+                    <div>
+                      <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu" class="rounded-4">
+                        <button mat-menu-item>
+                          <mat-icon class="material-icons-outlined">visibility</mat-icon>
+                          <span>View</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon class="material-icons-outlined">edit</mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon class="material-icons-outlined">delete</mat-icon>
+                          <span>Delete</span>
+                        </button>
+                      </mat-menu>
+                    </div>
+                  </div>
+                  <div class="full-info">
+                    <div class="info-list d-flex flex-column gap-3">
+                       <div class="info-list-item d-flex align-items-center gap-3">
+                         <span class="material-icons-outlined">account_circle</span>
+                         <p>Full Name: Jhon Deo</p>
+                       </div>
+                       <div class="info-list-item d-flex align-items-center gap-3">
+                        <span class="material-icons-outlined">done</span>
+                        <p>Status: active</p>
+                      </div>
+                      <div class="info-list-item d-flex align-items-center gap-3">
+                        <span class="material-icons-outlined">code</span>
+                        <p>Role: Developer</p>
+                      </div>
+                      <div class="info-list-item d-flex align-items-center gap-3">
+                        <span class="material-icons-outlined">flag</span>
+                        <p>Country: USA</p>
+                      </div>
+                      <div class="info-list-item d-flex align-items-center gap-3">
+                        <span class="material-icons-outlined">language</span>
+                        <p>Language: English</p>
+                      </div>
+                      <div class="info-list-item d-flex align-items-center gap-3">
+                        <span class="material-icons-outlined">send</span>
+                        <p>Email: jhon.xyz</p>
+                      </div>
+                      <div class="info-list-item d-flex align-items-center gap-3">
+                        <span class="material-icons-outlined">call</span>
+                        <p>Phone: (124) 895-6724</p>
+                      </div>
+                    </div>
+                  </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="rounded-4">
+          <mat-card-content class="p-4">
+               <div class="d-flex flex-row gap-3 align-items-center justify-content-between mb-3">
+                   <div class="">
+                     <h5 class="">Connected Accounts</h5>
+                   </div>
+                   <div>
+                     <button mat-icon-button [matMenuTriggerFor]="menu">
+                       <mat-icon>more_vert</mat-icon>
+                     </button>
+                     <mat-menu #menu="matMenu" class="rounded-4">
+                       <button mat-menu-item>
+                         <mat-icon class="material-icons-outlined">visibility</mat-icon>
+                         <span>View</span>
+                       </button>
+                       <button mat-menu-item>
+                         <mat-icon class="material-icons-outlined">edit</mat-icon>
+                         <span>Edit</span>
+                       </button>
+                       <button mat-menu-item>
+                         <mat-icon class="material-icons-outlined">delete</mat-icon>
+                         <span>Delete</span>
+                       </button>
+                     </mat-menu>
+                   </div>
+                 </div>
+
+                 <div class="accounts d-flex flex-column gap-4">
+                    <div class="d-flex align-items-center gap-3">
+                       <div class="">
+                           <img src="assets/images/app/google-2.png" width="30" alt="">
+                       </div> 
+                       <div class="flex-grow-1">
+                           <h6 class="mb-0">Google</h6>
+                           <p class="mb-0">Events and Reserch</p>
+                       </div> 
+                       <div class="">
+                         <mat-slide-toggle></mat-slide-toggle>
+                       </div>
+                     </div>
+                     <div class="d-flex align-items-center gap-3">
+                      <div class="">
+                          <img src="assets/images/app/apple.png" width="30" alt="">
+                      </div> 
+                      <div class="flex-grow-1">
+                          <h6 class="mb-0">Apple</h6>
+                          <p class="mb-0">Events and Reserch</p>
+                      </div> 
+                      <div class="">
+                        <mat-slide-toggle></mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="">
+                          <img src="assets/images/app/slack.png" width="30" alt="">
+                      </div> 
+                      <div class="flex-grow-1">
+                          <h6 class="mb-0">Slack</h6>
+                          <p class="mb-0">Events and Reserch</p>
+                      </div> 
+                      <div class="">
+                        <mat-slide-toggle></mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="">
+                          <img src="assets/images/app/github.png" width="30" alt="">
+                      </div> 
+                      <div class="flex-grow-1">
+                          <h6 class="mb-0">GitHub</h6>
+                          <p class="mb-0">Events and Reserch</p>
+                      </div> 
+                      <div class="">
+                        <mat-slide-toggle></mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="">
+                          <img src="assets/images/app/envato.png" width="30" alt="">
+                      </div> 
+                      <div class="flex-grow-1">
+                          <h6 class="mb-0">Envato</h6>
+                          <p class="mb-0">Events and Reserch</p>
+                      </div> 
+                      <div class="">
+                        <mat-slide-toggle></mat-slide-toggle>
+                      </div>
+                    </div>
+
+                 </div>
+                 
+           </mat-card-content>
+       </mat-card>
+
+       <mat-card class="rounded-4">
+        <mat-card-content class="p-4">
+             <div class="d-flex flex-row gap-3 align-items-center justify-content-between mb-3">
+                 <div class="">
+                   <h5 class="">Social Accounts</h5>
+                 </div>
+                 <div>
+                   <button mat-icon-button [matMenuTriggerFor]="menu">
+                     <mat-icon>more_vert</mat-icon>
+                   </button>
+                   <mat-menu #menu="matMenu" class="rounded-4">
+                     <button mat-menu-item>
+                       <mat-icon class="material-icons-outlined">visibility</mat-icon>
+                       <span>View</span>
+                     </button>
+                     <button mat-menu-item>
+                       <mat-icon class="material-icons-outlined">edit</mat-icon>
+                       <span>Edit</span>
+                     </button>
+                     <button mat-menu-item>
+                       <mat-icon class="material-icons-outlined">delete</mat-icon>
+                       <span>Delete</span>
+                     </button>
+                   </mat-menu>
+                 </div>
+               </div>
+
+               <div class="accounts d-flex flex-column gap-4">
+                  <div class="d-flex align-items-center gap-3">
+                     <div class="">
+                         <img src="assets/images/app/facebook.png" width="30" alt="">
+                     </div> 
+                     <div class="flex-grow-1">
+                         <h6 class="mb-0">Facebook</h6>
+                         <p class="mb-0">Not Connected</p>
+                     </div> 
+                     <div class="">
+                       <mat-slide-toggle></mat-slide-toggle>
+                     </div>
+                   </div>
+                   <div class="d-flex align-items-center gap-3">
+                    <div class="">
+                        <img src="assets/images/app/linkedin.png" width="30" alt="">
+                    </div> 
+                    <div class="flex-grow-1">
+                        <h6 class="mb-0">Linkedin</h6>
+                        <p class="mb-0">Business Network</p>
+                    </div> 
+                    <div class="">
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="">
+                        <img src="assets/images/app/twitter.png" width="30" alt="">
+                    </div> 
+                    <div class="flex-grow-1">
+                        <h6 class="mb-0">Twitter</h6>
+                        <p class="mb-0">Media and Public</p>
+                    </div> 
+                    <div class="">
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="">
+                        <img src="assets/images/app/instagram.png" width="30" alt="">
+                    </div> 
+                    <div class="flex-grow-1">
+                        <h6 class="mb-0">Instagram</h6>
+                        <p class="mb-0">Social Network</p>
+                    </div> 
+                    <div class="">
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="">
+                        <img src="assets/images/app/pinterest.png" width="30" alt="">
+                    </div> 
+                    <div class="flex-grow-1">
+                        <h6 class="mb-0">Pinterest</h6>
+                        <p class="mb-0">Events and Reserch</p>
+                    </div> 
+                    <div class="">
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+               </div>
+          </mat-card-content>
+       </mat-card>
+
+    </div>
+</div>
+

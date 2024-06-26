@@ -1,0 +1,23 @@
+
+@mixin alignContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.widget-icon {
+    @include alignContent ();
+    width: 42px !important;
+    height:42px  !important;
+    background-color: #eee;
+    border-radius: 50%;   
+    font-size: 22px;
+}
+
+.ratings {
+    span {
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+}

@@ -1,0 +1,18 @@
+.login-separater {
+    span {
+        position: relative;
+        top: 26px;
+        margin-top: -10px;
+        background-color: #fff;
+        padding: 5px;
+        font-size: 13px;
+        color: #949494;
+        z-index: 1;
+    }
+}
+
+.signup-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

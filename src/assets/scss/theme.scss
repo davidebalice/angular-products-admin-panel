@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme((
+ color: (
+   primary: mat.define-palette(mat.$indigo-palette),
+   accent: mat.define-palette(mat.$pink-palette),
+ ),
+
+));
+
+// Define a light theme
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: mat.define-palette(mat.$indigo-palette),
+   accent: mat.define-palette(mat.$pink-palette),
+ ),
+));
+
+.dark_mode {
+
+  // Apply the dark theme
+  @include mat.core-theme($dark-theme);
+  @include mat.button-theme($dark-theme);
+  @include mat.all-component-themes($dark-theme);
+}
+
+// Apply the light theme only when the user prefers light themes.
+.light_mode {
+ // Use the `-color` mixins to only apply color styles without reapplying the same
+ // typography and density styles.
+  @include mat.core-color($light-theme);
+  @include mat.button-color($light-theme);
+  @include mat.all-component-themes($light-theme);
+
+}
+
+// "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+
+
