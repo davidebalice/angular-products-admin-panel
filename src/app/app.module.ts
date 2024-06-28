@@ -5,18 +5,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule } from '@angular/forms';
+//import { MatPaginatorModule } from '@angular/material/paginator';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+//import { PaginationModule } from 'ngx-bootstrap/pagination';
+//import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MatModule } from './appModules/mat.module';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { RestApiUrlInterceptor } from './interceptors/rest-api-url.interceptor';
-import { SharedModule } from './shared/shared.module';
-
-import { MatModule } from './appModules/mat.module';
 import { ContentLayoutComponent } from './layouts/content/content-layout.component';
 import { FullLayoutComponent } from './layouts/full/full-layout.component';
 import { AuthService } from './services/auth.service';
 import { ProductService } from './services/product.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
@@ -29,6 +31,9 @@ import { ProductService } from './services/product.service';
     FormsModule,
     CommonModule,
     MatModule,
+    //NgxPaginationModule,
+    //PaginationModule.forRoot(),
+   // MatPaginatorModule,
   ],
 
   providers: [

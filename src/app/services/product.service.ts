@@ -60,11 +60,13 @@ export class ProductService implements OnInit, OnDestroy {
     );
   }
 
+  
   fetchProducts(
     keyword?: string,
     category?: number,
-    limit?: number
-  ): Observable<Product[]> {
+    limit?: number,
+    page: number = 1
+  ): Observable<{ products: Product[]; totalItems: number }> {
     const headers = this.getHeaders();
     let apiUrl = '/products/';
     let params = new HttpParams();
@@ -84,24 +86,22 @@ export class ProductService implements OnInit, OnDestroy {
     if (limit) {
       params = params.append('size', limit);
     }
+    params = params.append('page', (page - 1).toString());
 
     return this.http
-      .get<{ Product }>(apiUrl, {
+      .get<{ products: Product[]; totalItems: number }>(apiUrl, {
         headers,
         params,
       })
       .pipe(
-        map((responseData) => {
-          console.log(responseData);
-          const productArray: Product[] = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              productArray.push({ ...responseData[key] });
-            }
-          }
-          this.products = productArray;
-          this.productsList.next(this.products.slice());
-          return productArray;
+        map((response) => {
+          return {
+            products: response.products.map((product) => ({
+              ...product,
+              categoryName: product.categoryDto?.name || 'Unknown Category',
+            })),
+            totalItems: response.totalItems,
+          };
         }),
         catchError((error) => {
           if (error.status === 401) {

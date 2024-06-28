@@ -1,74 +1,69 @@
-<div class="card cardProduct">
-  <div class="row g-0">
-    <div class="imgContainer">
-      <img
-        [src]="getFullImageUrl(product.imageUrl)"
-        alt="{{ product.title }}"
-        class="imgProduct"
-      />
-    </div>
+<div class="cardProduct">
+  <div>
+    <img
+      [src]="getFullImageUrl(product.imageUrl)"
+      alt="{{ product.name }}"
+      class="imgProduct"
+    />
+  </div>
 
-    <div class="card-body cardBody">
-      <h4 class="cardTitle">{{ product.title }}</h4>
-      <div class="cardInfo">
-        <div>
-         gggg
-         
-        </div>
-        <div>
-          <span class="cardDifficulty">Preparation time:</span>
-          <br />
-          <div class="scheduleContainer">
-            <mat-icon class="clockIcon">schedule</mat-icon>
-            <span class="">yyyy</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="cardBody">
+    <h5 class="cardTitle">{{ product.name }}</h5>
+    <p class="cardTitle">{{ product.sku }}</p>
 
-    <div class="card-footer cardFooter">
-      <button
-        class="btn btn-success buttonCard"
-        (click)="onSelected()"
-        matTooltipPosition="above"
-        matTooltipShowDelay="100"
-        matTooltipHideDelay="100"
-        matTooltip="Detail"
-      >
-        <mat-icon>list_alt</mat-icon>
-      </button>
+    
+  </div>
 
-      <button
-        class="btn btn-success buttonCard"
-        (click)="onEditProduct(product.id)"
-        matTooltipPosition="above"
-        matTooltipShowDelay="100"
-        matTooltipHideDelay="100"
-        matTooltip="Edit"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
+  <div class="cardBody">
+    <div>ggggg</div>
+  </div>
 
-      <button
-        class="btn btn-success buttonCard"
-        (click)="onPhotoProduct(product.id)"
-        matTooltipPosition="above"
-        matTooltipShowDelay="100"
-        matTooltipHideDelay="100"
-        matTooltip="Photo"
-      >
-        <mat-icon>photo_camera</mat-icon>
-      </button>
-      <button
-        class="btn btn-danger buttonCard buttonCardDelete"
-        (click)="onDeleteProduct(product.id)"
-        matTooltipPosition="above"
-        matTooltipShowDelay="100"
-        matTooltipHideDelay="100"
-        matTooltip="Delete"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
+  <div class="cardBody">
+    <div>ggggg</div>
+  </div>
+
+  <div class="cardButton">
+    <button
+      class="btn btn-success buttonCard"
+      (click)="onSelected()"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      matTooltipHideDelay="100"
+      matTooltip="Detail"
+    >
+      <mat-icon>list_alt</mat-icon>
+    </button>
+
+    <button
+      class="btn btn-success buttonCard"
+      (click)="onEditProduct(product.id)"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      matTooltipHideDelay="100"
+      matTooltip="Edit"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button
+      class="btn btn-success buttonCard"
+      (click)="onPhotoProduct(product.id)"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      matTooltipHideDelay="100"
+      matTooltip="Photo"
+    >
+      <mat-icon>photo_camera</mat-icon>
+    </button>
+    <button
+      class="btn btn-danger buttonCard buttonCardDelete"
+      (click)="onDeleteProduct(product.id)"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      matTooltipHideDelay="100"
+      matTooltip="Delete"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
 </div>

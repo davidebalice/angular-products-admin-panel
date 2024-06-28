@@ -1,0 +1,43 @@
+.loadingContainer {
+  min-height: 300px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.rowTitle {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  gap:10px;
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  flex-wrap: nowrap;
+}
+
+.rowTitle > div {
+  text-align: center;
+}
+
+.rowTitle > div:nth-child(1) {
+  width: 10%;
+  max-width:150px;
+}
+
+.rowTitle > div:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+
+.rowTitle > div:nth-child(3) {
+  width: 20%;
+}
+
+.rowTitle > div:nth-child(4) {
+  width: 20%;
+}
+
+.rowTitle > div:nth-child(5) {
+  width: 10%;
+}

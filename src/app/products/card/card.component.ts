@@ -47,6 +47,7 @@ export class CardComponent implements OnInit {
     }
     return `${AppConfig.apiUrl}/products/image/${imageUrl}`;
   }
+  
   onDeleteProduct(productId: number) {
     const confirmDelete = confirm(
       'Are you sure you want to delete this product?'

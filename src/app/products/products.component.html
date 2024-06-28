@@ -3,50 +3,6 @@
 
 <mat-card>
   <mat-card-content>
-    <table>
-      <tr>
-        <th>Photo</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Price</th>
-      </tr>
-
-      <tr>
-        <td>ssss</td>
-
-        <td>ffff</td>
-
-        <td>hhhh</td>
-
-        <td>aaaa</td>
-      </tr>
-
-
-
-
-
-
-      <div *ngIf="loadedProducts.length > 0; else noProducts">
-          <tr
-            class="col-12 col-md-4 mb-3"
-            *ngFor="let productItem of loadedProducts"
-          >
-            <app-card [product]="productItem"></app-card>
-            </tr>
-      </div>
-
-
-
-      
-
-
-
-
-    </table>
-    <ng-template #noProducts>
-      <div>No products found.</div>
-    </ng-template>
-    <div *ngIf="isLoading">loading...</div>
-
+    <app-list [pagination]="pagination" [limit]="9"></app-list>
   </mat-card-content>
 </mat-card>
