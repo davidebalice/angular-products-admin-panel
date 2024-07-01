@@ -70,6 +70,7 @@ export class CardComponent implements OnInit {
   }
 
   onPhotoProduct(productId: number) {
+    console.log(productId);
     this.router.navigate(['/products/photo', productId]);
   }
 

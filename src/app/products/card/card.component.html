@@ -1,7 +1,12 @@
 <div class="cardProduct">
   <div>
     <img
-      [src]="getFullImageUrl(product.imageUrl)"
+      [src]="
+        getFullImageUrl(product.imageUrl)
+          | protectedImage
+          | async
+          | defaultImage : 'assets/images/nophoto.jpg'
+      "
       alt="{{ product.name }}"
       class="imgProduct"
     />
@@ -9,9 +14,7 @@
 
   <div class="cardBody">
     <h5 class="cardTitle">{{ product.name }}</h5>
-    <p class="cardTitle">{{ product.sku }}</p>
-
-    
+    <p class="cardText"><b>Sku:</b> {{ product.sku }}</p>
   </div>
 
   <div class="cardBody">
@@ -22,20 +25,9 @@
     <div>ggggg</div>
   </div>
 
-  <div class="cardButton">
+  <div class="cardButtonContainer">
     <button
-      class="btn btn-success buttonCard"
-      (click)="onSelected()"
-      matTooltipPosition="above"
-      matTooltipShowDelay="100"
-      matTooltipHideDelay="100"
-      matTooltip="Detail"
-    >
-      <mat-icon>list_alt</mat-icon>
-    </button>
-
-    <button
-      class="btn btn-success buttonCard"
+      class="cardButton"
       (click)="onEditProduct(product.id)"
       matTooltipPosition="above"
       matTooltipShowDelay="100"
@@ -46,7 +38,7 @@
     </button>
 
     <button
-      class="btn btn-success buttonCard"
+      class="cardButton"
       (click)="onPhotoProduct(product.id)"
       matTooltipPosition="above"
       matTooltipShowDelay="100"
@@ -56,7 +48,7 @@
       <mat-icon>photo_camera</mat-icon>
     </button>
     <button
-      class="btn btn-danger buttonCard buttonCardDelete"
+      class="cardButton cardButtonDelete"
       (click)="onDeleteProduct(product.id)"
       matTooltipPosition="above"
       matTooltipShowDelay="100"

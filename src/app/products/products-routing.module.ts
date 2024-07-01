@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/auth.guard';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductsComponent } from './products.component';
+import { PhotoComponent } from './photo/photo.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'photo/:id',
+    component: PhotoComponent,
     canActivate: [AuthGuard],
   },
 ];

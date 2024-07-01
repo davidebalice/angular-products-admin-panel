@@ -8,7 +8,6 @@ import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, catchError, map, tap, throwError } from 'rxjs';
 import { Product } from '../model/product.model';
-
 @Injectable()
 export class ProductService implements OnInit, OnDestroy {
   productsList = new Subject<Product[]>();
@@ -60,7 +59,6 @@ export class ProductService implements OnInit, OnDestroy {
     );
   }
 
-  
   fetchProducts(
     keyword?: string,
     category?: number,
@@ -167,17 +165,19 @@ export class ProductService implements OnInit, OnDestroy {
   addProductWithPhoto(product: FormData) {
     const headers = this.getHeadersForm();
 
-    return this.http.post(`/products/add-with-photo`, product, { headers }).pipe(
-      tap((response) => {
-        console.log('Response from backend:', response);
-      }),
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          this.router.navigate(['/login']);
-        }
-        return throwError(() => new Error('Error adding product.'));
-      })
-    );
+    return this.http
+      .post(`/products/add-with-photo`, product, { headers })
+      .pipe(
+        tap((response) => {
+          console.log('Response from backend:', response);
+        }),
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            this.router.navigate(['/login']);
+          }
+          return throwError(() => new Error('Error adding product.'));
+        })
+      );
   }
 
   updateProduct(id: number, dataProduct: Product) {
@@ -207,7 +207,6 @@ export class ProductService implements OnInit, OnDestroy {
     return this.http.delete(`/products/${productId}`, { headers });
   }
 
-  /*
   uploadProduct(id: number, imageFile: File) {
     const formData = new FormData();
     if (imageFile instanceof File) {
@@ -229,6 +228,8 @@ export class ProductService implements OnInit, OnDestroy {
           return throwError(() => new Error('Error uploading image.'));
         })
       );
+    } else {
+      return throwError(() => new Error('Provided image is not a file.'));
     }
-  }*/
+  }
 }

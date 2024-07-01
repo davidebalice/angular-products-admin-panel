@@ -1,10 +1,11 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, finalize, map, take } from 'rxjs';
 import { AppConfig } from '../../app-config';
-import { Recipe } from '../../model/recipe.model';
-import { RecipeService } from '../../services/recipe.service';
+import { Product } from '../../model/product.model';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-photo',
@@ -14,21 +15,22 @@ import { RecipeService } from '../../services/recipe.service';
 export class PhotoComponent implements OnInit {
   id: number | undefined;
   editMode = false;
-  recipeForm: FormGroup;
-  recipe: Recipe;
-  recipe$: Observable<Recipe> | undefined;
+  productForm: FormGroup;
+  product: Product;
+  product$: Observable<Product> | undefined;
   submitting = false;
   file: any;
   imageUrl: string;
 
-  get recipeControls() {
-    return (this.recipeForm.get('ingredients') as FormArray).controls;
+  get productControls() {
+    return (this.productForm.get('ingredients') as FormArray).controls;
   }
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService,
-    private router: Router
+    private productService: ProductService,
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -38,15 +40,15 @@ export class PhotoComponent implements OnInit {
 
       if (this.editMode) {
         if (this.id !== undefined) {
-          this.recipe$ = this.recipeService.getById(this.id);
+          this.product$ = this.productService.getById(this.id);
 
-          this.recipeService
+          this.productService
             .getById(this.id)
             .pipe(
-              map((recipe) => {
-                this.recipe = recipe;
-                this.initForm(this.recipe);
-                this.imageUrl = recipe.imageUrl;
+              map((product) => {
+                this.product = product;
+                this.initForm(this.product);
+                this.imageUrl = product.imageUrl;
               })
             )
             .subscribe();
@@ -56,50 +58,50 @@ export class PhotoComponent implements OnInit {
   }
 
   uploadImage(event: any) {
+    console.log(event.target.files[0]);
     this.file = event.target.files[0];
   }
 
   onSubmit() {
     if (!this.submitting) {
       this.submitting = true;
-      this.recipeService
-        .uploadRecipe(this.id, this.file)
+      this.productService
+        .uploadProduct(this.id, this.file)
         .pipe(
           take(1),
           finalize(() => {
             this.submitting = false;
-            //this.router.navigate(['../../'], { relativeTo: this.route });
             this.imageUrl = this.id + '_' + this.file.name;
           })
         )
         .subscribe({
           next: (response) => {
-            console.log('Recipe updated successfully', response);
+            console.log('Product updated successfully', response);
           },
           error: (error) => {
-            console.error('Error updating recipe', error);
+            console.error('Error updating product', error);
           },
         });
     }
   }
 
   getFullImageUrl(imageUrl: string): string {
-    return `${AppConfig.apiUrl}/recipes/image/${imageUrl}`;
+    return `${AppConfig.apiUrl}/products/image/${imageUrl}`;
   }
-
+  
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  private initForm(recipe: Recipe) {
-    let recipeImageUrl = '';
+  private initForm(product: Product) {
+    let productImageUrl = '';
 
-    if (this.editMode && recipe) {
-      recipeImageUrl = recipe.imageUrl;
+    if (this.editMode && product) {
+      productImageUrl = product.imageUrl;
     }
 
-    this.recipeForm = new FormGroup({
-      image: new FormControl(recipeImageUrl, Validators.required),
+    this.productForm = new FormGroup({
+      image: new FormControl(productImageUrl, Validators.required),
     });
   }
 }

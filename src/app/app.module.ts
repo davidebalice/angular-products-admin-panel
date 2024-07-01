@@ -4,11 +4,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule } from '@angular/forms';
-//import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-//import { PaginationModule } from 'ngx-bootstrap/pagination';
-//import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatModule } from './appModules/mat.module';
@@ -29,11 +26,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     MatModule,
-    //NgxPaginationModule,
-    //PaginationModule.forRoot(),
-   // MatPaginatorModule,
   ],
 
   providers: [

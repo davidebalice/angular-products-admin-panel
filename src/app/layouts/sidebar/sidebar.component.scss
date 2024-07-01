@@ -1,3 +1,10 @@
+.sidebarButton{
+  font-size:14px !important;
+  color:#000 !important;
+  font-family: Roboto !important;
+}
+
+
 .sidebar-wrapper {
   position: fixed;
   top: 0px;
@@ -34,23 +41,19 @@
 
   .sidebar-menu {
     margin-top: 65px;
-
   }
 
   mat-icon {
     font-size: 24px;
     line-height: normal;
     height: auto;
-    width: auto
+    width: auto;
   }
 
   .sidebar-lable {
     font-size: 12px;
     color: #d5d5d5;
   }
-
-
-
 
   ::ng-deep .mat-content {
     display: flex;
@@ -79,7 +82,7 @@
   }
 
   ::ng-deep .mat-expansion-panel-body {
-    padding: 0 !important
+    padding: 0 !important;
   }
 
   ::ng-deep .mat-expansion-panel-header {
@@ -107,22 +110,14 @@
   ::ng-deep .mdc-list {
     padding: 3px 0 !important;
   }
-
 }
 
 .sidebar-wrapper.mini-sidebar {
   left: -300px !important;
 }
 
-
 @media screen and (max-width: 1024px) {
-
   .sidebar-wrapper.mini-sidebar {
-
-      left: 0px !important;
-
-     
+    left: 0px !important;
   }
-
-
 }

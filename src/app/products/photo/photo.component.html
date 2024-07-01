@@ -1,49 +1,78 @@
-<div class="row" *ngIf="recipe$ | async as recipe; else loading">
-  <div class="row">
-    <div class="col-xs-12">
-      <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col-xs-12">
-            <button type="submit" class="btn btn-success">Save</button>
-            <button type="button" class="btn btn-danger" (click)="onCancel()">
-              Cancel
-            </button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              {{ recipe.title }}
+<h5>Products > Photo</h5>
+<hr />
+
+<mat-card>
+  <mat-card-content>
+    <div class="row" *ngIf="product$ | async as product; else loading">
+      <div class="row">
+        <div class="col-xs-12">
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="onCancel()"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-        {{ recipe.imageUrl }}
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="image">Image URL</label>
-              <input
-                type="file"
-                id="image"
-                formControlName="image"
-                name="image"
-                class="form-control"
-                #image
-                accept="image/*"
-                (change)="uploadImage($event)"
-              />
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  {{ product.title }}
+                </div>
+              </div>
             </div>
-          </div>
+            {{ product.imageUrl }}
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <div class="fileInputContainer">
+                    <input
+                      type="file"
+                      id="image"
+                      formControlName="image"
+                      name="image"
+                      class="fileInputabel"
+                      #image
+                      accept="image/*"
+                      (change)="uploadImage($event)"
+                    />
+                    <label for="file-upload" class="fileInputButton"
+                      >Select file</label
+                    >
+                    <span class="fileInputLabel" id="file-name" *ngIf="file">
+                      {{ file.name }}
+                    </span>
+                    <span class="fileInputLabel" id="file-name" *ngIf="!file">
+                      No file selected
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <img
+                  [src]="
+                    getFullImageUrl(imageUrl)
+                      | protectedImage
+                      | async
+                      | defaultImage : 'assets/images/nophoto.jpg'
+                  "
+                  class="img-responsive"
+                />
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <img [src]="getFullImageUrl(imageUrl)" class="img-responsive" />
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
-<ng-template #loading>
-  <p>Loading...</p>
-</ng-template>
+    <ng-template #loading>
+      <p>Loading...</p>
+    </ng-template>
+  </mat-card-content>
+</mat-card>
