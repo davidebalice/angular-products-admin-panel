@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription, catchError, take } from 'rxjs';
 import { AppConfig } from '../../app-config';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../services/product.service';
+import { DetailComponent } from '../detail/detail.component';
 
 @Component({
   selector: 'app-card',
@@ -15,7 +17,21 @@ export class CardComponent implements OnInit {
   fullStars: number = 0;
   halfStar: boolean = false;
   private subscription: Subscription;
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
+
+  openDialog(id: number): void {
+    this.dialog.open(DetailComponent, {
+      width: '90%',
+      maxWidth: '800px',
+      height: '90%',
+      maxHeight: '450px',
+      data: { id: id },
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -47,7 +63,7 @@ export class CardComponent implements OnInit {
     }
     return `${AppConfig.apiUrl}/products/image/${imageUrl}`;
   }
-  
+
   onDeleteProduct(productId: number) {
     const confirmDelete = confirm(
       'Are you sure you want to delete this product?'

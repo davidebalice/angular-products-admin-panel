@@ -11,6 +11,7 @@ import { ProtectedImagePipe } from '../pipes/protected-images.pipe';
 import { AuthService } from '../services/auth.service';
 import { ProductService } from '../services/product.service';
 import { CardComponent } from './card/card.component';
+import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { PhotoComponent } from './photo/photo.component';
 import { ProductsRoutingModule } from './products-routing.module';
@@ -20,6 +21,7 @@ import { ProductsComponent } from './products.component';
   declarations: [
     ProductsComponent,
     CardComponent,
+    DetailComponent,
     ListComponent,
     PhotoComponent,
     ProtectedImagePipe,

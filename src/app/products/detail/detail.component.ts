@@ -1,59 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Recipe } from '../../model/recipe.model';
-import { RecipeService } from '../../services/recipe.service';
 import { AppConfig } from '../../app-config';
+import { Product } from '../../model/product.model';
+import { ProductService } from '../../services/product.service';
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css',
 })
 export class DetailComponent implements OnInit {
-  recipe: Recipe;
-  recipe$: Observable<Recipe> | undefined;
+  product: Product;
+  product$: Observable<Product> | undefined;
   id: number | undefined;
-  
+
   private subscription: Subscription;
 
   constructor(
-    private recipeService: RecipeService,
+    private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.subscription = this.route.params.subscribe((params) => {
-      this.id = +params['id'];
-      if (this.id !== undefined) {
-        this.recipe$ = this.recipeService.getById(this.id);
-      }
-    });
+    private router: Router,
+    public dialogRef: MatDialogRef<DetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
+  ) {
+    this.id = data.id;
   }
 
-  onAddToShoppingList() {
-    if (this.recipe$) {
-      this.subscription = this.recipe$.subscribe((recipe) => {
-        this.recipeService.addIngredientsToShoppingList(recipe.ingredients);
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
+  ngOnInit(): void {
+    if (this.id) {
+      this.product$ = this.productService.getById(this.id);
+      this.subscription = this.product$.subscribe((product: Product) => {
+        this.product = product;
       });
     }
   }
 
   getFullImageUrl(imageUrl: string): string {
-    return `${AppConfig.apiUrl}/recipes/image/${imageUrl}`;
+    return `${AppConfig.apiUrl}/products/image/${imageUrl}`;
   }
 
-  onEditRecipe() {
+  onEditProduct() {
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
-  onDeleteRecipe() {
-    this.recipeService.deleteRecipe(this.id);
-    this.router.navigate(['/recipes']);
+  onDeleteProduct() {
+    this.productService.deleteProduct(this.id);
+    this.router.navigate(['/products']);
   }
 
-  onBackRecipes() {
-    this.router.navigate(['/recipes']);
+  onBackProducts() {
+    this.router.navigate(['/products']);
   }
 
   ngOnDestroy(): void {

@@ -28,6 +28,19 @@
   <div class="cardButtonContainer">
     <button
       class="cardButton"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      matTooltipHideDelay="100"
+      matTooltip="Detail"
+      (click)="openDialog(product.id)"
+    >
+      <mat-icon>article</mat-icon>
+    </button>
+
+
+
+    <button
+      class="cardButton"
       (click)="onEditProduct(product.id)"
       matTooltipPosition="above"
       matTooltipShowDelay="100"
@@ -47,6 +60,18 @@
     >
       <mat-icon>photo_camera</mat-icon>
     </button>
+
+    <button
+      class="cardButton"
+      (click)="onPhotoProduct(product.id)"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      matTooltipHideDelay="100"
+      matTooltip="Gallery"
+    >
+      <mat-icon>photo_library</mat-icon>
+    </button>
+
     <button
       class="cardButton cardButtonDelete"
       (click)="onDeleteProduct(product.id)"
