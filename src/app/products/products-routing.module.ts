@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/auth.guard';
 import { CategoriesComponent } from './categories/categories.component';
-import { ProductsComponent } from './products.component';
+import { EditComponent } from './edit/edit.component';
+import { NewComponent } from './new/new.component';
 import { PhotoComponent } from './photo/photo.component';
+import { ProductsComponent } from './products.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,16 @@ const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'new',
+    component: NewComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: ':id/edit',
+    component: EditComponent,
     canActivate: [AuthGuard],
   },
   {

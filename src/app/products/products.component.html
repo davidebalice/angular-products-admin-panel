@@ -3,6 +3,11 @@
 
 <mat-card>
   <mat-card-content>
+    <button (click)="onNewProduct()" class="buttonBase">
+      <mat-icon>add_circle</mat-icon>
+      New product
+    </button>
+    <hr />
     <app-list [pagination]="pagination" [limit]="9"></app-list>
   </mat-card-content>
 </mat-card>

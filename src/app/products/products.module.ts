@@ -11,6 +11,8 @@ import { ProtectedImagePipe } from '../pipes/protected-images.pipe';
 import { AuthService } from '../services/auth.service';
 import { ProductService } from '../services/product.service';
 import { CardComponent } from './card/card.component';
+import { NewComponent } from './new/new.component';
+import { EditComponent } from './edit/edit.component';
 import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { PhotoComponent } from './photo/photo.component';
@@ -22,7 +24,9 @@ import { ProductsComponent } from './products.component';
     ProductsComponent,
     CardComponent,
     DetailComponent,
+    EditComponent,
     ListComponent,
+    NewComponent,
     PhotoComponent,
     ProtectedImagePipe,
     DefaultImagePipe,

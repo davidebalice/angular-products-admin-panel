@@ -1,184 +1,89 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="title">Name of recipe</label>
-              <input
-                type="text"
-                id="title"
-                formControlName="title"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
+<h5>Product > New</h5>
+<hr />
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="idCategory">Category</label>
-              <select
-                type="text"
-                id="idCategory"
-                formControlName="idCategory"
-                class="form-control"
-              >
-                <option
-                  *ngFor="let category of categories$ | async"
-                  [value]="category.id"
-                >
-                  {{ category.name }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
+<mat-card>
+  <mat-card-content>
+    <button type="button" class="buttonBase buttonBack" (click)="onBack()">
+      <mat-icon> chevron_left</mat-icon>
+      Back
+    </button>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="difficulty">Difficulty</label>
-              <select
-                id="difficulty"
-                formControlName="difficulty"
-                class="form-control"
-              >
-                <option value="1">1</option>
-                <option value="1.5">1.5</option>
-                <option value="2">2</option>
-                <option value="2.5">2.5</option>
-                <option value="3">3</option>
-                <option value="3.5">3.5</option>
-                <option value="4">4</option>
-                <option value="4.5">4.5</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-          </div>
-        </div>
+    <form
+      [formGroup]="productForm"
+      (ngSubmit)="onSubmit()"
+      class="formContainer"
+    >
+      <div class="inputContainer">
+        <label for="name" class="labelText">Name of product</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="inputField"
+        />
+      </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="preparationTime">Preparation time</label>
-              <input
-                type="text"
-                id="preparationTime"
-                formControlName="preparationTime"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
+      <div class="inputContainer">
+        <label for="idCategory" class="labelText">Category</label>
+        <select
+          type="text"
+          id="idCategory"
+          formControlName="idCategory"
+          class="inputField"
+        >
+          <option
+            *ngFor="let category of categories$ | async"
+            [value]="category.id"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="cookingTime">Cooking time</label>
-              <input
-                type="text"
-                id="cookingTime"
-                formControlName="cookingTime"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
+      <div class="inputContainer">
+        <label for="sku" class="labelText">Sku</label>
+        <input type="text" id="sku" formControlName="sku" class="inputField" />
+      </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea
-                type="text"
-                id="description"
-                class="form-control"
-                formControlName="description"
-                rows="6"
-              ></textarea>
-            </div>
-          </div>
-        </div>
+      <div class="inputContainer">
+        <label for="price" class="labelText">Price</label>
+        <input
+          type="number"
+          id="price"
+          formControlName="price"
+          class="inputField"
+        />
+      </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="tips">Tips</label>
-              <textarea
-                type="text"
-                id="tips"
-                class="form-control"
-                formControlName="tips"
-                rows="4"
-              ></textarea>
-            </div>
-          </div>
-        </div>
+      <div class="inputContainer inputContainerFull">
+        <label for="description" class="labelText">Description</label>
+        <textarea
+          type="text"
+          id="description"
+          class="inputField"
+          formControlName="description"
+          rows="6"
+        ></textarea>
+      </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <button
-              type="submit"
-              class="btn btn-success"
-              [disabled]="!recipeForm.valid"
-            >
-              Save
-            </button>
-            <button type="button" class="btn btn-danger" (click)="onCancel()">
-              Cancel
-            </button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12" formArrayName="ingredients">
-            <div
-              class="row"
-              *ngFor="let ingredientCtrl of recipeControls; let i = index"
-              [formGroupName]="i"
-              style="margin-top: 10px"
-            >
-              <div class="col-xs-8">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="title"
-                />
-              </div>
-              <div class="col-xs-2">
-                <input
-                  type="number"
-                  class="form-control"
-                  formControlName="quantity"
-                />
-              </div>
-              <div class="col-xs-2">
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  (click)="onDeleteIngredient(i)"
-                >
-                  X
-                </button>
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-xs-12">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  (click)="onAddIngredient()"
-                >
-                  Add Ingredient
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+      <div class="submitContainer">
+        <button
+          type="button"
+          class="buttonBase buttonCancel"
+          (click)="onCancel()"
+        >
+          <mat-icon>cancel</mat-icon>
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="buttonBase"
+          [disabled]="!productForm.valid"
+        >
+          <mat-icon>add_circle</mat-icon>
+          Add product
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -8,9 +8,9 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject, finalize, map, take } from 'rxjs';
-import { Recipe } from '../../model/recipe.model';
+import { Product } from '../../model/product.model';
 import { CategoryService } from '../../services/category.service';
-import { RecipeService } from '../../services/recipe.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-edit',
@@ -19,20 +19,20 @@ import { RecipeService } from '../../services/recipe.service';
 })
 export class EditComponent implements OnInit {
   id: number | undefined;
-  recipeForm: FormGroup;
-  recipe: Recipe;
-  recipe$: Observable<Recipe> | undefined;
+  productForm: FormGroup;
+  product: Product;
+  product$: Observable<Product> | undefined;
   submitting = false;
   private destroy$ = new Subject<void>();
   categories$: Observable<any[]>;
 
-  get recipeControls() {
-    return (this.recipeForm.get('ingredients') as FormArray).controls;
+  get productControls() {
+    return (this.productForm.get('ingredients') as FormArray).controls;
   }
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService,
+    private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router,
     private formBuilder: FormBuilder
@@ -44,14 +44,14 @@ export class EditComponent implements OnInit {
       this.id = +params['id'];
 
       if (this.id !== undefined) {
-        this.recipe$ = this.recipeService.getById(this.id);
+        this.product$ = this.productService.getById(this.id);
 
-        this.recipeService
+        this.productService
           .getById(this.id)
           .pipe(
-            map((recipe) => {
-              this.recipe = recipe;
-              this.initForm(this.recipe);
+            map((product) => {
+              this.product = product;
+              this.initForm(this.product);
             })
           )
           .subscribe();
@@ -60,10 +60,10 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.recipeForm.valid && !this.submitting) {
+    if (this.productForm.valid && !this.submitting) {
       this.submitting = true;
-      this.recipeService
-        .updateRecipe(this.id, this.recipeForm.value)
+      this.productService
+        .updateProduct(this.id, this.productForm.value)
         .pipe(
           take(1),
           finalize(() => {
@@ -73,68 +73,32 @@ export class EditComponent implements OnInit {
         )
         .subscribe({
           next: (response) => {
-            console.log('Recipe updated successfully', response);
+            console.log('Product updated successfully', response);
           },
           error: (error) => {
-            console.error('Error updating recipe', error);
+            console.error('Error updating product', error);
           },
         });
     }
-  }
-
-  onAddIngredient() {
-    (<FormArray>this.recipeForm.get('ingredients')).push(
-      new FormGroup({
-        title: new FormControl(null, Validators.required),
-        quantity: new FormControl(null, [
-          Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/),
-        ]),
-      })
-    );
-  }
-
-  onDeleteIngredient(index: number) {
-    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  private initForm(recipe: Recipe) {
-    let recipeTitle = recipe.title;
-    let recipeIdCategory = recipe.idCategory;
-    let recipeDifficulty = recipe.difficulty;
-    let recipePreparationTime = recipe.preparationTime;
-    let recipeCookingTime = recipe.cookingTime;
-    let recipeDescription = recipe.description;
-    let recipeTips = recipe.tips;
-    let recipeIngredients = new FormArray([]);
+  private initForm(product: Product) {
+    let productTitle = product.name;
+    let productIdCategory = product.idCategory;
 
-    if (recipe.ingredients) {
-      for (let ingredient of recipe.ingredients) {
-        recipeIngredients.push(
-          new FormGroup({
-            title: new FormControl(ingredient.title, Validators.required),
-            quantity: new FormControl(ingredient.quantity, [
-              Validators.required,
-              Validators.pattern(/^[1-9]+[0-9]*$/),
-            ]),
-          })
-        );
-      }
-    }
+    let productDescription = product.description;
+    let productIngredients = new FormArray([]);
 
-    this.recipeForm = new FormGroup({
-      title: new FormControl(recipeTitle, Validators.required),
-      idCategory: new FormControl(recipeIdCategory, Validators.required),
-      description: new FormControl(recipeDescription, Validators.required),
-      tips: new FormControl(recipeTips),
-      difficulty: new FormControl(recipeDifficulty, Validators.required),
-      preparationTime: new FormControl(recipePreparationTime),
-      cookingTime: new FormControl(recipeCookingTime),
-      ingredients: recipeIngredients,
+    this.productForm = new FormGroup({
+      title: new FormControl(productTitle, Validators.required),
+      idCategory: new FormControl(productIdCategory, Validators.required),
+      description: new FormControl(productDescription, Validators.required),
+
+      ingredients: productIngredients,
     });
   }
 
@@ -146,5 +110,9 @@ export class EditComponent implements OnInit {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  onBack() {
+    this.router.navigate(['./products']);
   }
 }

@@ -56,15 +56,12 @@
 }
 
 .cardTitle {
- 
   font-size: 17px;
   overflow: hidden;
 }
 
 .cardText {
-  
   font-size: 14px;
-
 }
 
 .cardDifficulty {
@@ -94,41 +91,61 @@
 
 .cardButtonContainer {
   display: flex;
-  margin-right:8px;
+  margin-right: 8px;
   justify-content: end;
   gap: 4px;
   font-size: 16px;
 }
 
 .cardButtonContainer .mat-icon {
-  font-size: 18px;
+  font-size: 23px;
   display: flex;
+  color: #555;
   justify-content: center;
   align-items: center;
 }
 
 .cardButton {
-  background-color: #f1f1f1;
+  background-color: #fff;
   padding: 5px 10px !important;
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-top:4px;
-  border: 1px solid #ddd;
-  box-shadow: 0px 2px 2px 0px rgb(0, 0, 0, 0.2);
+  margin-top: 4px;
+  border: 0px solid #ddd;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.4s ease;
+  border-radius: 5px;
 }
 
 .cardButton:hover {
-  background-color: #d1d1d1;
+  background-color: #f1f1f1;
+  transform: scale(1.11);
 }
 
 .cardButtonDelete {
-  color:#fff;
-  border: 1px solid red;
-  background-color: red;
+  color: #fff;
+  border: 0px solid #ddd;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .cardButtonDelete:hover {
   background-color: #e02804;
+  color: #fff;
 }
 
+.cardButtonDelete:hover .mat-icon {
+  color: #fff;
+}
+
+.cardButtonDelete .mat-icon {
+  font-size: 22px;
+  color: #ff0000;
+}
+
+.editButton {
+  color: var(--button-bg-color) !important;
+}
+
+.viewButton {
+  color: #45ba1c !important;
+}
