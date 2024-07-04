@@ -18,8 +18,7 @@ export class HeaderComponent implements OnInit {
 
   theme_name = 'dark_mode';
 
-  toggleSearch: boolean = false;
-
+ 
   darkMode() {
     if (this.theme_name == 'light_mode') {
       document
@@ -43,13 +42,6 @@ export class HeaderComponent implements OnInit {
     this.sidebarservice.setSidebarState(!this.sidebarservice.getSidebarState());
   }
 
-  openSearch() {
-    this.toggleSearch = true;
-  }
-
-  searchClose() {
-    this.toggleSearch = false;
-  }
 
   onLogout() {
     this.authService.logout();

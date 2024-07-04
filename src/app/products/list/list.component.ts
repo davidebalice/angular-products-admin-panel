@@ -36,7 +36,7 @@ export class ListComponent {
 
     this.queryParamSub = this.route.queryParams.subscribe((params) => {
       const searchKey = params['key'] || '';
-      const categoryId = parseInt(this.route.snapshot.paramMap.get('idcat'));
+      const categoryId = params['category'] || '';
       if (categoryId) {
         this.fetchProducts(searchKey, categoryId);
       } else {
@@ -45,7 +45,7 @@ export class ListComponent {
     });
 
     this.routeParamsSub = this.route.params.subscribe((params) => {
-      const categoryId = params['idcat'] || 0;
+      const categoryId = params['category'] || 0;
       const searchKey = this.route.snapshot.queryParams['key'] || '';
       if (categoryId) {
         this.fetchProducts(searchKey, categoryId);
@@ -75,6 +75,8 @@ export class ListComponent {
   }
 
   fetchProducts(searchKey?: string, categoryId?: number) {
+  
+
     this.isLoading = true;
     this.subscription = this.productService
       .fetchProducts(searchKey, categoryId, this.limit, this.currentPage)
@@ -96,7 +98,6 @@ export class ListComponent {
       });
   }
 
-
   onPageChanged(event: PageEvent): void {
     this.currentPage = event.pageIndex + 1;
     this.fetchProducts();
@@ -107,5 +108,4 @@ export class ListComponent {
     const endIndex = startIndex + this.limit;
     this.paginatedProducts = this.loadedProducts.slice(startIndex, endIndex);
   }
-  
 }

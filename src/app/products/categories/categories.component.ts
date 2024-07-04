@@ -17,6 +17,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   subscription: Subscription;
+  isLoading = true;
 
   constructor(
     private categoryService: CategoryService,
@@ -30,6 +31,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
       .getCategories()
       .subscribe((categories) => {
         this.categories = categories;
+        this.isLoading = false;
       });
   }
 
@@ -39,21 +41,13 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   
   onSelectCategory(category: Category): void {
     this.selectedCategory = category;
-    this.fetchProductsByCategory(category);
 
     if (category) {
       this.router.navigate([`/products/idcat/${category.id}`]);
     }
   }
 
-  fetchProductsByCategory(category: Category): void {
-    this.productService.fetchProducts('', category.id).subscribe({
-      next: (products) => {
-        // this.products = products;
-      },
-      error: (error) => {
-        console.error('Error fetching products by category:', error);
-      },
-    });
+  onNewCategory() {
+    this.router.navigate(['/products/categories/new']);
   }
 }

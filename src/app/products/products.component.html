@@ -1,12 +1,15 @@
 <h5>Products</h5>
 <hr />
 
-<mat-card>
+<mat-card class="pageCard">
   <mat-card-content>
-    <button (click)="onNewProduct()" class="buttonBase">
-      <mat-icon>add_circle</mat-icon>
-      New product
-    </button>
+    <div class="buttonContainer">
+      <button (click)="onNewProduct()" class="buttonBase">
+        <mat-icon>add_circle</mat-icon>
+        New product
+      </button>
+      <app-search></app-search>
+    </div>
     <hr />
     <app-list [pagination]="pagination" [limit]="9"></app-list>
   </mat-card-content>

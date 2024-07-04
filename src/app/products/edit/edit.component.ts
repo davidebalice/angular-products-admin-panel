@@ -83,22 +83,23 @@ export class EditComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.router.navigate(['/products']);
   }
 
   private initForm(product: Product) {
-    let productTitle = product.name;
+    let productName = product.name;
     let productIdCategory = product.idCategory;
-
+    let productSku = product.sku;
+    let productPrice = product.price;
     let productDescription = product.description;
-    let productIngredients = new FormArray([]);
 
     this.productForm = new FormGroup({
-      title: new FormControl(productTitle, Validators.required),
+      name: new FormControl(productName, Validators.required),
       idCategory: new FormControl(productIdCategory, Validators.required),
       description: new FormControl(productDescription, Validators.required),
+      sku: new FormControl(productSku),
+      price: new FormControl(productPrice),
 
-      ingredients: productIngredients,
     });
   }
 

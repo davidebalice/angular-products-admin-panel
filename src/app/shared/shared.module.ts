@@ -13,14 +13,9 @@ import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 import { AuthService } from '../services/auth.service';
 import { ProductService } from '../services/product.service';
 
+
 @NgModule({
-  exports: [
-    CommonModule,
-    FooterComponent,
-    HeaderComponent,
-    SidebarComponent,
-    // ColorSwitcherComponent
-  ],
+  exports: [CommonModule, FooterComponent, HeaderComponent, SidebarComponent],
   imports: [
     RouterModule,
     CommonModule,

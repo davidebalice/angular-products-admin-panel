@@ -1,4 +1,4 @@
-<div class="cardProduct">
+<div class="cardRow">
   <div>
     <img
       [src]="
@@ -18,11 +18,11 @@
   </div>
 
   <div class="cardBody">
-    <div>ggggg</div>
+    <div>{{ product.categoryDto.name }}</div>
   </div>
 
   <div class="cardBody">
-    <div>ggggg</div>
+    <div>{{ product.price | currencyFormat }}</div>
   </div>
 
   <div class="cardButtonContainer">
@@ -36,8 +36,6 @@
     >
       <mat-icon class="viewButton">article</mat-icon>
     </button>
-
-
 
     <button
       class="cardButton"

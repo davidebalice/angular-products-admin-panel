@@ -8,6 +8,7 @@ export class Product {
   public imageUrl: string;
   public categoryDto: CategoryDto;
   public idCategory: number;
+  public price: number;
 
   constructor(
     id: number,
@@ -15,12 +16,14 @@ export class Product {
     sku: string,
     description: string,
     idCategory: number,
+    price: number,
     imageUrl: string,
   ) {
     this.id = id;
     this.name = name;
     this.sku = sku;
     this.description = description;
+    this.price = price;
     this.imageUrl = imageUrl;
     this.idCategory = idCategory;
   }

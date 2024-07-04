@@ -69,14 +69,13 @@ export class ProductService implements OnInit, OnDestroy {
     let apiUrl = '/products/';
     let params = new HttpParams();
 
+
     if (keyword) {
       apiUrl = '/products/search';
       params = params.append('keyword', keyword);
     } else {
       if (category > 0) {
         apiUrl = '/products/searchByCategoryId';
-        console.log('param category');
-        console.log(category);
         params = params.append('categoryId', category);
       }
     }
@@ -182,7 +181,6 @@ export class ProductService implements OnInit, OnDestroy {
 
   updateProduct(id: number, dataProduct: Product) {
     const headers = this.getHeaders();
-    console.log(dataProduct);
     return this.http
       .patch(`/products/${id}`, dataProduct, {
         withCredentials: true,
