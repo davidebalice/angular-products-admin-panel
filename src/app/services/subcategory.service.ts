@@ -2,7 +2,6 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
-  HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,14 +14,14 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { Category } from '../model/category.model';
+import { Subcategory } from '../model/subcategory.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CategoryService {
-  private categoriesUrl = '/categories/';
-  private categoriesSubject = new BehaviorSubject<Category[]>([]);
+export class SubcategoryService {
+  private subcategoriesUrl = '/subcategories/';
+  private subcategoriesSubject = new BehaviorSubject<Subcategory[]>([]);
   private subscription: Subscription;
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -33,14 +32,15 @@ export class CategoryService {
     });
   }
 
-  fetchCategories(): void {
+  fetchSubcategories(categoryId: number): void {
     const headers = this.getHeaders();
     this.subscription = this.http
-      .get<Category[]>(this.categoriesUrl, { headers })
-
+      .get<Subcategory[]>(`${this.subcategoriesUrl}idcat/${categoryId}`, {
+        headers,
+      })
       .pipe(
-        tap((categories: Category[]) => {
-          this.categoriesSubject.next(categories);
+        tap((subcategories: Subcategory[]) => {
+          this.subcategoriesSubject.next(subcategories);
         }),
         catchError((error) => {
           console.error('Error fetching categories:', error);
@@ -50,8 +50,8 @@ export class CategoryService {
       .subscribe();
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.categoriesSubject.asObservable();
+  getSubcategories(): Observable<Subcategory[]> {
+    return this.subcategoriesSubject.asObservable();
   }
 
   ngOnDestroy(): void {
@@ -60,11 +60,11 @@ export class CategoryService {
     }
   }
 
-  addCategory(category: Category) {
+  addSubcategory(category: Subcategory) {
     const headers = this.getHeaders();
 
     return this.http
-      .post(`/categories/add`, category, {
+      .post(`/subcategories/add`, category, {
         withCredentials: true,
         headers,
       })
@@ -81,10 +81,10 @@ export class CategoryService {
       );
   }
 
-  updateCategory(id: number, dataCategory: Category) {
+  updateSubcategory(id: number, dataSubcategory: Subcategory) {
     const headers = this.getHeaders();
     return this.http
-      .patch(`/categories/${id}`, dataCategory, {
+      .patch(`/subcategories/${id}`, dataSubcategory, {
         withCredentials: true,
         responseType: 'text',
         headers,
@@ -102,16 +102,16 @@ export class CategoryService {
       );
   }
 
-  deleteCategory(categoryId: number) {
+  deleteSubcategory(categoryId: number) {
     const headers = this.getHeaders();
-    return this.http.delete(`/categories/${categoryId}`, { headers });
+    return this.http.delete(`/subcategories/${categoryId}`, { headers });
   }
 
-  getById(id: number): Observable<Category> {
+  getById(id: number): Observable<Subcategory> {
     const headers = this.getHeaders();
 
     return this.http
-      .get<Category>(`/categories/${id}`, {
+      .get<Subcategory>(`/categories/${id}`, {
         headers,
       })
       .pipe(

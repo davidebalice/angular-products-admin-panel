@@ -12,6 +12,7 @@ import { ProtectedImagePipe } from '../pipes/protected-images.pipe';
 import { AuthService } from '../services/auth.service';
 import { ProductService } from '../services/product.service';
 import { CardComponent } from './card/card.component';
+
 import { DetailComponent } from './detail/detail.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
@@ -21,18 +22,28 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { SearchComponent } from './search/search.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
+import { CategoryNewComponent } from './categories/category-new/category-new.component';
+import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { SubcategoryEditComponent } from './subcategories/subcategory-edit/subcategory-edit.component';
+import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcategory-new.component';
 
 @NgModule({
   declarations: [
     ProductsComponent,
     SearchComponent,
     CardComponent,
-    CategoriesComponent,
     DetailComponent,
     EditComponent,
     ListComponent,
     NewComponent,
     PhotoComponent,
+    CategoriesComponent,
+    CategoryEditComponent,
+    CategoryNewComponent,
+    SubcategoriesComponent,
+    SubcategoryEditComponent,
+    SubcategoryNewComponent,
     ProtectedImagePipe,
     DefaultImagePipe,
     CurrencyFormatPipe,

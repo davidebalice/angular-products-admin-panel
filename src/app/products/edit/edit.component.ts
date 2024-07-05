@@ -26,10 +26,6 @@ export class EditComponent implements OnInit {
   private destroy$ = new Subject<void>();
   categories$: Observable<any[]>;
 
-  get productControls() {
-    return (this.productForm.get('ingredients') as FormArray).controls;
-  }
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,

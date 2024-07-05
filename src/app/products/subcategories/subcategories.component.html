@@ -1,27 +1,54 @@
-<h5>Products > Categories</h5>
+<h5>Products > Subcategories</h5>
 <hr />
 
 <mat-card class="pageCard">
   <mat-card-content>
     <div class="buttonContainer">
-      <button (click)="onNewCategory()" class="buttonBase buttonHeight">
+      <button (click)="onNewSubcategory()" class="buttonBase buttonHeight">
         <mat-icon>add_circle</mat-icon>
         New category
       </button>
     </div>
     <hr />
+    {{ selectedIdCategory }}
+    <div class="inputContainer">
+      <form
+        *ngIf="categoryForm"
+        [formGroup]="categoryForm"
+        class="formContainer"
+      >
+        <label for="idCategory" class="labelText">Category</label>
+        <select
+          type="text"
+          id="idCategory"
+          formControlName="idCategory"
+          class="inputField"
+          (change)="onCategoryChange($event.target.value)"
+          *ngIf="selectedIdCategory >= 1 && categories$"
+        >
+          <option
+            *ngFor="let category of categories$ | async"
+            [value]="category.id"
+            [selected]="category.id === selectedIdCategory"
+          >
+            {{ category.name }} {{ selectedIdCategory }} {{ category.id }}
+          </option>
+        </select>
+      </form>
+    </div>
 
+    <hr />
     <div class="rowTitle">
-      <div>Category</div>
+      <div>Subcategory</div>
       <div>Manage</div>
     </div>
 
     <div class="row">
-      <ng-container *ngIf="categories.length > 0; else noCategory">
-        <div class="col-12" *ngFor="let category of categories">
+      <ng-container *ngIf="subcategories.length > 0; else noSubcategory">
+        <div class="col-12" *ngFor="let subcategory of subcategories">
           <div class="cardRow">
             <div class="cardBody">
-              <h5 class="cardTitle">{{ category.name }}</h5>
+              <h5 class="cardTitle">{{ subcategory.name }}</h5>
             </div>
 
             <div class="cardButtonContainer">
@@ -38,7 +65,7 @@
 
               <button
                 class="cardButton cardButtonDelete"
-                (click)="onDelete(category.id)"
+                (click)="onDeleteProduct(product.id)"
                 matTooltipPosition="above"
                 matTooltipShowDelay="100"
                 matTooltipHideDelay="100"
@@ -51,8 +78,8 @@
         </div>
       </ng-container>
 
-      <ng-template #noCategory>
-        <div class="noCategory">No category available.</div>
+      <ng-template #noSubcategory>
+        <div class="noSubcategory">No subcategory available.</div>
       </ng-template>
 
       <div *ngIf="isLoading" class="loadingContainer">

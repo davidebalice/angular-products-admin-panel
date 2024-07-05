@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { catchError, Subscription } from 'rxjs';
 import { Category } from '../../model/category.model';
 import { Product } from '../../model/product.model';
 import { CategoryService } from '../../services/category.service';
-import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-categories',
@@ -21,7 +20,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   constructor(
     private categoryService: CategoryService,
-    private productService: ProductService,
     private router: Router
   ) {}
 
@@ -38,7 +36,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  
+
   onSelectCategory(category: Category): void {
     this.selectedCategory = category;
 
@@ -49,5 +47,30 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   onNewCategory() {
     this.router.navigate(['/products/categories/new']);
+  }
+
+  onEditCategory(categoryId: number) {
+    this.router.navigate([`/products/categories/${categoryId}/edit`]);
+  }
+
+  onDelete(categoryId: number) {
+    const confirmDelete = confirm(
+      'Are you sure you want to delete this category?'
+    );
+    if (confirmDelete) {
+      this.subscription = this.categoryService
+        .deleteCategory(categoryId)
+        .pipe(
+          catchError((error) => {
+            console.error('Error deleting product', error);
+            throw error;
+          })
+        )
+        .subscribe({
+          next: () => {
+            this.categoryService.fetchCategories();
+          },
+        });
+    }
   }
 }

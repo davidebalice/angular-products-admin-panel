@@ -39,7 +39,7 @@
           Password is required
         </div>
       </div>
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button type="submit" [disabled]="loginForm.invalid" class="loginButton">Login</button>
     </form>
     <div *ngIf="errorMessage" class="errorMessage">
       {{ errorMessage }}

@@ -1,4 +1,7 @@
-<h5>Product > Edit</h5>
+<h5>
+  Products > Edit >
+  <span>{{ product?.name || "" }}</span>
+</h5>
 <hr />
 
 <mat-card class="pageCard">
@@ -10,6 +13,7 @@
 
     <div *ngIf="product$ | async as product; else loading">
       <form
+        *ngIf="productForm"
         [formGroup]="productForm"
         (ngSubmit)="onSubmit()"
         class="formContainer"
@@ -42,9 +46,7 @@
         </div>
 
         <div class="inputContainer">
-          <label for="sku" class="labelText"
-            >Sku</label
-          >
+          <label for="sku" class="labelText">Sku</label>
           <input
             type="text"
             id="sku"
@@ -88,8 +90,8 @@
             class="buttonBase"
             [disabled]="!productForm.valid"
           >
-          <mat-icon>save</mat-icon>
-          Save
+            <mat-icon>save</mat-icon>
+            Save
           </button>
         </div>
       </form>
