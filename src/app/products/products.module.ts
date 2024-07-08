@@ -27,6 +27,7 @@ import { CategoryNewComponent } from './categories/category-new/category-new.com
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { SubcategoryEditComponent } from './subcategories/subcategory-edit/subcategory-edit.component';
 import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcategory-new.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcate
     ProtectedImagePipe,
     DefaultImagePipe,
     CurrencyFormatPipe,
+
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcate
     MatModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule
   ],
   exports: [ProtectedImagePipe, DefaultImagePipe, CurrencyFormatPipe],
   providers: [

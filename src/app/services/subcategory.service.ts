@@ -60,11 +60,10 @@ export class SubcategoryService {
     }
   }
 
-  addSubcategory(category: Subcategory) {
+  addSubcategory(subCategory: Subcategory) {
     const headers = this.getHeaders();
-
     return this.http
-      .post(`/subcategories/add`, category, {
+      .post(`/subcategories/add`, subCategory, {
         withCredentials: true,
         headers,
       })
@@ -111,7 +110,7 @@ export class SubcategoryService {
     const headers = this.getHeaders();
 
     return this.http
-      .get<Subcategory>(`/categories/${id}`, {
+      .get<Subcategory>(`/subcategories/${id}`, {
         headers,
       })
       .pipe(

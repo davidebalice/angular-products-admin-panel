@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -8,49 +7,77 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject, finalize, take, takeUntil } from 'rxjs';
+import { CategoryService } from 'src/app/services/category.service';
 import { SubcategoryService } from '../../../services/subcategory.service';
-
 
 @Component({
   selector: 'app-subcategory-new',
   templateUrl: './subcategory-new.component.html',
-  styleUrl: './subcategory-new.component.scss'
+  styleUrl: './subcategory-new.component.scss',
 })
 export class SubcategoryNewComponent {
-  categoryForm: FormGroup;
+  subcategoryForm: FormGroup;
   submitting = false;
   imageFile: File | null = null;
   private destroy$ = new Subject<void>();
   categories$: Observable<any[]>;
-
+  selectedIdCategory: number = null;
 
   constructor(
     private route: ActivatedRoute,
-    private categoryService: SubcategoryService,
+    private subCategoryService: SubcategoryService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
-    this.categoryForm = this.formBuilder.group({
+    this.loadCategories();
+    this.loadDefaultCategory();
+    this.subcategoryForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: [''],
-      sku: [''],
-      price: [''],
-      idSubcategory: 0,
+      category: this.formBuilder.group({
+        id: new FormControl(this.selectedIdCategory, Validators.required),
+      }),
     });
   }
 
-  onFileSelected(event: any) {
-    this.imageFile = event.target.files[0];
+  loadCategories(): void {
+    this.categoryService.fetchCategories();
+    this.categories$ = this.categoryService.getCategories();
+  }
+
+  loadDefaultCategory(): void {
+    if (!this.selectedIdCategory) {
+      this.categories$.subscribe((categories) => {
+        if (categories.length > 0) {
+          this.selectedIdCategory = categories[0].id;
+          console.log(this.selectedIdCategory);
+          this.loadSubcategories(this.selectedIdCategory);
+        }
+      });
+    } else {
+      this.loadSubcategories(this.selectedIdCategory);
+    }
+  }
+
+  onCategoryChange(categoryId: number): void {
+    this.selectedIdCategory = categoryId;
+    this.loadSubcategories(categoryId);
+    this.subcategoryForm.get('category.id').setValue(categoryId);
+  }
+
+  loadSubcategories(categoryId: number): void {
+    this.selectedIdCategory = categoryId;
   }
 
   onSubmit() {
-    if (this.categoryForm.valid && !this.submitting) {
+    if (this.subcategoryForm.valid && !this.submitting) {
       this.submitting = true;
 
-      this.categoryService
-        .addSubcategory(this.categoryForm.value)
+      this.subCategoryService
+        .addSubcategory(this.subcategoryForm.value)
         .pipe(
           take(1),
           finalize(() => {
@@ -71,11 +98,13 @@ export class SubcategoryNewComponent {
   }
 
   onCancel() {
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.onBack();
   }
 
   onBack() {
-    this.router.navigate(['./products']);
+    this.router.navigate(['./products/subcategories/'], {
+      queryParams: { idCategory: this.selectedIdCategory },
+    });
   }
 
   ngOnDestroy() {

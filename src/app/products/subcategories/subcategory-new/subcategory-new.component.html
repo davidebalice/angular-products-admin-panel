@@ -1,4 +1,4 @@
-<h5>Products > Categories > New</h5>
+<h5>Products > Subcategories > New</h5>
 <hr />
 
 <mat-card class="pageCard">
@@ -9,12 +9,12 @@
     </button>
 
     <form
-      [formGroup]="categoryForm"
+      [formGroup]="subcategoryForm"
       (ngSubmit)="onSubmit()"
       class="formContainer"
     >
       <div class="inputContainer">
-        <label for="name" class="labelText">Name of category</label>
+        <label for="name" class="labelText">Name of subcategory</label>
         <input
           type="text"
           id="name"
@@ -22,12 +22,23 @@
           class="inputField"
         />
       </div>
-
-      
-
-     
-
-
+      <div formGroupName="category">
+        <select
+          id="idCategory"
+          formControlName="id"
+          class="inputField subCatSelect"
+          (change)="onCategoryChange($event.target.value)"
+          *ngIf="selectedIdCategory >= 1 && categories$"
+        >
+          <option
+            *ngFor="let category of categories$ | async"
+            [value]="category.id"
+            [selected]="category.id === selectedIdCategory"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
       <div class="submitContainer">
         <button
           type="button"
@@ -40,10 +51,10 @@
         <button
           type="submit"
           class="buttonBase"
-          [disabled]="!categoryForm.valid"
+          [disabled]="!subcategoryForm.valid"
         >
           <mat-icon>add_circle</mat-icon>
-          Add category
+          Add subcategory
         </button>
       </div>
     </form>

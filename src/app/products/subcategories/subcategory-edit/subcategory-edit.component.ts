@@ -1,12 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable, Subject, finalize, map, take, takeUntil } from 'rxjs';
+import { CategoryService } from 'src/app/services/category.service';
 import { Subcategory } from '../../../model/subcategory.model';
 import { SubcategoryService } from '../../../services/subcategory.service';
 
@@ -17,33 +13,43 @@ import { SubcategoryService } from '../../../services/subcategory.service';
 })
 export class SubcategoryEditComponent implements OnInit, OnDestroy {
   id: number | undefined;
-  categoryForm: FormGroup;
-  category: Subcategory;
-  category$: Observable<Subcategory> | undefined;
+  categories$: Observable<any[]>;
+  subcategoryForm: FormGroup;
+  subcategory: Subcategory;
+  subcategory$: Observable<Subcategory> | undefined;
   submitting = false;
   private destroy$ = new Subject<void>();
-  categories$: Observable<any[]>;
+  subcategories$: Observable<any[]>;
+  selectedIdCategory: number = null;
 
   constructor(
     private route: ActivatedRoute,
-    private categoryService: SubcategoryService,
+    private categoryService: CategoryService,
+    private subcategoryService: SubcategoryService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
 
+  loadCategories(): void {
+    this.categoryService.fetchCategories();
+    this.categories$ = this.categoryService.getCategories();
+  }
+
   ngOnInit(): void {
+    this.loadCategories();
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
 
       if (this.id !== undefined) {
-        this.category$ = this.categoryService.getById(this.id);
+        this.subcategory$ = this.subcategoryService.getById(this.id);
 
-        this.categoryService
+        this.subcategoryService
           .getById(this.id)
           .pipe(
-            map((category) => {
-              this.category = category;
-              this.initForm(this.category);
+            map((subcategory) => {
+              this.subcategory = subcategory;
+              this.selectedIdCategory = this.subcategory.idCategory;
+              this.initForm(this.subcategory);
             }),
             takeUntil(this.destroy$)
           )
@@ -52,11 +58,20 @@ export class SubcategoryEditComponent implements OnInit, OnDestroy {
     });
   }
 
+  onCategoryChange(categoryId: number): void {
+    this.selectedIdCategory = categoryId;
+    this.subcategoryForm.get('category.id').setValue(categoryId);
+  }
+
   onSubmit() {
-    if (this.categoryForm.valid && !this.submitting) {
+    if (this.subcategoryForm.valid && !this.submitting) {
       this.submitting = true;
-      this.categoryService
-        .updateSubcategory(this.id, this.categoryForm.value)
+      console.log(this.subcategoryForm.value);
+      console.log(this.subcategoryForm.value);
+      console.log(this.subcategoryForm.value);
+      console.log(this.subcategoryForm.value);
+      this.subcategoryService
+        .updateSubcategory(this.id, this.subcategoryForm.value)
         .pipe(
           take(1),
           finalize(() => {
@@ -77,16 +92,16 @@ export class SubcategoryEditComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    this.router.navigate(['./products/categories']);
+    this.router.navigate(['./products/subcategories']);
   }
 
-  private initForm(category: Subcategory) {
-    let categoryName = category.name;
-    let categoryDescription = category.description;
+  private initForm(subcategory: Subcategory) {
+    this.selectedIdCategory = subcategory.idCategory;
 
-    this.categoryForm = new FormGroup({
-      name: new FormControl(categoryName, Validators.required),
-      description: new FormControl(categoryDescription),
+    this.subcategoryForm = this.formBuilder.group({
+      name: [subcategory.name, Validators.required],
+      description: [subcategory.description],
+      idCategory: [subcategory.idCategory, Validators.required],
     });
   }
 
@@ -96,6 +111,6 @@ export class SubcategoryEditComponent implements OnInit, OnDestroy {
   }
 
   onBack() {
-    this.router.navigate(['./products/categories']);
+    this.router.navigate(['./products/subcategories']);
   }
 }

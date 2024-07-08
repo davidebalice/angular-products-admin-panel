@@ -1,12 +1,17 @@
 export class Subcategory {
   public id: number;
-  public id_category: number;
+  public idCategory: number;
   public name: string;
   public description: string;
 
-  constructor(id: number, id_category: number, name: string, description: string) {
+  constructor(
+    id: number,
+    idCategory: number,
+    name: string,
+    description: string
+  ) {
     this.id = id;
-    this.id_category = id_category;
+    this.idCategory = idCategory;
     this.name = name;
     this.description = description;
   }
@@ -14,7 +19,7 @@ export class Subcategory {
 
 export interface SubcategoryDto {
   id: number;
-  id_category: number;
+  idCategory: number;
   name: string;
   description: string;
   bg: string;

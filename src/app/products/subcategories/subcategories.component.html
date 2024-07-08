@@ -6,23 +6,24 @@
     <div class="buttonContainer">
       <button (click)="onNewSubcategory()" class="buttonBase buttonHeight">
         <mat-icon>add_circle</mat-icon>
-        New category
+        New subcategory
       </button>
     </div>
+
     <hr />
-    {{ selectedIdCategory }}
-    <div class="inputContainer">
+
+    <div class="inputContainer subCatSelect">
+      <label for="idCategory" class="labelText">Category</label>
       <form
         *ngIf="categoryForm"
         [formGroup]="categoryForm"
         class="formContainer"
       >
-        <label for="idCategory" class="labelText">Category</label>
         <select
           type="text"
           id="idCategory"
           formControlName="idCategory"
-          class="inputField"
+          class="inputField subCatSelect"
           (change)="onCategoryChange($event.target.value)"
           *ngIf="selectedIdCategory >= 1 && categories$"
         >
@@ -31,7 +32,7 @@
             [value]="category.id"
             [selected]="category.id === selectedIdCategory"
           >
-            {{ category.name }} {{ selectedIdCategory }} {{ category.id }}
+            {{ category.name }}
           </option>
         </select>
       </form>
@@ -54,7 +55,7 @@
             <div class="cardButtonContainer">
               <button
                 class="cardButton"
-                (click)="onEditCategory(category.id)"
+                (click)="onEditSubcategory(subcategory.id)"
                 matTooltipPosition="above"
                 matTooltipShowDelay="100"
                 matTooltipHideDelay="100"
@@ -65,7 +66,7 @@
 
               <button
                 class="cardButton cardButtonDelete"
-                (click)="onDeleteProduct(product.id)"
+                (click)="onDelete(subcategory.id,subcategory.name)"
                 matTooltipPosition="above"
                 matTooltipShowDelay="100"
                 matTooltipHideDelay="100"

@@ -1,12 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { catchError, Observable, Subject, Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogData,
+} from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { CategoryService } from 'src/app/services/category.service';
 import { Product } from '../../model/product.model';
 import { Subcategory } from '../../model/subcategory.model';
 import { SubcategoryService } from '../../services/subcategory.service';
-
 @Component({
   selector: 'app-subcategories',
   templateUrl: './subcategories.component.html',
@@ -28,7 +32,9 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
   constructor(
     private categoryService: CategoryService,
     private subcategoryService: SubcategoryService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   loadCategories(): void {
@@ -37,9 +43,18 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
   }
 
   loadDefaultCategory(): void {
+    console.log(this.selectedIdCategory);
     if (!this.selectedIdCategory) {
+      console.log(this.selectedIdCategory);
+      console.log(this.selectedIdCategory);
+      console.log(this.selectedIdCategory);
+      console.log(this.selectedIdCategory);
+
       this.categories$.subscribe((categories) => {
         if (categories.length > 0) {
+          console.log(categories.length);
+          console.log(categories.length);
+          console.log(categories.length);
           this.selectedIdCategory = categories[0].id;
           console.log(this.selectedIdCategory);
           this.loadSubcategories(this.selectedIdCategory);
@@ -60,8 +75,9 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
   loadSubcategories(categoryId: number): void {
     this.selectedIdCategory = categoryId;
     this.subcategoryService.fetchSubcategories(categoryId);
-    this.subscription = this.subcategoryService
+    this.subcategoryService
       .getSubcategories()
+      .pipe(takeUntil(this.destroy$))
       .subscribe((subcategories) => {
         this.subcategories = subcategories;
         this.isLoading = false;
@@ -69,15 +85,38 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadCategories();
-    this.loadDefaultCategory();
+    this.route.queryParams.subscribe((params) => {
+      const idCategory = +params['idCategory'];
+      if (idCategory) {
+        this.selectedIdCategory = idCategory;
+        this.loadCategories();
+        this.loadSubcategories(idCategory);
+      } else {
+        if (this.selectedIdCategory) {
+          this.loadSubcategories(this.selectedIdCategory);
+          this.loadDefaultCategory();
+        } else {
+          this.loadCategories();
+          this.loadDefaultCategory();
+        }
+      }
+    });
+
     this.categoryForm = new FormGroup({
       idCategory: new FormControl(this.selectedIdCategory),
     });
+
+    this.subcategoryService
+      .getSubcategories()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((subcategories) => {
+        this.subcategories = subcategories;
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onSelectSubcategory(subcategory: Subcategory): void {
@@ -96,24 +135,33 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
     this.router.navigate([`/products/subcategories/${subcategoryId}/edit`]);
   }
 
-  onDelete(categoryId: number) {
-    const confirmDelete = confirm(
-      'Are you sure you want to delete this subcategory?'
-    );
-    if (confirmDelete) {
-      this.subscription = this.subcategoryService
-        .deleteSubcategory(categoryId)
-        .pipe(
-          catchError((error) => {
-            console.error('Error deleting product', error);
-            throw error;
-          })
-        )
-        .subscribe({
-          next: () => {
-            this.subcategoryService.fetchSubcategories(this.selectedIdCategory);
-          },
-        });
-    }
+  onDelete(categoryId: number, item: string) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirm Delete',
+        message: 'Are you sure you want to delete this subcategory?',
+        item: item,
+      } as ConfirmDialogData,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.subscription = this.subcategoryService
+          .deleteSubcategory(categoryId)
+          .pipe(
+            catchError((error) => {
+              console.error('Error deleting product', error);
+              throw error;
+            })
+          )
+          .subscribe({
+            next: () => {
+              this.subcategoryService.fetchSubcategories(
+                this.selectedIdCategory
+              );
+            },
+          });
+      }
+    });
   }
 }

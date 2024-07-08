@@ -12,6 +12,7 @@ import { HeaderComponent } from '../layouts/header/header.component';
 import { SidebarComponent } from '../layouts/sidebar/sidebar.component';
 import { AuthService } from '../services/auth.service';
 import { ProductService } from '../services/product.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { ProductService } from '../services/product.service';
     CommonModule,
     MatModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,MatDialogModule
   ],
   declarations: [FooterComponent, HeaderComponent, SidebarComponent],
   providers: [

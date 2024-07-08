@@ -2,11 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription, catchError, take } from 'rxjs';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogData,
+} from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { AppConfig } from '../../app-config';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../services/product.service';
 import { DetailComponent } from '../detail/detail.component';
-
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -64,25 +67,32 @@ export class CardComponent implements OnInit {
     return `${AppConfig.apiUrl}/products/image/${imageUrl}`;
   }
 
-  onDeleteProduct(productId: number) {
-    const confirmDelete = confirm(
-      'Are you sure you want to delete this product?'
-    );
-    if (confirmDelete) {
-      this.subscription = this.productService
-        .deleteProduct(productId)
-        .pipe(
-          catchError((error) => {
-            console.error('Error deleting product', error);
-            throw error;
-          })
-        )
-        .subscribe({
-          next: () => {
-            this.fetchProducts();
-          },
-        });
-    }
+  onDelete(productId: number, item: string) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirm Delete',
+        message: 'Are you sure you want to delete this product?',
+        item: item,
+      } as ConfirmDialogData,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.subscription = this.productService
+          .deleteProduct(productId)
+          .pipe(
+            catchError((error) => {
+              console.error('Error deleting product', error);
+              throw error;
+            })
+          )
+          .subscribe({
+            next: () => {
+              this.fetchProducts();
+            },
+          });
+      }
+    });
   }
 
   onPhotoProduct(productId: number) {

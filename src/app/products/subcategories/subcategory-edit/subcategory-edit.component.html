@@ -1,6 +1,6 @@
 <h5>
-  Products > Categories > Edit >
-  <span>{{ category?.name || "" }}</span>
+  Products > Subcategories > Edit >
+  <span>{{ subcategory?.name || "" }}</span>
 </h5>
 <hr />
 
@@ -11,10 +11,10 @@
       Back
     </button>
 
-    <div *ngIf="category$ | async as category; else loading">
+    <div *ngIf="subcategory$ | async as subcategory; else loading">
       <form
-        *ngIf="categoryForm"
-        [formGroup]="categoryForm"
+        *ngIf="subcategoryForm"
+        [formGroup]="subcategoryForm"
         (ngSubmit)="onSubmit()"
         class="formContainer"
       >
@@ -28,6 +28,23 @@
           />
         </div>
 
+       
+          <select
+            id="idCategory"
+            formControlName="idCategory"
+            class="inputField subCatSelect"
+            (change)="onCategoryChange($event.target.value)"
+            *ngIf="categories$"
+          >
+            <option
+              *ngFor="let category of categories$ | async"
+              [value]="category.id"
+              [selected]="category.id === selectedIdCategory"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+      
         <div class="inputContainer inputContainerFull">
           <label for="description" class="labelText">Description</label>
           <textarea
@@ -51,7 +68,7 @@
           <button
             type="submit"
             class="buttonBase"
-            [disabled]="!categoryForm.valid"
+            [disabled]="!subcategoryForm.valid"
           >
             <mat-icon>save</mat-icon>
             Save
