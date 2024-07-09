@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { DemoDialogComponent } from 'src/app/components/demo-dialog/demo-dialog.component';
 import { Product } from 'src/app/model/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -26,8 +28,13 @@ export class ListComponent {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public demoDialog: MatDialog
   ) {}
+
+  openDemoDialog() {
+    this.demoDialog.open(DemoDialogComponent);
+  }
 
   ngOnInit() {
     this.errorSub = this.productService.error.subscribe((errorMessage) => {
@@ -75,8 +82,6 @@ export class ListComponent {
   }
 
   fetchProducts(searchKey?: string, categoryId?: number) {
-  
-
     this.isLoading = true;
     this.subscription = this.productService
       .fetchProducts(searchKey, categoryId, this.limit, this.currentPage)

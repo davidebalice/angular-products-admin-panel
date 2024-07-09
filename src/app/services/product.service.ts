@@ -156,7 +156,7 @@ export class ProductService implements OnInit, OnDestroy {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error adding product.'));
+          return throwError(() => new Error('Error adding product.' + error.error.message));
         })
       );
   }
@@ -195,7 +195,7 @@ export class ProductService implements OnInit, OnDestroy {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error adding product.'));
+          return throwError(() => new Error('Error updating product. ' + error.error));
         })
       );
   }
@@ -223,7 +223,7 @@ export class ProductService implements OnInit, OnDestroy {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error uploading image.'));
+          return throwError(() => new Error('Error uploading image. ' + error.error.message));
         })
       );
     } else {

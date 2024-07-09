@@ -8,6 +8,7 @@ export class Product {
   public imageUrl: string;
   public categoryDto: CategoryDto;
   public idCategory: number;
+  public idSubcategory: number;
   public price: number;
 
   constructor(
@@ -16,6 +17,7 @@ export class Product {
     sku: string,
     description: string,
     idCategory: number,
+    idSubcategory: number,
     price: number,
     imageUrl: string,
   ) {
@@ -26,5 +28,6 @@ export class Product {
     this.price = price;
     this.imageUrl = imageUrl;
     this.idCategory = idCategory;
+    this.idSubcategory = idSubcategory;
   }
 }

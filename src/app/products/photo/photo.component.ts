@@ -2,10 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable, finalize, map, take } from 'rxjs';
+import { Observable, catchError, finalize, map, take } from 'rxjs';
 import { AppConfig } from '../../app-config';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../services/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DemoDialogComponent } from 'src/app/components/demo-dialog/demo-dialog.component';
 
 @Component({
   selector: 'app-photo',
@@ -30,8 +32,13 @@ export class PhotoComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    public demoDialog: MatDialog
   ) {}
+
+  openDemoDialog() {
+    this.demoDialog.open(DemoDialogComponent);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -69,6 +76,13 @@ export class PhotoComponent implements OnInit {
         .uploadProduct(this.id, this.file)
         .pipe(
           take(1),
+          catchError((error) => {
+            if (error.message.includes('Demo')) {
+              this.openDemoDialog();
+            }
+            console.error('Error adding product', error);
+            throw error;
+          }),
           finalize(() => {
             this.submitting = false;
             this.imageUrl = this.id + '_' + this.file.name;

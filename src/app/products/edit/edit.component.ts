@@ -7,11 +7,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable, Subject, finalize, map, take } from 'rxjs';
+import { Observable, Subject, catchError, finalize, map, take } from 'rxjs';
 import { Product } from '../../model/product.model';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DemoDialogComponent } from 'src/app/components/demo-dialog/demo-dialog.component';
+import { SubcategoryService } from 'src/app/services/subcategory.service';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -25,14 +27,21 @@ export class EditComponent implements OnInit {
   submitting = false;
   private destroy$ = new Subject<void>();
   categories$: Observable<any[]>;
+  subcategories$: Observable<any[]>;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService,
+    private subcategoryService: SubcategoryService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public demoDialog: MatDialog
   ) {}
+
+  openDemoDialog() {
+    this.demoDialog.open(DemoDialogComponent);
+  }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -62,6 +71,13 @@ export class EditComponent implements OnInit {
         .updateProduct(this.id, this.productForm.value)
         .pipe(
           take(1),
+          catchError((error) => {
+            if (error.message.includes('Demo')) {
+              this.openDemoDialog();
+            }
+            console.error('Error adding product', error);
+            throw error;
+          }),
           finalize(() => {
             this.submitting = false;
             this.onCancel();
@@ -83,25 +99,30 @@ export class EditComponent implements OnInit {
   }
 
   private initForm(product: Product) {
-    let productName = product.name;
-    let productIdCategory = product.idCategory;
-    let productSku = product.sku;
-    let productPrice = product.price;
-    let productDescription = product.description;
-
-    this.productForm = new FormGroup({
-      name: new FormControl(productName, Validators.required),
-      idCategory: new FormControl(productIdCategory, Validators.required),
-      description: new FormControl(productDescription, Validators.required),
-      sku: new FormControl(productSku),
-      price: new FormControl(productPrice),
-
+    this.productForm = this.formBuilder.group({
+      name: [product.name, Validators.required],
+      idCategory: [product.idCategory, Validators.required],
+      idSubcategory: [product.idSubcategory],
+      description: [product.description, Validators.required],
+      sku: [product.sku],
+      price: [product.price],
     });
+
+    this.productForm.get('idCategory')?.valueChanges.subscribe(categoryId => {
+      this.loadSubcategories(categoryId);
+    });
+
+    this.loadSubcategories(product.idCategory);
   }
 
   loadCategories(): void {
     this.categoryService.fetchCategories();
     this.categories$ = this.categoryService.getCategories();
+  }
+
+  loadSubcategories(categoryId: number): void {
+    this.subcategoryService.fetchSubcategories(categoryId);
+    this.subcategories$ = this.subcategoryService.getSubcategories();
   }
 
   ngOnDestroy() {

@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, finalize, take, takeUntil } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  catchError,
+  finalize,
+  take,
+  takeUntil,
+  throwError,
+} from 'rxjs';
+import { DemoDialogComponent } from 'src/app/components/demo-dialog/demo-dialog.component';
+import { SubcategoryService } from 'src/app/services/subcategory.service';
 import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-new',
@@ -22,6 +28,7 @@ export class NewComponent implements OnInit {
   imageFile: File | null = null;
   private destroy$ = new Subject<void>();
   categories$: Observable<any[]>;
+  subcategories$: Observable<any[]>;
 
   get productControls() {
     return (this.productForm.get('ingredients') as FormArray).controls;
@@ -31,9 +38,15 @@ export class NewComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService,
+    private subcategoryService: SubcategoryService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public demoDialog: MatDialog
   ) {}
+
+  openDemoDialog() {
+    this.demoDialog.open(DemoDialogComponent);
+  }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -43,6 +56,11 @@ export class NewComponent implements OnInit {
       sku: [''],
       price: [''],
       idCategory: 0,
+      idSubcategory: 0,
+    });
+
+    this.productForm.get('idCategory')?.valueChanges.subscribe(categoryId => {
+      this.loadSubcategories(categoryId);
     });
   }
 
@@ -58,18 +76,25 @@ export class NewComponent implements OnInit {
         .addProduct(this.productForm.value)
         .pipe(
           take(1),
+          catchError((error) => {
+            if (error.message.includes('Demo')) {
+              this.openDemoDialog();
+            }
+            console.error('Error adding product', error);
+            throw error;
+          }),
           finalize(() => {
             this.submitting = false;
-            this.onCancel();
           }),
           takeUntil(this.destroy$)
         )
         .subscribe({
           next: (response) => {
             console.log('Product added successfully', response);
+            this.onCancel();
           },
           error: (error) => {
-            //console.error('Error adding product', error);
+            console.error('Error adding product', error.error);
           },
         });
     }
@@ -80,7 +105,10 @@ export class NewComponent implements OnInit {
       const formData = new FormData();
 
       formData.append('name', this.productForm.get('name')?.value);
-      formData.append('description', this.productForm.get('description')?.value);
+      formData.append(
+        'description',
+        this.productForm.get('description')?.value
+      );
       formData.append('idCategory', this.productForm.get('idCategory')?.value);
       formData.append('sku', this.productForm.get('sku')?.value);
       formData.append('price', this.productForm.get('price')?.value);
@@ -88,8 +116,6 @@ export class NewComponent implements OnInit {
       if (this.imageFile) {
         formData.append('image', this.imageFile, this.imageFile.name);
       }
-
-     
 
       this.submitting = true;
       this.productService
@@ -124,6 +150,11 @@ export class NewComponent implements OnInit {
   loadCategories(): void {
     this.categoryService.fetchCategories();
     this.categories$ = this.categoryService.getCategories();
+  }
+
+  loadSubcategories(categoryId: number): void {
+    this.subcategoryService.fetchSubcategories(categoryId);
+    this.subcategories$ = this.subcategoryService.getSubcategories();
   }
 
   ngOnDestroy() {

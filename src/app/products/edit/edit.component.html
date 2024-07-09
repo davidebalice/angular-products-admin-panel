@@ -46,6 +46,24 @@
         </div>
 
         <div class="inputContainer">
+          <label for="idSubcategory" class="labelText">Subategory</label>
+          <select
+            type="text"
+            id="idSubcategory"
+            formControlName="idSubcategory"
+            class="inputField"
+          >
+            <option
+              *ngFor="let subcategory of subcategories$ | async"
+              [value]="subcategory.id"
+            >
+              {{ subcategory.name }}
+            </option>
+          </select>
+        </div>
+  
+
+        <div class="inputContainer">
           <label for="sku" class="labelText">Sku</label>
           <input
             type="text"

@@ -10,6 +10,7 @@ import { AppConfig } from '../../app-config';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../services/product.service';
 import { DetailComponent } from '../detail/detail.component';
+import { ListComponent } from '../list/list.component';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -23,6 +24,7 @@ export class CardComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
+    private listComponent: ListComponent,
     public dialog: MatDialog
   ) {}
 
@@ -82,6 +84,9 @@ export class CardComponent implements OnInit {
           .deleteProduct(productId)
           .pipe(
             catchError((error) => {
+              if (error.error.message.includes('Demo')) {
+                this.listComponent.openDemoDialog();
+              }
               console.error('Error deleting product', error);
               throw error;
             })
