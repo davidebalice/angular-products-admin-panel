@@ -1,6 +1,6 @@
 <div mat-dialog-content>
   <img
-    [src]="getFullImageUrl(data.imageUrl) | protectedImage | async"
+    [src]="getFullImageUrl(data.imageUrl,directory) | protectedImage | async"
     alt="Image"
     style="width: 100%; height: auto"
   />

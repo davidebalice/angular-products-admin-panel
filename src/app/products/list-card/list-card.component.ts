@@ -8,11 +8,11 @@ import { Product } from 'src/app/model/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
+  selector: 'app-list-card',
+  templateUrl: './list-card.component.html',
+  styleUrl: './list-card.component.scss',
 })
-export class ListComponent {
+export class ListCardComponent {
   subscription: Subscription;
   loadedProducts: Product[] = [];
   paginatedProducts: Product[] = [];

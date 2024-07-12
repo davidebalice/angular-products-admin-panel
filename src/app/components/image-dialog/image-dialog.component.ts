@@ -13,9 +13,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
   styleUrls: ['./image-dialog.component.scss'],
 })
 export class ImageDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { imageUrl: string }) {}
+  directory = null;
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: { imageUrl: string; directory: string }
+  ) {
+    this.directory = data.directory;
+  }
 
-  getFullImageUrl(imageUrl: string): string {
-    return `${AppConfig.apiUrl}/products/gallery/${imageUrl}`;
+  getFullImageUrl(imageUrl: string, directory: string): string {
+    return `${AppConfig.apiUrl}/${directory}/${imageUrl}`;
   }
 }

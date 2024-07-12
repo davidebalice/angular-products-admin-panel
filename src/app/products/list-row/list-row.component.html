@@ -1,0 +1,36 @@
+<div class="rowTitle">
+  <div>Photo</div>
+  <div>Name</div>
+  <div>Category</div>
+  <div>Price</div>
+  <div>Manage</div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <ng-container *ngIf="loadedProducts.length > 0; else noProducts">
+      <div class="col-12" *ngFor="let product of loadedProducts">
+        <app-row [product]="product"></app-row>
+      </div>
+    </ng-container>
+
+    <div class="customPagination" *ngIf="pagination && totalItems > limit">
+      <mat-paginator
+        [length]="totalItems"
+        [pageSize]="limit"
+        [pageSizeOptions]="[]"
+        (page)="onPageChanged($event)"
+        [showFirstLastButtons]="false"
+      >
+      </mat-paginator>
+    </div>
+
+    <ng-template #noProducts>
+      <div class="noProducts">No products available.</div>
+    </ng-template>
+
+    <div *ngIf="isLoading" class="loadingContainer">
+      <img src="../../../assets/images/loading.svg" />
+    </div>
+  </div>
+</div>

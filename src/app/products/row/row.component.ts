@@ -11,13 +11,13 @@ import { AppConfig } from '../../app-config';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../services/product.service';
 import { DetailComponent } from '../detail/detail.component';
-import { ListCardComponent } from '../list-card/list-card.component';
+import { ListRowComponent } from '../list-row/list-row.component';
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrl: './card.component.css',
+  selector: 'app-row',
+  templateUrl: './row.component.html',
+  styleUrl: './row.component.css',
 })
-export class CardComponent implements OnInit {
+export class RowComponent implements OnInit {
   @Input() product: Product;
   fullStars: number = 0;
   halfStar: boolean = false;
@@ -25,7 +25,7 @@ export class CardComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private listCardComponent: ListCardComponent,
+    private listRowComponent: ListRowComponent,
     public dialog: MatDialog,
     private imageDialog: MatDialog
   ) {}
@@ -87,7 +87,7 @@ export class CardComponent implements OnInit {
           .pipe(
             catchError((error) => {
               if (error.error.message.includes('Demo')) {
-                this.listCardComponent.openDemoDialog();
+                this.listRowComponent.openDemoDialog();
               }
               console.error('Error deleting product', error);
               throw error;

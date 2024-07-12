@@ -45,10 +45,9 @@ export class GalleryComponent implements OnInit {
     this.demoDialog.open(DemoDialogComponent);
   }
 
-  openImageDialog(imageUrl: string): void {
-    //imageUrl = this.getFullImageUrl(imageUrl);
+  openImageDialog(imageUrl: string, directory: string): void {
     this.imageDialog.open(ImageDialogComponent, {
-      data: { imageUrl: imageUrl },
+      data: { imageUrl: imageUrl, directory: directory },
     });
   }
 

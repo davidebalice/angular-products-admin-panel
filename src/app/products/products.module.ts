@@ -9,7 +9,9 @@ import { RestApiUrlInterceptor } from '../interceptors/rest-api-url.interceptor'
 import { AuthService } from '../services/auth.service';
 import { ProductService } from '../services/product.service';
 import { CardComponent } from './card/card.component';
+import { RowComponent } from './row/row.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from '../shared/shared.module';
 import { CategoriesComponent } from './categories/categories.component';
@@ -18,7 +20,8 @@ import { CategoryNewComponent } from './categories/category-new/category-new.com
 import { DetailComponent } from './detail/detail.component';
 import { EditComponent } from './edit/edit.component';
 import { GalleryComponent } from './gallery/gallery.component';
-import { ListComponent } from './list/list.component';
+import { ListCardComponent } from './list-card/list-card.component';
+import { ListRowComponent } from './list-row/list-row.component';
 import { NewComponent } from './new/new.component';
 import { PhotoComponent } from './photo/photo.component';
 import { ProductsRoutingModule } from './products-routing.module';
@@ -31,13 +34,16 @@ import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcate
   declarations: [
     ProductsComponent,
     SearchComponent,
+    RowComponent,
     CardComponent,
     DetailComponent,
     EditComponent,
-    ListComponent,
+    ListRowComponent,
+    ListCardComponent,
     NewComponent,
     PhotoComponent,
     GalleryComponent,
+
     CategoriesComponent,
     CategoryEditComponent,
     CategoryNewComponent,
@@ -51,6 +57,7 @@ import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcate
     MatModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     MatDialogModule,
     SharedModule,
   ],

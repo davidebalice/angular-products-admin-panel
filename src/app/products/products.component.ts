@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../model/product.model';
 
@@ -10,6 +10,7 @@ import { Product } from '../model/product.model';
 export class ProductsComponent {
   selectedProduct: Product;
   pagination: boolean = true;
+  visualization: string = 'row';
 
   constructor(private router: Router) {}
 
@@ -19,5 +20,9 @@ export class ProductsComponent {
 
   onNewProduct() {
     this.router.navigate(['/products/new']);
+  }
+
+  onChangeView(type: string) {
+    this.visualization = type;
   }
 }

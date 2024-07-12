@@ -19,9 +19,9 @@
     <div class="row">
       <ng-container *ngIf="categories.length > 0; else noCategory">
         <div class="col-12" *ngFor="let category of categories">
-          <div class="cardRow">
-            <div class="cardBody">
-              <h5 class="cardTitle">{{ category.name }}</h5>
+          <div class="listRow">
+            <div class="listBody">
+              <h5 class="listTitle">{{ category.name }}</h5>
             </div>
 
             <div class="cardButtonContainer">
@@ -38,7 +38,7 @@
 
               <button
                 class="cardButton cardButtonDelete"
-                (click)="onDelete(category.id,category.name)"
+                (click)="onDelete(category.id, category.name)"
                 matTooltipPosition="above"
                 matTooltipShowDelay="100"
                 matTooltipHideDelay="100"
