@@ -69,7 +69,6 @@ export class ProductService implements OnInit, OnDestroy {
     let apiUrl = '/products/';
     let params = new HttpParams();
 
-
     if (keyword) {
       apiUrl = '/products/search';
       params = params.append('keyword', keyword);
@@ -156,7 +155,9 @@ export class ProductService implements OnInit, OnDestroy {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error adding product.' + error.error.message));
+          return throwError(
+            () => new Error('Error adding product.' + error.error.message)
+          );
         })
       );
   }
@@ -195,7 +196,9 @@ export class ProductService implements OnInit, OnDestroy {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error updating product. ' + error.error));
+          return throwError(
+            () => new Error('Error updating product. ' + error.error)
+          );
         })
       );
   }
@@ -223,11 +226,65 @@ export class ProductService implements OnInit, OnDestroy {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error uploading image. ' + error.error.message));
+          return throwError(
+            () => new Error('Error uploading image. ' + error.error.message)
+          );
         })
       );
     } else {
       return throwError(() => new Error('Provided image is not a file.'));
     }
+  }
+
+  uploadGallery(id: number, imageFiles: File[]): Observable<any> {
+    const formData = new FormData();
+
+    imageFiles.forEach((file, index) => {
+      if (file instanceof File) {
+        formData.append('images', file, file.name);
+      } else {
+        throw new Error(`Provided item at index ${index} is not a file.`);
+      }
+    });
+
+    const url = `/products/${id}/gallery/upload`;
+
+    const headers = new HttpHeaders();
+    headers.set('Cache-Control', 'no-cache');
+
+    return this.http.post(url, formData, { headers }).pipe(
+      tap((response) => {
+        console.log('Response from backend:', response);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.router.navigate(['/login']);
+        }
+        return throwError(
+          () => new Error('Error uploading images. ' + error.error.message)
+        );
+      })
+    );
+  }
+
+  getImages(id: number): Observable<string[]> {
+    const url = `/products/${id}/gallery`;
+
+    const headers = new HttpHeaders();
+    headers.set('Cache-Control', 'no-cache');
+
+    return this.http.get<string[]>(url, { headers }).pipe(
+      tap((response) => {
+        console.log('Existing images:', response["gallery"]);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.router.navigate(['/login']);
+        }
+        return throwError(
+          () => new Error('Error fetching images. ' + error.message)
+        );
+      })
+    );
   }
 }

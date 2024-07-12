@@ -8,9 +8,11 @@ import { MatModule } from 'src/app/appModules/mat.module';
   imports: [CommonModule, MatModule],
   template: `
     <h2 mat-dialog-title>Demo mode</h2>
-    <mat-dialog-content class="message"
-      >gggggggggggggggggggggggggg</mat-dialog-content
-    >
+    <mat-dialog-content class="message">
+      Demo mode is active, crud operations (write, update, delete)
+      <br />
+      are not allowed.
+    </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close color="primary">Cancel</button>
     </mat-dialog-actions>

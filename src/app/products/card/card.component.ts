@@ -105,6 +105,11 @@ export class CardComponent implements OnInit {
     this.router.navigate(['/products/photo', productId]);
   }
 
+  onGalleryProduct(productId: number) {
+    console.log(productId);
+    this.router.navigate(['/products/gallery', productId]);
+  }
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();

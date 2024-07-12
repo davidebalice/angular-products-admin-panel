@@ -54,14 +54,13 @@
             class="inputField"
           >
             <option
-              *ngFor="let subcategory of subcategories$ | async"
+              *ngFor="let subcategory of subcategories$ | async; else: loading"
               [value]="subcategory.id"
             >
               {{ subcategory.name }}
             </option>
           </select>
         </div>
-  
 
         <div class="inputContainer">
           <label for="sku" class="labelText">Sku</label>
@@ -116,7 +115,9 @@
     </div>
 
     <ng-template #loading>
-      <p>Loading...</p>
+      <div class="loadingContainer">
+        <img src="../../../assets/images/loading.svg" />
+      </div>
     </ng-template>
   </mat-card-content>
 </mat-card>

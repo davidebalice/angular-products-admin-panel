@@ -7,6 +7,7 @@ import { CategoryNewComponent } from './categories/category-new/category-new.com
 import { EditComponent } from './edit/edit.component';
 import { NewComponent } from './new/new.component';
 import { PhotoComponent } from './photo/photo.component';
+import { GalleryComponent } from './gallery/gallery.component';
 import { ProductsComponent } from './products.component';
 
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
@@ -32,6 +33,11 @@ const routes: Routes = [
   {
     path: 'photo/:id',
     component: PhotoComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'gallery/:id',
+    component: GalleryComponent,
     canActivate: [AuthGuard],
   },
   {
