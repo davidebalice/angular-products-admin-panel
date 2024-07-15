@@ -1,36 +1,34 @@
-<header class="top-header mat-elevation-z5"  [ngClass]="{'test' : getSideBarSate()}">
+<header
+  class="top-header mat-elevation-z5"
+  [ngClass]="{ test: getSideBarSate() }"
+>
   <div class="flex-grow-1 gap-1 d-flex align-items-center">
-    <button mat-icon-button (click)="toggleSidebar()" >
+    <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon class="material-icons-outlined">menu</mat-icon>
     </button>
   </div>
 
   <div class="d-flex align-items-center gap-1">
-   
-
-
-    <button mat-icon-button (click)="darkMode()">
+    <!--button mat-icon-button (click)="darkMode()">
       <mat-icon class="material-icons-outlined">{{ theme_name }}</mat-icon>
-    </button>
-   
-   
+    </button-->
 
-    <button mat-icon-button [matMenuTriggerFor]="Notification">
+    <!-- button mat-icon-button [matMenuTriggerFor]="Notification">
       <mat-icon class="material-icons-outlined" matBadge="7" matBadgePosition="after"
         matBadgeColor="warn">notifications</mat-icon>
     </button>
     <mat-menu #Notification class="rounded-4 dropdown-notification">
       <button mat-menu-item>
         <mat-icon class="material-icons-outlined text-red">shopping_cart</mat-icon>
-        <span>New Sale from Gumroad</span>
+        <span>Lorem ipsum</span>
       </button>
       <button mat-menu-item>
         <mat-icon class="material-icons-outlined text-purple">email</mat-icon>
-        <span>Check your new message</span>
+        <span>Lorem ipsum</span>
       </button>
       <button mat-menu-item>
         <mat-icon class="material-icons-outlined text-green">task</mat-icon>
-        <span>You have 5 new task</span>
+        <span>Lorem ipsum</span>
       </button>
       <button mat-menu-item>
         <mat-icon class="material-icons-outlined text-blue">supervisor_account</mat-icon>
@@ -38,24 +36,33 @@
       </button>
       <button mat-menu-item>
         <mat-icon class="material-icons-outlined text-amber">card_giftcard</mat-icon>
-        <span>You have received 1 new gift</span>
+        <span>Lorem ipsum</span>
       </button>
       <button mat-menu-item>
         <mat-icon class="material-icons-outlined text-teal">done_all</mat-icon>
-        <span>Payment succesfully completed</span>
+        <span>Lorem ipsum</span>
       </button>
       <div class="mx-3 my-2">
         <button mat-raised-button color="primary" class="rounded-4 w-100">View All</button>
       </div>
-    </mat-menu>
+    </mat-menu-->
 
     <button mat-icon-button [matMenuTriggerFor]="UserProfile">
       <mat-icon class="material-icons-outlined">account_circle</mat-icon>
     </button>
     <mat-menu #UserProfile class="rounded-4 dropdown-userprofile">
-      <button mat-menu-item class="d-flex align-items-center justify-content-center text-center py-2">
+      <button
+        mat-menu-item
+        class="d-flex align-items-center justify-content-center text-center py-2"
+      >
         <div>
-          <img src="assets/images/avatars/avatar-1.png" width="80" height="80" class="rounded-circle" alt="">
+          <img
+            src="assets/images/avatars/avatar-1.png"
+            width="80"
+            height="80"
+            class="rounded-circle"
+            alt=""
+          />
         </div>
         <div>
           <h4 class="username mb-0">Hi, user!</h4>
@@ -66,22 +73,10 @@
         <mat-icon class="material-icons-outlined">account_circle</mat-icon>
         <span>Profile</span>
       </button>
-      <button mat-menu-item>
+      <!--button mat-menu-item>
         <mat-icon class="material-icons-outlined">settings</mat-icon>
         <span>Setting</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined">dashboard</mat-icon>
-        <span>Dashboard</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined">account_balance</mat-icon>
-        <span>Balance</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined">file_download</mat-icon>
-        <span>Downloads</span>
-      </button>
+      </button-->
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="onLogout()">
         <mat-icon class="material-icons-outlined">logout</mat-icon>

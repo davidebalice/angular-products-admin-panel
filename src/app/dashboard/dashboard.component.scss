@@ -42,3 +42,22 @@
   background-color: var(--button-bg-color);
   color: #fff;
 }
+
+.githubContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.github {
+  width: 50%;
+  max-width: 100px;
+}
+
+.githubButtonContainer {
+  display: flex;
+  gap: 12px;
+}
