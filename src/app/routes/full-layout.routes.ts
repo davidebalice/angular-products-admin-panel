@@ -17,8 +17,7 @@ export const Full_ROUTES: Routes = [
       import('../components/components.module').then((m) => m.ComponentsModule),
   },
   {
-    path: 'profile',
-    loadChildren: () =>
-      import('../profile/profile.module').then((m) => m.ProfileModule),
+    path: 'user',
+    loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
   },
 ];

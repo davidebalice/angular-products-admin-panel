@@ -1,18 +1,61 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { AppConfig } from 'src/app/app-config';
 import { MatModule } from 'src/app/appModules/mat.module';
+import { User } from 'src/app/model/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'app-profile',
   standalone: true,
   imports: [CommonModule, MatModule],
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.scss'
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.scss',
 })
-export class UserProfileComponent {
+export class ProfileComponent {
+  user: User;
+  user$: Observable<User> | undefined;
 
+  private subscription: Subscription;
+
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+  }
+
+
+
+  ngOnInit(): void {
+      this.user$ = this.userService.getMe();
+      this.subscription = this.user$.subscribe((user: User) => {
+        this.user = user;
+      });
+    
+  }
+
+  getFullImageUrl(imageUrl: string): string {
+    return `${AppConfig.apiUrl}/users/image/${imageUrl}`;
+  }
+
+  onEditUser() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  onBackUsers() {
+    this.router.navigate(['/users']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
   
-
   countries: string[] = [
     'India',
     'America',
@@ -66,9 +109,6 @@ export class UserProfileComponent {
     'Wyoming',
   ];
 
-
-
-  
   states: string[] = [
     'New York',
     'North Carolina',
@@ -90,5 +130,4 @@ export class UserProfileComponent {
     'Wisconsin',
     'Wyoming',
   ];
-
 }
