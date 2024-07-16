@@ -14,6 +14,9 @@ import { RowComponent } from './row/row.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from '../shared/shared.module';
+import { AttributeEditComponent } from './attributes/attribute-edit/attribute-edit.component';
+import { AttributeNewComponent } from './attributes/attribute-new/attribute-new.component';
+import { AttributesComponent } from './attributes/attributes.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
 import { CategoryNewComponent } from './categories/category-new/category-new.component';
@@ -30,6 +33,10 @@ import { SearchComponent } from './search/search.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { SubcategoryEditComponent } from './subcategories/subcategory-edit/subcategory-edit.component';
 import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcategory-new.component';
+import { ValueEditComponent } from './values/value-edit/value-edit.component';
+import { ValueNewComponent } from './values/value-new/value-new.component';
+import { ValuesComponent } from './values/values.component';
+
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -43,13 +50,18 @@ import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcate
     NewComponent,
     PhotoComponent,
     GalleryComponent,
-
     CategoriesComponent,
     CategoryEditComponent,
     CategoryNewComponent,
     SubcategoriesComponent,
     SubcategoryEditComponent,
     SubcategoryNewComponent,
+    AttributesComponent,
+    AttributeEditComponent,
+    AttributeNewComponent,
+    ValuesComponent,
+    ValueEditComponent,
+    ValueNewComponent,
   ],
   imports: [
     CommonModule,

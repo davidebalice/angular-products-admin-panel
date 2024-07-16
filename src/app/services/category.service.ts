@@ -97,7 +97,7 @@ export class CategoryService {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error adding categoty.'));
+          return throwError(() => new Error('Error adding category.'));
         })
       );
   }

@@ -5,14 +5,20 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
 import { CategoryNewComponent } from './categories/category-new/category-new.component';
 import { EditComponent } from './edit/edit.component';
+import { GalleryComponent } from './gallery/gallery.component';
 import { NewComponent } from './new/new.component';
 import { PhotoComponent } from './photo/photo.component';
-import { GalleryComponent } from './gallery/gallery.component';
 import { ProductsComponent } from './products.component';
 
+import { AttributeEditComponent } from './attributes/attribute-edit/attribute-edit.component';
+import { AttributeNewComponent } from './attributes/attribute-new/attribute-new.component';
+import { AttributesComponent } from './attributes/attributes.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { SubcategoryEditComponent } from './subcategories/subcategory-edit/subcategory-edit.component';
 import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcategory-new.component';
+import { ValueEditComponent } from './values/value-edit/value-edit.component';
+import { ValueNewComponent } from './values/value-new/value-new.component';
+import { ValuesComponent } from './values/values.component';
 
 const routes: Routes = [
   {
@@ -68,6 +74,36 @@ const routes: Routes = [
   {
     path: 'subcategories/:id/edit',
     component: SubcategoryEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'attributes',
+    component: AttributesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'attributes/new',
+    component: AttributeNewComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'attributes/:id/edit',
+    component: AttributeEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'values',
+    component: ValuesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'values/new',
+    component: ValueNewComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'values/:id/edit',
+    component: ValueEditComponent,
     canActivate: [AuthGuard],
   },
 ];

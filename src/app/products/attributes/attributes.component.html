@@ -1,0 +1,63 @@
+<h5>Products > Attributes</h5>
+<hr />
+
+<mat-card class="pageCard">
+  <mat-card-content>
+    <div class="buttonContainer">
+      <button (click)="onNewAttribute()" class="buttonBase buttonHeight">
+        <mat-icon>add_circle</mat-icon>
+        New category
+      </button>
+    </div>
+    <hr />
+
+    <div class="rowTitle">
+      <div>Attribute</div>
+      <div>Manage</div>
+    </div>
+
+    <div class="row">
+      <ng-container *ngIf="attributes.length > 0; else noAttribute">
+        <div class="col-12" *ngFor="let category of attributes">
+          <div class="listRow">
+            <div class="listBody">
+              <h5 class="listTitle">{{ category.name }}</h5>
+            </div>
+
+            <div class="cardButtonContainer">
+              <button
+                class="cardButton"
+                (click)="onEditAttribute(category.id)"
+                matTooltipPosition="above"
+                matTooltipShowDelay="100"
+                matTooltipHideDelay="100"
+                matTooltip="Edit"
+              >
+                <mat-icon class="editButton">edit</mat-icon>
+              </button>
+
+              <button
+                class="cardButton cardButtonDelete"
+                (click)="onDelete(category.id, category.name)"
+                matTooltipPosition="above"
+                matTooltipShowDelay="100"
+                matTooltipHideDelay="100"
+                matTooltip="Delete"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #noAttribute>
+        <div class="noAttribute">No category available.</div>
+      </ng-template>
+
+      <div *ngIf="isLoading" class="loadingContainer">
+        <img src="../../../assets/images/loading.svg" />
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

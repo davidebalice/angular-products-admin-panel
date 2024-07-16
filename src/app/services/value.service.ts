@@ -14,14 +14,14 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { Subcategory } from '../model/subcategory.model';
+import { Value } from '../model/value.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SubcategoryService {
-  private subcategoriesUrl = '/subcategories/';
-  private subcategoriesSubject = new BehaviorSubject<Subcategory[]>([]);
+export class ValueService {
+  private valuesUrl = '/values/';
+  private valuesSubject = new BehaviorSubject<Value[]>([]);
   private subscription: Subscription;
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -32,26 +32,26 @@ export class SubcategoryService {
     });
   }
 
-  fetchSubcategories(categoryId: number): void {
+  fetchValues(attributeId: number): void {
     const headers = this.getHeaders();
     this.subscription = this.http
-      .get<Subcategory[]>(`${this.subcategoriesUrl}idcat/${categoryId}`, {
+      .get<Value[]>(`${this.valuesUrl}idcat/${attributeId}`, {
         headers,
       })
       .pipe(
-        tap((subcategories: Subcategory[]) => {
-          this.subcategoriesSubject.next(subcategories);
+        tap((values: Value[]) => {
+          this.valuesSubject.next(values);
         }),
         catchError((error) => {
-          console.error('Error fetching subcategories:', error);
+          console.error('Error fetching values:', error);
           return throwError(error);
         })
       )
       .subscribe();
   }
 
-  getSubcategories(): Observable<Subcategory[]> {
-    return this.subcategoriesSubject.asObservable();
+  getValues(): Observable<Value[]> {
+    return this.valuesSubject.asObservable();
   }
 
   ngOnDestroy(): void {
@@ -60,10 +60,10 @@ export class SubcategoryService {
     }
   }
 
-  addSubcategory(subCategory: Subcategory) {
+  addValue(value: Value) {
     const headers = this.getHeaders();
     return this.http
-      .post(`/subcategories/add`, subCategory, {
+      .post(`/values/add`, value, {
         withCredentials: true,
         headers,
       })
@@ -75,15 +75,15 @@ export class SubcategoryService {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error adding subcategory.'));
+          return throwError(() => new Error('Error adding value.'));
         })
       );
   }
 
-  updateSubcategory(id: number, dataSubcategory: Subcategory) {
+  updateValue(id: number, dataValue: Value) {
     const headers = this.getHeaders();
     return this.http
-      .patch(`/subcategories/${id}`, dataSubcategory, {
+      .patch(`/values/${id}`, dataValue, {
         withCredentials: true,
         responseType: 'text',
         headers,
@@ -96,21 +96,21 @@ export class SubcategoryService {
           if (error.status === 401) {
             this.router.navigate(['/login']);
           }
-          return throwError(() => new Error('Error adding subcategory.'));
+          return throwError(() => new Error('Error adding value.'));
         })
       );
   }
 
-  deleteSubcategory(categoryId: number) {
+  deleteValue(attributeId: number) {
     const headers = this.getHeaders();
-    return this.http.delete(`/subcategories/${categoryId}`, { headers });
+    return this.http.delete(`/values/${attributeId}`, { headers });
   }
 
-  getById(id: number): Observable<Subcategory> {
+  getById(id: number): Observable<Value> {
     const headers = this.getHeaders();
 
     return this.http
-      .get<Subcategory>(`/subcategories/${id}`, {
+      .get<Value>(`/values/${id}`, {
         headers,
       })
       .pipe(

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { AppConfig } from 'src/app/app-config';
@@ -18,6 +18,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent {
   user: User;
   user$: Observable<User> | undefined;
+  userForm: FormGroup;
 
   private subscription: Subscription;
 
@@ -25,17 +26,22 @@ export class ProfileComponent {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-  ) {
+    private formBuilder: FormBuilder
+  ) {}
+
+  private initForm(user: User) {
+    this.userForm = this.formBuilder.group({
+      name: [user.name, Validators.required],
+      surname: [user.surname, Validators.required],
+    });
   }
 
-
-
   ngOnInit(): void {
-      this.user$ = this.userService.getMe();
-      this.subscription = this.user$.subscribe((user: User) => {
-        this.user = user;
-      });
-    
+    this.user$ = this.userService.getMe();
+    this.subscription = this.user$.subscribe((user: User) => {
+      this.user = user;
+      this.initForm(this.user);
+    });
   }
 
   getFullImageUrl(imageUrl: string): string {
@@ -55,7 +61,7 @@ export class ProfileComponent {
       this.subscription.unsubscribe();
     }
   }
-  
+
   countries: string[] = [
     'India',
     'America',
