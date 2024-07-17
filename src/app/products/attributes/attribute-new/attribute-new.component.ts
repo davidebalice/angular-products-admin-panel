@@ -21,7 +21,7 @@ export class AttributeNewComponent {
   submitting = false;
   imageFile: File | null = null;
   private destroy$ = new Subject<void>();
-  categories$: Observable<any[]>;
+  attributes$: Observable<any[]>;
 
 
   constructor(
@@ -34,10 +34,6 @@ export class AttributeNewComponent {
   ngOnInit(): void {
     this.attributeForm = this.formBuilder.group({
       name: ['', Validators.required],
-      description: [''],
-      sku: [''],
-      price: [''],
-      idAttribute: 0,
     });
   }
 
@@ -75,7 +71,7 @@ export class AttributeNewComponent {
   }
 
   onBack() {
-    this.router.navigate(['./products/categories']);
+    this.router.navigate(['./products/attributes']);
   }
 
   ngOnDestroy() {

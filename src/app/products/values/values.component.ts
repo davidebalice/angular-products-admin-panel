@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { catchError, Observable, Subject, Subscription, take, takeUntil } from 'rxjs';
 import {
   ConfirmDialogComponent,
   ConfirmDialogData,
@@ -26,7 +26,7 @@ export class ValuesComponent implements OnInit, OnDestroy {
   selectedIdAttribute: number = null;
   showSelect: boolean = false;
   private destroy$ = new Subject<void>();
-  categories$: Observable<any[]>;
+  attributes$: Observable<any[]>;
   attributeForm: FormGroup;
 
   constructor(
@@ -39,40 +39,17 @@ export class ValuesComponent implements OnInit, OnDestroy {
 
   loadAttributes(): void {
     this.attributeService.fetchAttributes();
-    this.categories$ = this.attributeService.getAttributes();
-  }
-
-  loadDefaultAttribute(): void {
-    console.log(this.selectedIdAttribute);
-    if (!this.selectedIdAttribute) {
-      console.log(this.selectedIdAttribute);
-      console.log(this.selectedIdAttribute);
-      console.log(this.selectedIdAttribute);
-      console.log(this.selectedIdAttribute);
-
-      this.categories$.subscribe((categories) => {
-        if (categories.length > 0) {
-          console.log(categories.length);
-          console.log(categories.length);
-          console.log(categories.length);
-          this.selectedIdAttribute = categories[0].id;
-          console.log(this.selectedIdAttribute);
-          this.loadValues(this.selectedIdAttribute);
-        }
-      });
-    } else {
-      this.loadValues(this.selectedIdAttribute);
-    }
-
-    this.showSelect = false;
+    this.attributes$ = this.attributeService.getAttributes();
   }
 
   onAttributeChange(attributeId: number): void {
+    this.isLoading = true;
     this.selectedIdAttribute = attributeId;
     this.loadValues(attributeId);
   }
 
   loadValues(attributeId: number): void {
+    this.isLoading = true;
     this.selectedIdAttribute = attributeId;
     this.valueService.fetchValues(attributeId);
     this.valueService
@@ -92,12 +69,11 @@ export class ValuesComponent implements OnInit, OnDestroy {
         this.loadAttributes();
         this.loadValues(idAttribute);
       } else {
-        if (this.selectedIdAttribute) {
-          this.loadValues(this.selectedIdAttribute);
-          this.loadDefaultAttribute();
-        } else {
+        if (!this.selectedIdAttribute) {
           this.loadAttributes();
-          this.loadDefaultAttribute();
+          this.loadDefaultValues();
+        } else {
+          this.loadValues(this.selectedIdAttribute);
         }
       }
     });
@@ -105,25 +81,39 @@ export class ValuesComponent implements OnInit, OnDestroy {
     this.attributeForm = new FormGroup({
       idAttribute: new FormControl(this.selectedIdAttribute),
     });
-
-    this.valueService
-      .getValues()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((values) => {
-        this.values = values;
-      });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  loadDefaultValues(): void {
+    if (!this.selectedIdAttribute) {
+      this.attributes$.pipe(take(2)).subscribe((attributes) => {
+        if (attributes.length > 0) {
+          this.selectedIdAttribute = attributes[0].id;
+          this.loadValues(this.selectedIdAttribute);
+          this.attributeForm = new FormGroup({
+            idAttribute: new FormControl(this.selectedIdAttribute),
+          });
+        }
+      });
+    } else {
+      this.loadValues(this.selectedIdAttribute);
+    }
+
+    this.showSelect = false;
   }
 
   onSelectValue(value: Value): void {
     this.selectedValue = value;
 
     if (value) {
-      this.router.navigate([`/products/idsubcat/${value.id}`]);
+      this.router.navigate([`/products/idattr/${value.id}`]);
     }
   }
 
@@ -156,9 +146,7 @@ export class ValuesComponent implements OnInit, OnDestroy {
           )
           .subscribe({
             next: () => {
-              this.valueService.fetchValues(
-                this.selectedIdAttribute
-              );
+              this.valueService.fetchValues(this.selectedIdAttribute);
             },
           });
       }

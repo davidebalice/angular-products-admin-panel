@@ -22,7 +22,7 @@ export class AttributeEditComponent implements OnInit, OnDestroy {
   attribute$: Observable<Attribute> | undefined;
   submitting = false;
   private destroy$ = new Subject<void>();
-  categories$: Observable<any[]>;
+  attributes$: Observable<any[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -77,7 +77,7 @@ export class AttributeEditComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    this.router.navigate(['./products/categories']);
+    this.router.navigate(['./products/attributes']);
   }
 
   private initForm(attribute: Attribute) {
@@ -96,6 +96,6 @@ export class AttributeEditComponent implements OnInit, OnDestroy {
   }
 
   onBack() {
-    this.router.navigate(['./products/categories']);
+    this.router.navigate(['./products/attributes']);
   }
 }

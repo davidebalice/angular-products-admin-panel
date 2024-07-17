@@ -35,7 +35,7 @@ export class ValueService {
   fetchValues(attributeId: number): void {
     const headers = this.getHeaders();
     this.subscription = this.http
-      .get<Value[]>(`${this.valuesUrl}idcat/${attributeId}`, {
+      .get<Value[]>(`${this.valuesUrl}idattr/${attributeId}`, {
         headers,
       })
       .pipe(

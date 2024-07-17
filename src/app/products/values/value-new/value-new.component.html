@@ -7,56 +7,59 @@
       <mat-icon> chevron_left</mat-icon>
       Back
     </button>
-
-    <form
-      [formGroup]="valueForm"
-      (ngSubmit)="onSubmit()"
-      class="formContainer"
-    >
-      <div class="inputContainer">
-        <label for="name" class="labelText">Name of value</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="name"
-          class="inputField"
-        />
-      </div>
-      <div formGroupName="attribute">
-        <select
-          id="idAttribute"
-          formControlName="id"
-          class="inputField subCatSelect"
-          (change)="onAttributeChange($event.target.value)"
-          *ngIf="selectedIdAttribute >= 1 && categories$"
-        >
-          <option
-            *ngFor="let attribute of attributes$ | async"
-            [value]="attribute.id"
-            [selected]="attribute.id === selectedIdAttribute"
+    <div formGroupName="attribute">
+      <form
+        [formGroup]="valueForm"
+        (ngSubmit)="onSubmit()"
+        class="formContainer"
+      >
+        <div class="inputContainer inputContainerFull">
+          <label for="value" class="labelText">Value</label>
+          <input
+            type="text"
+            id="value"
+            formControlName="value"
+            class="inputField"
+          />
+        </div>
+        <div class="inputContainer inputContainerFull">
+          <label for="name" class="labelText">Attribute</label>
+          <select
+            id="idAttribute"
+            formControlName="id"
+            class="inputField subCatSelect"
+            (change)="onAttributeChange($event.target.value)"
+            *ngIf="selectedIdAttribute >= 1 && attributes$"
           >
-            {{ attribute.name }}
-          </option>
-        </select>
-      </div>
-      <div class="submitContainer">
-        <button
-          type="button"
-          class="buttonBase buttonCancel"
-          (click)="onCancel()"
-        >
-          <mat-icon>cancel</mat-icon>
-          Cancel
-        </button>
-        <button
-          type="submit"
-          class="buttonBase"
-          [disabled]="!valueForm.valid"
-        >
-          <mat-icon>add_circle</mat-icon>
-          Add value
-        </button>
-      </div>
-    </form>
+            <option
+              *ngFor="let attribute of attributes$ | async"
+              [value]="attribute.id"
+              [selected]="attribute.id === selectedIdAttribute"
+            >
+              {{ attribute.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="submitContainer">
+          <button
+            type="button"
+            class="buttonBase buttonCancel"
+            (click)="onCancel()"
+          >
+            <mat-icon>cancel</mat-icon>
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="buttonBase"
+            [disabled]="!valueForm.valid"
+          >
+            <mat-icon>add_circle</mat-icon>
+            Add value
+          </button>
+        </div>
+      </form>
+    </div>
   </mat-card-content>
 </mat-card>

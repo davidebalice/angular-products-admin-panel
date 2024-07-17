@@ -17,47 +17,51 @@
     </div>
 
     <div class="row">
-      <ng-container *ngIf="categories.length > 0; else noCategory">
-        <div class="col-12" *ngFor="let category of categories">
-          <div class="listRow">
-            <div class="listBody">
-              <h5 class="listTitle">{{ category.name }}</h5>
-            </div>
-
-            <div class="cardButtonContainer">
-              <button
-                class="cardButton"
-                (click)="onEditCategory(category.id)"
-                matTooltipPosition="above"
-                matTooltipShowDelay="100"
-                matTooltipHideDelay="100"
-                matTooltip="Edit"
-              >
-                <mat-icon class="editButton">edit</mat-icon>
-              </button>
-
-              <button
-                class="cardButton cardButtonDelete"
-                (click)="onDelete(category.id, category.name)"
-                matTooltipPosition="above"
-                matTooltipShowDelay="100"
-                matTooltipHideDelay="100"
-                matTooltip="Delete"
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
-          </div>
+      <ng-container *ngIf="isLoading; else loadedContent">
+        <div class="loadingContainer">
+          <img src="../../../assets/images/loading.svg" />
         </div>
       </ng-container>
 
-      <ng-template #noCategory>
-        <div class="noCategory">No category available.</div>
+      <ng-template #loadedContent>
+        <ng-container *ngIf="categories.length > 0; else noCategory">
+          <div class="col-12" *ngFor="let category of categories">
+            <div class="listRow">
+              <div class="listBody">
+                <h5 class="listTitle">{{ category.name }}</h5>
+              </div>
+
+              <div class="cardButtonContainer">
+                <button
+                  class="cardButton"
+                  (click)="onEditCategory(category.id)"
+                  matTooltipPosition="above"
+                  matTooltipShowDelay="100"
+                  matTooltipHideDelay="100"
+                  matTooltip="Edit"
+                >
+                  <mat-icon class="editButton">edit</mat-icon>
+                </button>
+
+                <button
+                  class="cardButton cardButtonDelete"
+                  (click)="onDelete(category.id, category.name)"
+                  matTooltipPosition="above"
+                  matTooltipShowDelay="100"
+                  matTooltipHideDelay="100"
+                  matTooltip="Delete"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
       </ng-template>
 
-      <div *ngIf="isLoading" class="loadingContainer">
-        <img src="../../../assets/images/loading.svg" />
-      </div>
+      <ng-template #noCategory>
+        <div class="noData">No category available.</div>
+      </ng-template>
     </div>
   </mat-card-content>
 </mat-card>

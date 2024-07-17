@@ -8,11 +8,23 @@
 
 <div class="row">
   <div class="col-12">
-    <ng-container *ngIf="loadedProducts.length > 0; else noProducts">
-      <div class="col-12" *ngFor="let product of loadedProducts">
-        <app-row [product]="product"></app-row>
+    <ng-container *ngIf="isLoading; else loadedContent">
+      <div class="loadingContainer">
+        <img src="../../../assets/images/loading.svg" />
       </div>
     </ng-container>
+
+    <ng-template #loadedContent>
+      <ng-container *ngIf="loadedProducts && loadedProducts.length > 0; else noProducts">
+        <div class="col-12" *ngFor="let product of loadedProducts">
+          <app-row [product]="product"></app-row>
+        </div>
+      </ng-container>
+    </ng-template>
+
+    <ng-template #noProducts>
+      <div class="noData">No products available.</div>
+    </ng-template>
 
     <div class="customPagination" *ngIf="pagination && totalItems > limit">
       <mat-paginator
@@ -23,14 +35,6 @@
         [showFirstLastButtons]="false"
       >
       </mat-paginator>
-    </div>
-
-    <ng-template #noProducts>
-      <div class="noProducts">No products available.</div>
-    </ng-template>
-
-    <div *ngIf="isLoading" class="loadingContainer">
-      <img src="../../../assets/images/loading.svg" />
     </div>
   </div>
 </div>

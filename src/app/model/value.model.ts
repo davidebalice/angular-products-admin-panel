@@ -1,27 +1,17 @@
 export class Value {
   public id: number;
   public idAttribute: number;
-  public name: string;
-  public description: string;
+  public value: string;
 
-  constructor(
-    id: number,
-    idAttribute: number,
-    name: string,
-    description: string
-  ) {
+  constructor(id: number, idAttribute: number, value: string) {
     this.id = id;
     this.idAttribute = idAttribute;
-    this.name = name;
-    this.description = description;
+    this.value = value;
   }
 }
 
 export interface ValueDto {
   id: number;
   idAttribute: number;
-  name: string;
-  description: string;
-  bg: string;
-  color: string;
+  value: string;
 }

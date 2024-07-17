@@ -1,5 +1,5 @@
 <h5>
-  Products > Categories > Edit >
+  Products > Attributes > Edit >
   <span>{{ attribute?.name || "" }}</span>
 </h5>
 <hr />
@@ -28,16 +28,7 @@
           />
         </div>
 
-        <div class="inputContainer inputContainerFull">
-          <label for="description" class="labelText">Description</label>
-          <textarea
-            type="text"
-            id="description"
-            class="inputField"
-            formControlName="description"
-            rows="6"
-          ></textarea>
-        </div>
+       
 
         <div class="submitContainer">
           <button
@@ -61,7 +52,7 @@
     </div>
 
     <ng-template #loading>
-      <p>Loading...</p>
+      <img src="../../../assets/images/loading.svg" />
     </ng-template>
   </mat-card-content>
 </mat-card>

@@ -66,10 +66,7 @@ export class ValueEditComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.valueForm.valid && !this.submitting) {
       this.submitting = true;
-      console.log(this.valueForm.value);
-      console.log(this.valueForm.value);
-      console.log(this.valueForm.value);
-      console.log(this.valueForm.value);
+
       this.valueService
         .updateValue(this.id, this.valueForm.value)
         .pipe(
@@ -99,8 +96,7 @@ export class ValueEditComponent implements OnInit, OnDestroy {
     this.selectedIdAttribute = value.idAttribute;
 
     this.valueForm = this.formBuilder.group({
-      name: [value.name, Validators.required],
-      description: [value.description],
+      value: [value.value, Validators.required],
       idAttribute: [value.idAttribute, Validators.required],
     });
   }
@@ -111,6 +107,6 @@ export class ValueEditComponent implements OnInit, OnDestroy {
   }
 
   onBack() {
-    this.router.navigate(['./products/subcategories']);
+    this.router.navigate(['./products/values']);
   }
 }

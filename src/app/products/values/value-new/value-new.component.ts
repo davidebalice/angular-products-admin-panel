@@ -20,7 +20,7 @@ export class ValueNewComponent {
   submitting = false;
   imageFile: File | null = null;
   private destroy$ = new Subject<void>();
-  categories$: Observable<any[]>;
+  attributes$: Observable<any[]>;
   selectedIdAttribute: number = null;
 
   constructor(
@@ -35,8 +35,7 @@ export class ValueNewComponent {
     this.loadAttributes();
     this.loadDefaultAttribute();
     this.valueForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      description: [''],
+      value: ['', Validators.required],
       attribute: this.formBuilder.group({
         id: new FormControl(this.selectedIdAttribute, Validators.required),
       }),
@@ -45,30 +44,30 @@ export class ValueNewComponent {
 
   loadAttributes(): void {
     this.attributeService.fetchAttributes();
-    this.categories$ = this.attributeService.getAttributes();
+    this.attributes$ = this.attributeService.getAttributes();
   }
 
   loadDefaultAttribute(): void {
     if (!this.selectedIdAttribute) {
-      this.categories$.subscribe((categories) => {
-        if (categories.length > 0) {
-          this.selectedIdAttribute = categories[0].id;
+      this.attributes$.subscribe((attributes) => {
+        if (attributes.length > 0) {
+          this.selectedIdAttribute = attributes[0].id;
           console.log(this.selectedIdAttribute);
-          this.loadSubcategories(this.selectedIdAttribute);
+          this.loadSubattributes(this.selectedIdAttribute);
         }
       });
     } else {
-      this.loadSubcategories(this.selectedIdAttribute);
+      this.loadSubattributes(this.selectedIdAttribute);
     }
   }
 
   onAttributeChange(attributeId: number): void {
     this.selectedIdAttribute = attributeId;
-    this.loadSubcategories(attributeId);
+    this.loadSubattributes(attributeId);
     this.valueForm.get('attribute.id').setValue(attributeId);
   }
 
-  loadSubcategories(attributeId: number): void {
+  loadSubattributes(attributeId: number): void {
     this.selectedIdAttribute = attributeId;
   }
 

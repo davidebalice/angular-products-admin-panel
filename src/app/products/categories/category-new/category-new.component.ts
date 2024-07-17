@@ -35,9 +35,6 @@ export class CategoryNewComponent {
     this.categoryForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: [''],
-      sku: [''],
-      price: [''],
-      idCategory: 0,
     });
   }
 

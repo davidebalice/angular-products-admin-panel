@@ -2,7 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import {
+  catchError,
+  Observable,
+  Subject,
+  Subscription,
+  take,
+  takeUntil,
+} from 'rxjs';
 import {
   ConfirmDialogComponent,
   ConfirmDialogData,
@@ -45,19 +52,13 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
   loadDefaultCategory(): void {
     console.log(this.selectedIdCategory);
     if (!this.selectedIdCategory) {
-      console.log(this.selectedIdCategory);
-      console.log(this.selectedIdCategory);
-      console.log(this.selectedIdCategory);
-      console.log(this.selectedIdCategory);
-
-      this.categories$.subscribe((categories) => {
+      this.categories$.pipe(take(2)).subscribe((categories) => {
         if (categories.length > 0) {
-          console.log(categories.length);
-          console.log(categories.length);
-          console.log(categories.length);
           this.selectedIdCategory = categories[0].id;
-          console.log(this.selectedIdCategory);
           this.loadSubcategories(this.selectedIdCategory);
+          this.categoryForm = new FormGroup({
+            idCategory: new FormControl(this.selectedIdCategory),
+          });
         }
       });
     } else {
@@ -86,7 +87,9 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      const idCategory = +params['idCategory'];
+      const idCategory = params['idCategory'];
+      console.log('idCategory');
+      console.log(idCategory);
       if (idCategory) {
         this.selectedIdCategory = idCategory;
         this.loadCategories();
@@ -105,18 +108,14 @@ export class SubcategoriesComponent implements OnInit, OnDestroy {
     this.categoryForm = new FormGroup({
       idCategory: new FormControl(this.selectedIdCategory),
     });
-
-    this.subcategoryService
-      .getSubcategories()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((subcategories) => {
-        this.subcategories = subcategories;
-      });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   onSelectSubcategory(subcategory: Subcategory): void {
