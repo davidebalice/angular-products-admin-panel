@@ -14,6 +14,8 @@
 .rowTitle > div:nth-child(2) {
   width: 20%;
   text-align: center;
+  margin-right: 74px;
+  text-align: end;
 }
 
 .listRow {
@@ -41,6 +43,7 @@
   align-items: center;
   display: flex;
   min-height: 50px;
+  margin-left: auto;
 }
 
 .categoryContainer {

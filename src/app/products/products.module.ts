@@ -36,6 +36,7 @@ import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcate
 import { ValueEditComponent } from './values/value-edit/value-edit.component';
 import { ValueNewComponent } from './values/value-new/value-new.component';
 import { ValuesComponent } from './values/values.component';
+import { AttributesSetComponent } from './attributes/attribute-set/attributes-set.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ValuesComponent } from './values/values.component';
     AttributesComponent,
     AttributeEditComponent,
     AttributeNewComponent,
+    AttributesSetComponent,
     ValuesComponent,
     ValueEditComponent,
     ValueNewComponent,

@@ -1,3 +1,5 @@
+import { Value } from "./value.model";
+
 export class Attribute {
   public id: number;
   public name: string;
@@ -12,4 +14,9 @@ export class Attribute {
 export interface AttributeDto {
   id: number;
   name: string;
+}
+
+export interface ProductAttributeResponse {
+  attribute: Attribute;
+  attributeValue: Value;
 }

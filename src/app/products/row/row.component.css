@@ -8,7 +8,7 @@
 }
 
 .listRow > div:nth-child(2) {
-  width: 40%;
+  width: 30%;
   text-align: left;
 }
 
@@ -21,7 +21,10 @@
 }
 
 .listRow > div:nth-child(5) {
-  width: 10%;
+  width: 20%;
+  justify-content: end;
+  text-align: right;
+  margin-left: auto
 }
 
 .categoryContainer {

@@ -51,6 +51,17 @@
 
     <button
       class="cardButton"
+      (click)="onAttributeProduct(product.id)"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      matTooltipHideDelay="100"
+      matTooltip="Attributes"
+    >
+      <mat-icon class="editButton">sell</mat-icon>
+    </button>
+
+    <button
+      class="cardButton"
       (click)="onPhotoProduct(product.id)"
       matTooltipPosition="above"
       matTooltipShowDelay="100"

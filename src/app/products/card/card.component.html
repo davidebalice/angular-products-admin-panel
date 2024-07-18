@@ -8,7 +8,7 @@
     "
     alt="{{ product.name }}"
     class="cardImg"
-    (click)="openImageDialog(product.imageUrl,'products/image')"
+    (click)="openImageDialog(product.imageUrl, 'products/image')"
   />
 </div>
 <div class="cardBody">
@@ -20,7 +20,7 @@
   <div>{{ product.price | currencyFormat }}</div>
 </div>
 
-<div class="cardButtonContainer">
+<div class="buttonContainer">
   <button
     class="cardButton"
     matTooltipPosition="above"
@@ -41,6 +41,17 @@
     matTooltip="Edit"
   >
     <mat-icon class="editButton">edit</mat-icon>
+  </button>
+
+  <button
+    class="cardButton"
+    (click)="onAttributeProduct(product.id)"
+    matTooltipPosition="above"
+    matTooltipShowDelay="100"
+    matTooltipHideDelay="100"
+    matTooltip="Attributes"
+  >
+    <mat-icon class="editButton">sell</mat-icon>
   </button>
 
   <button

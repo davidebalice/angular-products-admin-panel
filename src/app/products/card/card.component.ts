@@ -122,6 +122,10 @@ export class CardComponent implements OnInit {
     this.router.navigate([`/products/${productId}/edit`]);
   }
 
+  onAttributeProduct(productId: number) {
+    this.router.navigate(['/products/set-attributes', productId]);
+  }
+
   generateStarsArray(difficulty: number): string[] {
     const maxStars = 5;
     let starsArray: string[] = [];

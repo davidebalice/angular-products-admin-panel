@@ -46,7 +46,7 @@ export class AttributesComponent implements OnInit, OnDestroy {
     this.selectedAttribute = attribute;
 
     if (attribute) {
-      this.router.navigate([`/products/idcat/${attribute.id}`]);
+      this.router.navigate([`/products/idattr/${attribute.id}`]);
     }
   }
 

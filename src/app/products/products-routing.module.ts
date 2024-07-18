@@ -19,6 +19,7 @@ import { SubcategoryNewComponent } from './subcategories/subcategory-new/subcate
 import { ValueEditComponent } from './values/value-edit/value-edit.component';
 import { ValueNewComponent } from './values/value-new/value-new.component';
 import { ValuesComponent } from './values/values.component';
+import { AttributesSetComponent } from './attributes/attribute-set/attributes-set.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,11 @@ const routes: Routes = [
   {
     path: 'attributes/:id/edit',
     component: AttributeEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'set-attributes/:id',
+    component: AttributesSetComponent,
     canActivate: [AuthGuard],
   },
   {

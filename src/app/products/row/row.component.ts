@@ -108,8 +108,11 @@ export class RowComponent implements OnInit {
   }
 
   onGalleryProduct(productId: number) {
-    console.log(productId);
     this.router.navigate(['/products/gallery', productId]);
+  }
+
+  onAttributeProduct(productId: number) {
+    this.router.navigate(['/products/set-attributes', productId]);
   }
 
   ngOnDestroy(): void {
