@@ -3,6 +3,10 @@
 
 <mat-card class="pageCard">
   <mat-card-content>
+    <button type="button" class="buttonBase buttonBack" (click)="onBack()">
+      <mat-icon> chevron_left</mat-icon>
+      Back
+    </button>
     <div class="row" *ngIf="product$ | async as product; else loading">
       <div class="row">
         <div class="col-xs-12">
@@ -66,7 +70,7 @@
                   | async
                   | defaultImage : 'assets/images/nophoto.jpg'
               "
-              (click)="openImageDialog(image.url,'products/gallery')"
+              (click)="openImageDialog(image.url, 'products/gallery')"
               class="galleryImg"
             />
           </div>

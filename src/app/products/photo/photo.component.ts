@@ -118,4 +118,8 @@ export class PhotoComponent implements OnInit {
       image: new FormControl(productImageUrl, Validators.required),
     });
   }
+
+  onBack() {
+    this.router.navigate(['./products']);
+  }
 }

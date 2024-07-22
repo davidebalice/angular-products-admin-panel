@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { catchError, Subscription, throwError } from 'rxjs';
+import { catchError, map, Subscription, throwError } from 'rxjs';
 import { ProductAttributeResponse } from 'src/app/model/attribute.model';
 import { AttributeAndValues } from 'src/app/model/attributeAndValues.model';
+import { ProductService } from 'src/app/services/product.service';
 import { Product } from '../../../model/product.model';
 import { AttributeService } from '../../../services/attribute.service';
 @Component({
@@ -20,12 +20,13 @@ export class AttributesSetComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   isLoading = true;
   idProduct: number;
+  product: Product;
 
   constructor(
     private attributeService: AttributeService,
+    private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router,
-    private dialog: MatDialog
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,9 +38,18 @@ export class AttributesSetComponent implements OnInit, OnDestroy {
         .getSettedAttributesAndValues()
         .subscribe((attributes) => {
           this.settedAttributes = attributes;
-          console.log('this.settedAttributes');
-          console.log(this.settedAttributes);
         });
+
+      if (this.idProduct !== undefined) {
+        this.productService
+          .getById(this.idProduct)
+          .pipe(
+            map((product) => {
+              this.product = product;
+            })
+          )
+          .subscribe();
+      }
     });
 
     this.attributeService.fetchAttributesAndValues();
@@ -92,18 +102,13 @@ export class AttributesSetComponent implements OnInit, OnDestroy {
       (attr) =>
         attr.attribute.id === attributeId && attr.attributeValue.id === valueId
     );
-
-    /*
-    const isSelected = this.settedAttributes.some(attr => {
-      console.log("Current attribute:", attr.id, "and value:", attr.values[0].id);
-      return attr.id === attributeId && attr.values.id === valueId;
-    });
-  
-    console.log("Is selected:", isSelected);
-    return true;*/
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  onBack() {
+    this.router.navigate(['./products']);
   }
 }

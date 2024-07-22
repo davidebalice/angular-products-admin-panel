@@ -42,7 +42,7 @@
   align-items: center;
   display: flex;
   min-height: 50px;
-  margin-left: auto
+  margin-left: auto;
 }
 
 .categoryContainer {
@@ -61,9 +61,35 @@
 
 .listTitle {
   font-size: 17px;
+  margin-top: 12px;
   overflow: hidden;
 }
 
 .listText {
   font-size: 14px;
+}
+
+.valuesContainer {
+  display: flex;
+  gap: 40px;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.valuesContainer li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.valuesContainer input {
+  width: 16px;
+  height: 16px;
 }

@@ -33,9 +33,9 @@ export class CardComponent implements OnInit {
   openDialog(id: number): void {
     this.dialog.open(DetailComponent, {
       width: '90%',
-      maxWidth: '1000px',
+      maxWidth: '1200px',
       height: '90%',
-      maxHeight: '750px',
+      maxHeight: '1200px',
       data: { id: id },
     });
   }

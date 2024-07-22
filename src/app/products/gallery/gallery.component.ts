@@ -112,4 +112,8 @@ export class GalleryComponent implements OnInit {
       },
     });
   }
+
+  onBack() {
+    this.router.navigate(['./products']);
+  }
 }
