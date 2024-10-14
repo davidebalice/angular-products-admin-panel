@@ -42,7 +42,6 @@ export class HeaderComponent implements OnInit {
     this.sidebarservice.setSidebarState(!this.sidebarservice.getSidebarState());
   }
 
-
   onLogout() {
     this.authService.logout();
   }

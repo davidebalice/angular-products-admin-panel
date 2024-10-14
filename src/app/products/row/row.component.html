@@ -2,11 +2,8 @@
   <div>
     <img
       [src]="
-        getFullImageUrl(product.imageUrl)
-          | protectedImage
-          | async
-          | defaultImage : 'assets/images/nophoto.jpg'
-      "
+      (getFullImageUrl(product.imageUrl) | protectedImage | async) ||
+      'assets/images/nophoto.jpg'"
       alt="{{ product.name }}"
       class="listImg"
       (click)="openImageDialog(product.imageUrl,'products/image')"

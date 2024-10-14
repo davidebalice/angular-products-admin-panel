@@ -1,11 +1,8 @@
 <div class="cardImgContainer">
   <img
     [src]="
-      getFullImageUrl(product.imageUrl)
-        | protectedImage
-        | async
-        | defaultImage : 'assets/images/nophoto.jpg'
-    "
+    (getFullImageUrl(product.imageUrl) | protectedImage | async) ||
+    'assets/images/nophoto.jpg'"
     alt="{{ product.name }}"
     class="cardImg"
     (click)="openImageDialog(product.imageUrl, 'products/image')"

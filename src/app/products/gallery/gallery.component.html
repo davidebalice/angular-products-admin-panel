@@ -65,10 +65,8 @@
           >
             <img
               [src]="
-                getFullImageUrl(image.url)
-                  | protectedImage
-                  | async
-                  | defaultImage : 'assets/images/nophoto.jpg'
+                (getFullImageUrl(image.url) | protectedImage | async) ||
+                'assets/images/nophoto.jpg'
               "
               (click)="openImageDialog(image.url, 'products/gallery')"
               class="galleryImg"

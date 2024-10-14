@@ -9,44 +9,6 @@
   </div>
 
   <div class="d-flex align-items-center gap-1">
-    <!--button mat-icon-button (click)="darkMode()">
-      <mat-icon class="material-icons-outlined">{{ theme_name }}</mat-icon>
-    </button-->
-
-    <!-- button mat-icon-button [matMenuTriggerFor]="Notification">
-      <mat-icon class="material-icons-outlined" matBadge="7" matBadgePosition="after"
-        matBadgeColor="warn">notifications</mat-icon>
-    </button>
-    <mat-menu #Notification class="rounded-4 dropdown-notification">
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined text-red">shopping_cart</mat-icon>
-        <span>Lorem ipsum</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined text-purple">email</mat-icon>
-        <span>Lorem ipsum</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined text-green">task</mat-icon>
-        <span>Lorem ipsum</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined text-blue">supervisor_account</mat-icon>
-        <span>10 New users registered</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined text-amber">card_giftcard</mat-icon>
-        <span>Lorem ipsum</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon class="material-icons-outlined text-teal">done_all</mat-icon>
-        <span>Lorem ipsum</span>
-      </button>
-      <div class="mx-3 my-2">
-        <button mat-raised-button color="primary" class="rounded-4 w-100">View All</button>
-      </div>
-    </mat-menu-->
-
     <button mat-icon-button [matMenuTriggerFor]="UserProfile">
       <mat-icon class="material-icons-outlined">account_circle</mat-icon>
     </button>
@@ -73,10 +35,6 @@
         <mat-icon class="material-icons-outlined">account_circle</mat-icon>
         <span>Profile</span>
       </button>
-      <!--button mat-menu-item>
-        <mat-icon class="material-icons-outlined">settings</mat-icon>
-        <span>Setting</span>
-      </button-->
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="onLogout()">
         <mat-icon class="material-icons-outlined">logout</mat-icon>

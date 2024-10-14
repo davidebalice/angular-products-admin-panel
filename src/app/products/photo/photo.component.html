@@ -56,11 +56,8 @@
               <div class="col-xs-12">
                 <img
                   [src]="
-                    getFullImageUrl(imageUrl)
-                      | protectedImage
-                      | async
-                      | defaultImage : 'assets/images/nophoto.jpg'
-                  "
+                  (getFullImageUrl(imageUrl) | protectedImage | async) ||
+                  'assets/images/nophoto.jpg'"
                   class="img-responsive photo"
                 />
               </div>

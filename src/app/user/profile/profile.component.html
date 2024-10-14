@@ -157,16 +157,7 @@
                   <input matInput placeholder="Zip Code" value="200100" />
                 </mat-form-field>
               </div>
-              <div class="col-12 col-md-12">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>About Me</mat-label>
-                  <textarea
-                    matInput
-                    placeholder="Ex. It makes me feel..."
-                    value="A beautiful premium dashboard for Angular Material."
-                  ></textarea>
-                </mat-form-field>
-              </div>
+
               <div class="col-12 col-md-12">
                 <div class="d-flex gap-3">
                   <button mat-flat-button color="primary" class="px-4">
@@ -216,7 +207,7 @@
             <div class="info-list d-flex flex-column gap-3">
               <div class="info-list-item d-flex align-items-center gap-3">
                 <span class="material-icons-outlined">account_circle</span>
-                <p>Full Name: Jhon Deo</p>
+                <p>Full Name: {{ user.name }} {{ user.surname }}</p>
               </div>
               <div class="info-list-item d-flex align-items-center gap-3">
                 <span class="material-icons-outlined">done</span>
@@ -236,7 +227,7 @@
               </div>
               <div class="info-list-item d-flex align-items-center gap-3">
                 <span class="material-icons-outlined">send</span>
-                <p>Email: jhon.xyz</p>
+                <p>Email: {{ user.email }}</p>
               </div>
               <div class="info-list-item d-flex align-items-center gap-3">
                 <span class="material-icons-outlined">call</span>
@@ -245,68 +236,7 @@
             </div>
           </div>
 
-          <div
-            class="d-flex flex-row gap-3 align-items-center justify-content-between mb-3 mt-5"
-          >
-            <div class="">
-              <h5 class="">Social Accounts</h5>
-            </div>
-            <div>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu" class="rounded-4">
-                <button mat-menu-item>
-                  <mat-icon class="material-icons-outlined"
-                    >visibility</mat-icon
-                  >
-                  <span>View</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon class="material-icons-outlined">edit</mat-icon>
-                  <span>Edit</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon class="material-icons-outlined">delete</mat-icon>
-                  <span>Delete</span>
-                </button>
-              </mat-menu>
-            </div>
-          </div>
-
-          <div class="accounts d-flex flex-column gap-4">
-            <div class="d-flex align-items-center gap-3">
-              <div class="">
-                <img src="assets/images/app/facebook.png" width="30" alt="" />
-              </div>
-              <div class="flex-grow-1">
-                <h6 class="mb-0">Facebook</h6>
-                <p class="mb-0">.....</p>
-              </div>
-              <div class=""></div>
-            </div>
-            <div class="d-flex align-items-center gap-3">
-              <div class="">
-                <img src="assets/images/app/linkedin.png" width="30" alt="" />
-              </div>
-              <div class="flex-grow-1">
-                <h6 class="mb-0">Linkedin</h6>
-                <p class="mb-0">.....</p>
-              </div>
-              <div class=""></div>
-            </div>
-
-            <div class="d-flex align-items-center gap-3">
-              <div class="">
-                <img src="assets/images/app/instagram.png" width="30" alt="" />
-              </div>
-              <div class="flex-grow-1">
-                <h6 class="mb-0">Instagram</h6>
-                <p class="mb-0">.....</p>
-              </div>
-              <div class=""></div>
-            </div>
-          </div>
+          
         </mat-card-content>
       </mat-card>
     </div>
