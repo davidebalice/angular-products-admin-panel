@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
 
   theme_name = 'dark_mode';
 
- 
   darkMode() {
     if (this.theme_name == 'light_mode') {
       document

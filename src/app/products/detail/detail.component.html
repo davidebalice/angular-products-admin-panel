@@ -1,34 +1,40 @@
-<div mat-dialog-actions style="justify-content: right;">
+<div mat-dialog-actions style="justify-content: right">
   <button mat-button (click)="closeDialog()">Close</button>
 </div>
 <div mat-dialog-content>
-  <div class="row" *ngIf="product$ | async as product; else loading">
+  <div
+    class="row detailContainer"
+    *ngIf="product$ | async as product; else loading"
+  >
     <div class="row">
       <div class="col-xs-12">
-        <img
-          [src]="getFullImageUrl(product.imageUrl)"
-          alt="{{ product.name }}"
-          class="img-responsive"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
+        <div class="detailImgContainer">
+          <img
+            [src]="
+              (getFullImageUrl(product.imageUrl) | protectedImage | async) ||
+              'assets/images/nophoto.jpg'
+            "
+            alt="{{ product.name }}"
+            class="detailImg"
+            (click)="openImageDialog(product.imageUrl, 'products/image')"
+          />
+        </div>
         <h1>{{ product.name }}</h1>
-        <h4>{{ product.description }}</h4>
+        <p>Category: {{ product.categoryDto.name }}</p>
+        <p>Sku: {{ product.sku }}</p>
+        <p>Price: {{ product.price | currencyFormat }}</p>
+
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        
-      </div>
+      <div class="col-xs-12"></div>
     </div>
     <div class="row">
-      <div class="col-xs-12">Description</div>
+      <div class="col-xs-12"><br />Description</div>
+      <h4>{{ product.description }}</h4>
     </div>
   </div>
   <ng-template #loading>
     <p>Caricamento...</p>
   </ng-template>
 </div>
-

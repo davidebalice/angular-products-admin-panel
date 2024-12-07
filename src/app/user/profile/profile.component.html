@@ -53,7 +53,7 @@
               <div class="col-12 col-md-6">
                 <mat-form-field class="w-100" appearance="outline">
                   <mat-label>Username</mat-label>
-                  <input matInput placeholder="Ex. Jhon" value="deo.jhon" />
+                  <input matInput placeholder="Ex. Jhon" value="{{ user.username }}" />
                 </mat-form-field>
               </div>
               <div class="col-12 col-md-6">
@@ -61,8 +61,8 @@
                   <mat-label>Email</mat-label>
                   <input
                     matInput
-                    placeholder="Ex. xyz@.com"
-                    value="jhon@xyz.com"
+                    placeholder=""
+                    value="{{ user.email }}"
                   />
                 </mat-form-field>
               </div>
@@ -94,69 +94,21 @@
                   <mat-label>Phone</mat-label>
                   <input
                     matInput
-                    placeholder="Ex. 88XX25X65"
-                    value="+91-9945XX26XX"
+                    placeholder=""
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value="{{ user.phoneNumber }}"
                   />
                 </mat-form-field>
               </div>
               <div class="col-12 col-md-12">
                 <mat-form-field class="w-100" appearance="outline">
                   <mat-label>Password</mat-label>
-                  <input matInput placeholder="Ex. @#45gh" value="Password" />
+                  <input matInput placeholder="" value="Password" />
                 </mat-form-field>
               </div>
-              <div class="col-12 col-md-12">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>DOB</mat-label>
-                  <input matInput [matDatepicker]="picker3" />
-                  <mat-hint>MM/DD/YYYY</mat-hint>
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="picker3"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #picker3></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col-12 col-md-12">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Country</mat-label>
-                  <mat-select>
-                    <mat-option>None</mat-option>
-                    <mat-option
-                      *ngFor="let country of countries"
-                      [value]="country"
-                      >{{ country }}</mat-option
-                    >
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-12 col-md-5">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>City</mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter City Name"
-                    value="New York"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col-12 col-md-4">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>State</mat-label>
-                  <mat-select>
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let state of states" [value]="state">{{
-                      state
-                    }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-12 col-md-3">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Zip</mat-label>
-                  <input matInput placeholder="Zip Code" value="200100" />
-                </mat-form-field>
-              </div>
+             
+             
 
               <div class="col-12 col-md-12">
                 <div class="d-flex gap-3">
@@ -181,27 +133,6 @@
             <div class="">
               <h5 class="">About</h5>
             </div>
-            <div>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu" class="rounded-4">
-                <button mat-menu-item>
-                  <mat-icon class="material-icons-outlined"
-                    >visibility</mat-icon
-                  >
-                  <span>View</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon class="material-icons-outlined">edit</mat-icon>
-                  <span>Edit</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon class="material-icons-outlined">delete</mat-icon>
-                  <span>Delete</span>
-                </button>
-              </mat-menu>
-            </div>
           </div>
           <div class="full-info">
             <div class="info-list d-flex flex-column gap-3">
@@ -218,20 +149,12 @@
                 <p>Role: Developer</p>
               </div>
               <div class="info-list-item d-flex align-items-center gap-3">
-                <span class="material-icons-outlined">flag</span>
-                <p>Country: USA</p>
-              </div>
-              <div class="info-list-item d-flex align-items-center gap-3">
-                <span class="material-icons-outlined">language</span>
-                <p>Language: English</p>
-              </div>
-              <div class="info-list-item d-flex align-items-center gap-3">
                 <span class="material-icons-outlined">send</span>
                 <p>Email: {{ user.email }}</p>
               </div>
               <div class="info-list-item d-flex align-items-center gap-3">
                 <span class="material-icons-outlined">call</span>
-                <p>Phone: (124) 895-6724</p>
+                <p>Phone: {{ user.phoneNumber }}</p>
               </div>
             </div>
           </div>

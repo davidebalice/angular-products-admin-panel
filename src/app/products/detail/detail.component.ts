@@ -42,6 +42,9 @@ export class DetailComponent implements OnInit {
   }
 
   getFullImageUrl(imageUrl: string): string {
+    if (!imageUrl || imageUrl.trim() === '') {
+      return '../../../assets/images/nophoto.jpg';
+    }
     return `${AppConfig.apiUrl}/products/image/${imageUrl}`;
   }
 

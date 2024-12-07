@@ -12,6 +12,17 @@
     </button>
 
     <div *ngIf="product$ | async as product; else loading">
+      <div class="EditImgContainer">
+        <img
+          [src]="
+          (getFullImageUrl(product.imageUrl) | protectedImage | async) ||
+          'assets/images/nophoto.jpg'"
+          alt="{{ product.name }}"
+          class="editImg"
+          (click)="openImageDialog(product.imageUrl, 'products/image')"
+        />
+      </div>
+
       <form
         *ngIf="productForm"
         [formGroup]="productForm"

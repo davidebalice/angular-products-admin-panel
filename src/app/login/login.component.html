@@ -39,7 +39,17 @@
           Password is required
         </div>
       </div>
-      <button type="submit" [disabled]="loginForm.invalid" class="loginButton">Login</button>
+      <button type="submit" [disabled]="loginForm.invalid" class="loginButton">
+        Login
+      </button>
+
+      <div class="demoData">
+        <b>Demo Data</b>
+        <br />
+        <span>mario&#64;rossi.it</span>
+        <br />
+        12345678
+      </div>
     </form>
     <div *ngIf="errorMessage" class="errorMessage">
       {{ errorMessage }}
